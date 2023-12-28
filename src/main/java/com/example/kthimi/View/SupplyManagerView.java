@@ -1,0 +1,126 @@
+package com.example.kthimi.View;
+
+import com.example.kthimi.Controller.AddStockManagerController;
+import com.example.kthimi.Controller.BookController;
+import com.example.kthimi.Controller.NewCategoryManagerController;
+import com.example.kthimi.Controller.SupplyManagerController;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+
+import java.util.ArrayList;
+
+public class SupplyManagerView {
+
+    private BorderPane borderPane;
+
+    Button bttAddStock = new Button("Add Stock");
+    Button bttNewCategory = new Button("New Category");
+    Button bttBack = new Button("Back");
+
+    ManagerView managerView;
+    SupplyManagerController supplyManagerController;
+    AddStockManagerController addStockManagerController;
+    NewCategoryManagerController newCategoryManagerController;
+
+    NewCategoryManagerView newCategoryManagerView;
+
+    // Create the categ array instance
+    ArrayList<String> categ = BookController.getCategories();
+
+    // Create instances of views, passing the categ array
+    private AddStockManagerView addStockManagerView;
+
+
+
+    public SupplyManagerView(ManagerView managerView) {
+        this.managerView = managerView;
+
+        this.newCategoryManagerView = new NewCategoryManagerView(this,categ);
+
+        this.addStockManagerController = new AddStockManagerController(this,supplyManagerController,newCategoryManagerView);
+        this.newCategoryManagerController = new NewCategoryManagerController(this, supplyManagerController);
+        borderPane = createSupplyPage();
+    }
+
+    public BorderPane createSupplyPage() {
+
+        BorderPane border = new BorderPane();
+
+        Text text = new Text("Add Stock or New Books");
+        StackPane stack = new StackPane();
+        text.setFont(new Font(30));
+        stack.getChildren().add(text);
+        stack.setPadding(new Insets(20));
+        border.setTop(stack);
+
+        GridPane supplyPageGrid = new GridPane();
+        supplyPageGrid.setHgap(5);
+        supplyPageGrid.setVgap(5);
+        supplyPageGrid.add(bttAddStock, 0, 0);
+        supplyPageGrid.add(bttNewCategory, 1, 0);
+        supplyPageGrid.add(bttBack, 2, 0);
+
+//        bttAddStock.setOnAction(this);
+            setAddStockAction();
+//        bttNewCategory.setOnAction(this);
+          setNewCategoryAction();
+
+
+
+        bttBack.setOnAction(event -> {
+            if(event.getSource()==bttBack) {
+                bttBack.getScene().setRoot(managerView.createManagerMainPage());
+            }
+        });
+
+        supplyPageGrid.setAlignment(Pos.CENTER);
+        border.setCenter(supplyPageGrid);
+
+
+        return border;
+    }
+
+
+    public void setAddStockAction(){
+        bttAddStock.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                addStockManagerController.handleAddStock();
+            }
+        });
+    }
+
+    public Button getBttAddStock() {
+        return bttAddStock;
+    }
+
+
+
+    public void setNewCategoryAction(){
+        bttNewCategory.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                newCategoryManagerController.handleNewCategory();
+            }
+        });
+    }
+
+    public Button getBttNewCategory() {
+        return bttNewCategory;
+    }
+
+
+    public ArrayList<String> getCategories() {
+        return categ;
+    }
+
+}
