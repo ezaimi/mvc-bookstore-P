@@ -31,15 +31,15 @@ public class LibrarianModel {
         this.salary = salary;
         this.phone = phone;
         this.email = email;
-        datesSold = new ArrayList<>();
-        moneyMadeDates = new ArrayList<>();
+//        datesSold = new ArrayList<>();
+//        moneyMadeDates = new ArrayList<>();
     }
 
     LibrarianModel(String username, String password) {
         this.username = username;
         this.password = password;
-        datesSold = new ArrayList<>();
-        moneyMadeDates = new ArrayList<>();
+//        datesSold = new ArrayList<>();
+//        moneyMadeDates = new ArrayList<>();
     }
 
     public String getUsername() {

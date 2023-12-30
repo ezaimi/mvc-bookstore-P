@@ -5,4 +5,7 @@ module com.example.kthimi {
 
     opens com.example.kthimi to javafx.fxml;
     exports com.example.kthimi;
+
+    opens com.example.kthimi.Model to javafx.base;
 }
+
