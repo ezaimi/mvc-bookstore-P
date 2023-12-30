@@ -111,4 +111,19 @@ public class LibrarianModel {
 
 
     }
+
+
+    //put it in a billmodel
+    public int getNumberOfBills() {
+        return numberOfBills;
+    }
+
+    public int getBooksSold() {
+        return booksSold;
+    }
+
+    public void setBooksSold(int booksSold){
+        this.booksSold = booksSold;
+    }
+
 }

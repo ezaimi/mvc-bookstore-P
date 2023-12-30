@@ -33,10 +33,14 @@ public class ManagerView {
 
     Button bttCheckLibrarians = new Button("Check Librarians");
     CheckStockLibrarianView checkStockLibrarianView;
-
+    CheckLibrariansManagerView checkLibrariansManagerView;
 
     public Button getBttSupply() {
         return bttSupply;
+    }
+
+    public Button getBttCheckLibrarians() {
+        return bttCheckLibrarians;
     }
 
 
@@ -46,6 +50,7 @@ public class ManagerView {
         this.managerController = new SupplyManagerController(this);
 
         this.checkStockLibrarianView = new CheckStockLibrarianView(this);
+        this.checkLibrariansManagerView = new CheckLibrariansManagerView(this);
 
         managerPage = createManagerMainPage();
 
@@ -134,14 +139,13 @@ public class ManagerView {
         setSupplyAction();
         bttCheckStock.setOnAction(event -> {
             setCheckStockScene((Stage) bttCheckStock.getScene().getWindow());
-             });
-        //setCheckStockAction();
-//        bttCheckLibrarians.setOnAction(event ->{
-//            if (event.getSource()==bttCheckLibrarians) {
-//                bttCheckLibrarians.getScene().setRoot(librariansAllPage());
-//            }
-//
-//        });
+        });
+
+        //check librarians
+        bttCheckLibrarians.setOnAction(event ->{
+            setCheckLibrariansAction((Stage) bttCheckLibrarians.getScene().getWindow());
+        });
+
         bttBack.setOnAction(event -> {
             if(event.getSource()==bttBack) {
                 bttBack.getScene().setRoot(mainView.mainPage());
@@ -176,15 +180,19 @@ public class ManagerView {
 
 
     //butoni 2 - check librarians
+    public void setCheckLibrariansAction(Stage primaryStage){
+        CheckLibrariansManagerView checkLibrariansManagerView = new CheckLibrariansManagerView(this);
+        BorderPane checkStockPane = checkLibrariansManagerView.librariansAllPage();
+        Scene scene = new Scene(checkStockPane, 800, 600);
+        primaryStage.setScene(scene);
+
+    }
 
     //butoni 3 - check stock
     public void setCheckStockScene(Stage primaryStage) {
-        // Create an instance of the CheckStockLibrarianView
         CheckStockLibrarianView stockLibrarianView = new CheckStockLibrarianView(this);
         BorderPane checkStockPane = stockLibrarianView.handleCheckStock();
         Scene scene = new Scene(checkStockPane, 800, 600);
-
-        // Set the scene to the primaryStage
         primaryStage.setScene(scene);
     }
 

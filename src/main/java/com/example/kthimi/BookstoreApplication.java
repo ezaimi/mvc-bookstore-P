@@ -1,6 +1,7 @@
 package com.example.kthimi;
 
 import com.example.kthimi.Controller.MainController;
+import com.example.kthimi.Model.ManagerModel;
 import com.example.kthimi.View.MainView;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -31,6 +32,9 @@ public class BookstoreApplication extends Application {
     }
 
     public static void main(String[] args) {
+        //fix this
+        ManagerModel.InstantiateLibrarians();
+
         // Launch the JavaFX application
         launch(args);
     }
