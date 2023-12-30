@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -17,6 +18,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class ManagerView {
 
@@ -30,6 +32,8 @@ public class ManagerView {
     Button bttCheckStock = new Button("Check Stock");
 
     Button bttCheckLibrarians = new Button("Check Librarians");
+    CheckStockLibrarianView checkStockLibrarianView;
+
 
     public Button getBttSupply() {
         return bttSupply;
@@ -40,7 +44,12 @@ public class ManagerView {
         this.mainView = mainView;
         this.usernamePage = usernamePage;
         this.managerController = new SupplyManagerController(this);
+
+        this.checkStockLibrarianView = new CheckStockLibrarianView(this);
+
         managerPage = createManagerMainPage();
+
+
     }
 
     public BorderPane createManagerMainPage() {
@@ -123,7 +132,10 @@ public class ManagerView {
 
        // bttSupply.setOnAction(this);
         setSupplyAction();
-        // bttCheckStock.setOnAction(this);
+        bttCheckStock.setOnAction(event -> {
+            setCheckStockScene((Stage) bttCheckStock.getScene().getWindow());
+             });
+        //setCheckStockAction();
 //        bttCheckLibrarians.setOnAction(event ->{
 //            if (event.getSource()==bttCheckLibrarians) {
 //                bttCheckLibrarians.getScene().setRoot(librariansAllPage());
@@ -164,7 +176,18 @@ public class ManagerView {
 
 
     //butoni 2 - check librarians
+
     //butoni 3 - check stock
+    public void setCheckStockScene(Stage primaryStage) {
+        // Create an instance of the CheckStockLibrarianView
+        CheckStockLibrarianView stockLibrarianView = new CheckStockLibrarianView(this);
+        BorderPane checkStockPane = stockLibrarianView.handleCheckStock();
+        Scene scene = new Scene(checkStockPane, 800, 600);
+
+        // Set the scene to the primaryStage
+        primaryStage.setScene(scene);
+    }
+
     //butoni 4 - book statistics
     //butoni back eshte brenda createLibrarianMainPage
 
