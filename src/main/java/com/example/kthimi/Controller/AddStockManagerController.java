@@ -39,7 +39,7 @@ public class AddStockManagerController {
 
 
         // this.managerModel = new ManagerModel();
-       this.view = new AddStockManagerView(supplyManagerView,newCategoryManagerView,categories);
+       this.view = new AddStockManagerView(supplyManagerView,newCategoryManagerView);
        this.controller = this;
 
         view.setNewCategoryManagerView(newCategoryManagerView);

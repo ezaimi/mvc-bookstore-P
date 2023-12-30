@@ -1,9 +1,11 @@
 package com.example.kthimi.View;
 
+import com.example.kthimi.Controller.AddLibrarianController;
 import com.example.kthimi.Controller.AddStockManagerController;
 import com.example.kthimi.Controller.BookController;
 import com.example.kthimi.Controller.SupplyManagerController;
 import com.example.kthimi.Model.BookModel;
+import com.example.kthimi.Model.SharedDataManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -26,6 +28,8 @@ import java.util.Date;
 
 public class AddStockManagerView {
 
+
+    public ArrayList<BookModel> books;
     BorderPane borderPane;
     Button bttBackManager = new Button("Back");
     Button bttNewBook = new Button("New Book");
@@ -53,35 +57,26 @@ public class AddStockManagerView {
     NewCategoryManagerView newCategoryManagerView;
     ArrayList<String> categ;
     SupplyManagerView supplyManagerView;
+    AddLibrarianController addLibrarianController;
+    LibrarianView librarianView;
 
-    public AddStockManagerView(SupplyManagerView supplyManagerView, NewCategoryManagerView newCategoryManagerView, ArrayList<String> categ){
+    // Example usage in AddStockManagerView or another appropriate place
+    //AddLibrarianController librarianController = new AddLibrarianController(librarianViewInstance, categoryText);
+
+    public AddStockManagerView(){
+
+    }
+    public AddStockManagerView(SupplyManagerView supplyManagerView, NewCategoryManagerView newCategoryManagerView){
         this.supplyManagerView = supplyManagerView;
         this.newCategoryManagerView = newCategoryManagerView;
 
         borderPane = createAddToStock();
+        //per addin
+        this.librarianView = new LibrarianView();
+        this.addLibrarianController = new AddLibrarianController();
 
-        this.categ = categ;
     }
 
-    public AddStockManagerView(ArrayList<String> categ){
-        this.categ = categ;
-        // Rest of your constructor code...
-    }
-
-//    private ArrayList<String> initializeCategories() {
-//        // Refresh categories if needed
-//        return this.categ = newCategoryManagerView.getCategories();
-//    }
-
-//    private void initializeCategories() {
-//        System.out.println(newCategoryManagerView);
-//        System.out.println(categ);
-//        if (newCategoryManagerView != null) {
-//            categ = newCategoryManagerView.getCategories(); // Initialize categories here
-//        } else {
-//            categ = new ArrayList<>(); // Or handle it as per your application logic
-//        }
-//    }
 
 
     public BorderPane createAddToStock() {
@@ -146,12 +141,12 @@ public class AddStockManagerView {
         System.out.println("Butoni i ri");
         Button button = new Button(text);
         button.setOnAction(new ButtonHandler(button.getText()));
-        return button ;
+        return button;
     }
 
-    class ButtonHandler implements EventHandler<ActionEvent> {
+    public class ButtonHandler implements EventHandler<ActionEvent> {
 
-        private final String text;
+        public String text;
 
         ButtonHandler(String text) {
             this.text = text ;
@@ -185,7 +180,8 @@ public class AddStockManagerView {
         border.setTop(stack);
 
 
-        ArrayList<BookModel> books = BookController.getBookFromCategory(category);
+        books = BookController.getBookFromCategory(category);
+        System.out.println("Ktu duhen printuar" + books);
         GridPane grid = new GridPane();
         grid.setHgap(5);
         grid.setVgap(5);
@@ -495,4 +491,23 @@ public class AddStockManagerView {
         initializeCategories(); // Initialize categories when newCategoryManagerView is set
     }
 
+    public String getText() {
+        // Implement logic to retrieve or generate the 'text' attribute
+        return "Your text value here"; // Replace this with the logic to get the 'text'
+    }
+
+
+    public void setBooks(ArrayList<BookModel> books) {
+        this.books = books;
+    }
+
+    // Getter method to retrieve the books array
+    public ArrayList<BookModel> getBooks() {
+        System.out.println("TEK GETI"+books);
+        return books;
+    }
+
+    public ArrayList<BookModel> getBooksFromSharedManager() {
+        return SharedDataManager.getInstance().getBooks();
+    }
 }

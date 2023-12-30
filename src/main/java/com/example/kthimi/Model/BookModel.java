@@ -4,7 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
+
+
 public class BookModel implements Serializable {
+
+    private static final long serialVersionUID = -277127502423542483L; // You can choose any long value
+
 
     private String ISBN;
     private String title;
@@ -35,7 +40,7 @@ public class BookModel implements Serializable {
         purchasedAmount = new ArrayList<>();
     }
 
-    BookModel(String ISBN){
+    public BookModel(String ISBN){
         quantitiesPurchased = new ArrayList<>();
         dates = new ArrayList<>();
         purchasedDates = new ArrayList<>();

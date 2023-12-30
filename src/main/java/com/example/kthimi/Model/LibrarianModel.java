@@ -1,5 +1,7 @@
 package com.example.kthimi.Model;
 
+import com.example.kthimi.Controller.BookController;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -90,5 +92,23 @@ public class LibrarianModel {
     public String toString() {
         return "Librarian [username=" + username + ", password=" + password + ", name=" + name + ", salary=" + salary
                 + ", phone=" + phone + ", email=" + email + "]";
+    }
+
+
+    ///put it in a controller
+
+    public static boolean EnoughStock(String ISBN, int quantity) {
+
+        ArrayList<BookModel> stockbooks = BookController.getStockBooks();
+
+        for (int i=0;i<stockbooks.size();i++) {
+            if (stockbooks.get(i).getISBN().equals(ISBN))
+                if (stockbooks.get(i).getStock() - quantity >= 0)
+                    return true;
+        }
+
+        return false;
+
+
     }
 }
