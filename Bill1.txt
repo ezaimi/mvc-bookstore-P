@@ -1,0 +1,3 @@
+Title: "tyui", Quantities: 1, OriginalPrice 33.0, Price: 33.0
+
+Total price: 33.0 Date: Sat Dec 30 21:07:16 CET 2023

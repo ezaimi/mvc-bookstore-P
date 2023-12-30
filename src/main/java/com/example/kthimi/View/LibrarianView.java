@@ -1,10 +1,13 @@
 package com.example.kthimi.View;
 
 import com.example.kthimi.Controller.AddLibrarianController;
+import com.example.kthimi.Controller.BillLibrarianController;
 import com.example.kthimi.Controller.BookController;
+import com.example.kthimi.Controller.LibrarianFuncController;
 import com.example.kthimi.Main;
 import com.example.kthimi.Model.BookModel;
 import com.example.kthimi.Model.LibrarianModel;
+import com.example.kthimi.Model.SharedDataManager;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -39,7 +42,7 @@ public class LibrarianView {
 
 
     AddStockManagerView addStockManagerView;
-    ArrayList<BookModel> books = new ArrayList<>();
+    ArrayList<BookModel> books;
     String category;
     LibrarianView librarianView;
 
@@ -47,6 +50,7 @@ public class LibrarianView {
     ///////////////////
 
     AddLibrarianController addLibrarianController;
+    BillLibrarianController billLibrarianController;
 
     //////////////////
 
@@ -64,6 +68,7 @@ public class LibrarianView {
     Text textSystem = new Text("System");
 
     AddStockManagerView.ButtonHandler buttonHandler;
+    LibrarianFuncController librarianFuncController;
 
     public Button getBttBack() {
         return bttBack;
@@ -79,13 +84,16 @@ public class LibrarianView {
         librarianPage = createLibrarianMainPage();
 
 //        this.addStockManagerView = new AddStockManagerView();
-//        this.books = addStockManagerView.getBooksFromSharedManager();
+        this.books = SharedDataManager.getInstance().getBooks();
 
         //per butonin Add tek Librarian
        // initializeAddController();
         this.addLibrarianController = new AddLibrarianController(this);
-
+        this.billLibrarianController = new BillLibrarianController(this,addLibrarianController,books);
         //bttAdd.setOnAction(new AddButtonHandler());
+
+        setAddAction();
+        setBillAction();
     }
 
     public LibrarianView(AddStockManagerView addStockManagerView) {
@@ -96,13 +104,20 @@ public class LibrarianView {
         bttAdd.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                System.out.println("addi po funksionon");
                 addLibrarianController.handleAdd();
             }
         });
     }
 
-    private void initializeAddController(){
-
+    public void setBillAction(){
+        bttBill.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                System.out.println("billi u printua");
+                billLibrarianController.handleBill();
+            }
+        });
     }
 
     public BorderPane createLibrarianMainPage() {
@@ -154,9 +169,10 @@ public class LibrarianView {
         //borderPane.setCenter(librarianText);
 
         //bttAdd.setOnAction();
-        setAddAction();
+        //setAddAction();
 
         //bttBill.setOnAction(this);
+        //setBillAction();
 
 
         return borderPane;
@@ -170,6 +186,9 @@ public class LibrarianView {
 
     public Button getBttAdd() {
         return bttAdd;
+    }
+    public Button getBttBill() {
+        return bttBill;
     }
 
 
@@ -287,6 +306,21 @@ public class LibrarianView {
 //        // For example:
 //        for (BookModel book : books) {
 //            System.out.println(book.getTitle());
+//        }
+//    }
+
+//    public void someMethod() {
+//        // Create an instance of AddStockManagerView
+//        AddStockManagerView addStockManagerView = new AddStockManagerView();
+//
+//        // Access the books array using the method from AddStockManagerView
+//        ArrayList<BookModel> books = addStockManagerView.getBooksFromSharedManager();
+//
+//        // Use the 'books' array as needed within LibrarianView
+//        // For example:
+//        for (BookModel book : books) {
+//            System.out.println(book.getTitle());
+//            // Do other operations with the book details
 //        }
 //    }
 

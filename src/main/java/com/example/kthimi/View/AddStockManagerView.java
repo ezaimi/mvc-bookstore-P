@@ -1,9 +1,6 @@
 package com.example.kthimi.View;
 
-import com.example.kthimi.Controller.AddLibrarianController;
-import com.example.kthimi.Controller.AddStockManagerController;
-import com.example.kthimi.Controller.BookController;
-import com.example.kthimi.Controller.SupplyManagerController;
+import com.example.kthimi.Controller.*;
 import com.example.kthimi.Model.BookModel;
 import com.example.kthimi.Model.SharedDataManager;
 import javafx.event.ActionEvent;
@@ -59,6 +56,7 @@ public class AddStockManagerView {
     SupplyManagerView supplyManagerView;
     AddLibrarianController addLibrarianController;
     LibrarianView librarianView;
+    BillLibrarianController billLibrarianController;
 
     // Example usage in AddStockManagerView or another appropriate place
     //AddLibrarianController librarianController = new AddLibrarianController(librarianViewInstance, categoryText);
@@ -74,6 +72,8 @@ public class AddStockManagerView {
         //per addin
         this.librarianView = new LibrarianView();
         this.addLibrarianController = new AddLibrarianController();
+        this.billLibrarianController = new BillLibrarianController();
+        this.books = SharedDataManager.getInstance().getBooks();
 
     }
 
@@ -154,6 +154,9 @@ public class AddStockManagerView {
 
         @Override
         public void handle(ActionEvent event) {
+
+            SharedDataManager.getInstance().setBooks(books);
+
             Stage stage = new Stage();
             Scene scene = new Scene(categoryStock(text));
             //stage.getIcons().add(new Image("bookIcon.png"));

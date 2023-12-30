@@ -168,4 +168,12 @@ public class BookModel implements Serializable {
                 ", stock=" + stock +
                 '}';
     }
+
+    public void removeStock(int quantity) {
+        if (this.stock >= quantity) {
+            this.stock -= quantity;
+        } else {
+            System.out.println("Insufficient stock!");
+        }
+    }
 }
