@@ -1,6 +1,8 @@
 package com.example.kthimi.Model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -23,6 +25,12 @@ public class BookModel implements Serializable {
     private double originalPrice;
     private String author;
     private int stock = 0;
+
+    //////////////////////////////////////////////
+
+   // private ArrayList<Integer> purchasedAmount;
+   // private ArrayList<Integer> quantitiesPurchased;
+    //////////////////////////////////////////////////////////
 
     // Constructors, getters, and setters for the attributes...
     public BookModel(String ISBN, String title, String category, String supplier, double originalPrice, double sellingPrice, String author, int stock){
@@ -176,4 +184,141 @@ public class BookModel implements Serializable {
             System.out.println("Insufficient stock!");
         }
     }
+
+
+//Hiqi nga  ketu
+    public int getPurchasedAmount(){
+        int sum=0;
+        for (int i=0;i<purchasedAmount.size();i++) {
+            sum+=purchasedAmount.get(i);
+        }
+        return sum;
+    }
+    public int getQuantitiesPurchased(){
+        int sum=0;
+        for (int i=0;i<quantitiesPurchased.size();i++) {
+            sum+=quantitiesPurchased.get(i);
+        }
+        return sum;
+    }
+
+
+    //HIQI NGA KETU///////////////////////////////////////////
+    public String getSoldDatesQuantitiesDay(){
+        StringBuilder ans = new StringBuilder("For \"" + this.title + "\" We have sold in a day:\n");
+
+        if (dates == null) {
+            return this.getTitle() + " has had no purchases\n";
+        }
+
+        LocalDate today = LocalDate.now();
+
+        for (int i = 0; i < dates.size(); i++) {
+            if(dates.get(i) !=null) {
+                LocalDate saleDate = dates.get(i).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+                if (saleDate.equals(today)) {
+                    ans.append(purchasedAmount.get(i)).append(" at ").append(dates.get(i)).append("\n");
+                }
+            }
+        }
+        //System.out.println("TEK BOOK"+"\n"+ans.toString());
+        return ans.toString();
+
+    }
+
+    public String getSoldDatesQuantitiesMonth(){
+
+        String ans = "For \"" + this.title +"\" We have sold in a month:\n";
+
+        if (dates== null) {
+            return this.getTitle()+" has had no purchases\n";
+        }
+
+        Date today = new Date();
+
+        for (int i=0;i<dates.size();i++) {
+            if (dates.get(i).getYear() == today.getYear() && dates.get(i).getMonth() == today.getMonth()) {
+                ans = ans.concat(purchasedAmount.get(i) +" at "+dates.get(i)+"\n");
+            }
+        }
+        return ans;
+    }
+
+    public String getSoldDatesQuantitiesYear(){
+
+        String ans = "For \"" + this.title +"\" We have sold in a year:\n";
+
+        if (dates.isEmpty()) {
+            return this.getTitle()+" has had no purchases\n";
+        }
+
+        Date today = new Date();
+
+        for (int i=0;i<dates.size();i++) {
+            if (dates.get(i).getYear() == today.getYear()) {
+                ans = ans.concat(purchasedAmount.get(i) +" at "+dates.get(i)+"\n");
+            }
+        }
+        return ans;
+
+
+    }
+
+
+    public String getBoughtDatesQuantitiesDay(){
+
+        String ans = "For \"" + this.title +"\" We have bought in a day:\n";
+
+        if (purchasedDates.isEmpty()) {
+            return "We have made no purchases on \""+this.getTitle()+"\"\n";
+        }
+
+        Date today = new Date();
+
+        for (int i=0;i<purchasedDates.size();i++) {
+            if (purchasedDates.get(i).getYear() == today.getYear() && purchasedDates.get(i).getMonth() == today.getMonth() && purchasedDates.get(i).getDay() == today.getDay()) {
+                ans = ans.concat(quantitiesPurchased.get(i) +" at "+purchasedDates.get(i)+"\n");
+            }
+        }
+        return ans;
+    }
+
+    public String getBoughtDatesQuantitiesMonth(){
+
+        String ans = "For \"" + this.title +"\" We have bought in a month:\n";
+
+        if (purchasedDates.isEmpty()) {
+            return "We have made no purchases on \""+this.getTitle()+"\"\n";
+        }
+
+        Date today = new Date();
+
+        for (int i=0;i<purchasedDates.size();i++) {
+            if (purchasedDates.get(i).getYear() == today.getYear() && purchasedDates.get(i).getMonth() == today.getMonth()) {
+                ans = ans.concat(quantitiesPurchased.get(i) +" at "+purchasedDates.get(i)+"\n");
+            }
+        }
+        return ans;
+    }
+
+    public String getBoughtDatesQuantitiesYear(){
+
+        String ans = "For \"" + this.title +"\" We have bought in a year:\n";
+
+        if (purchasedDates.isEmpty()) {
+            return "We have made no purchases on \""+this.getTitle()+"\"\n";
+        }
+
+        Date today = new Date();
+
+        for (int i=0;i<purchasedDates.size();i++) {
+            if (purchasedDates.get(i).getYear() == today.getYear()) {
+                ans = ans.concat(quantitiesPurchased.get(i) +" at "+purchasedDates.get(i)+"\n");
+            }
+        }
+        return ans;
+    }
+
+
 }

@@ -34,7 +34,7 @@ public class ManagerView {
     Button bttCheckLibrarians = new Button("Check Librarians");
     CheckStockLibrarianView checkStockLibrarianView;
     CheckLibrariansManagerView checkLibrariansManagerView;
-
+    StatisticsManagerView statisticsManagerView;
     public Button getBttSupply() {
         return bttSupply;
     }
@@ -51,6 +51,7 @@ public class ManagerView {
 
         this.checkStockLibrarianView = new CheckStockLibrarianView(this);
         this.checkLibrariansManagerView = new CheckLibrariansManagerView(this);
+        this.statisticsManagerView = new StatisticsManagerView(this);
 
         managerPage = createManagerMainPage();
 
@@ -151,10 +152,10 @@ public class ManagerView {
                 bttBack.getScene().setRoot(mainView.mainPage());
             }
         });
-//
-//        bttbookStatistics.setOnAction(event ->{
-//            bttbookStatistics.getScene().setRoot(managerStatisticsPage());
-//        });
+
+        bttbookStatistics.setOnAction(event ->{
+            setStatisticsScene((Stage) bttbookStatistics.getScene().getWindow());
+        });
 
 
         return borderPane;
@@ -197,6 +198,12 @@ public class ManagerView {
     }
 
     //butoni 4 - book statistics
+    public void setStatisticsScene(Stage primaryStage){
+        StatisticsManagerView statisticsManagerView = new StatisticsManagerView(this);
+        BorderPane checkStockPane = statisticsManagerView.managerStatisticsPage();
+        Scene scene = new Scene(checkStockPane, 800, 600);
+        primaryStage.setScene(scene);
+    }
     //butoni back eshte brenda createLibrarianMainPage
 
 
