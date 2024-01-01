@@ -141,4 +141,29 @@ public class LibrarianFuncController {
     }
 
 
+
+    public static boolean checkPassword(String password) {
+        return password.matches(".{8,}");
+    }
+
+    public static boolean checkPhone(String phone) {
+        return phone.matches("\\(912\\)\\s\\d{3}\\-\\d{4}");
+    }
+
+    public static boolean checkEmail(String email) {
+        return email.matches("[a-zA-Z]{1,}\\@[a-zA-z]{1,}\\.com");
+    }
+
+    public static boolean checkSalary(String salary) {
+        return salary.matches("^[0-9]+\\.?[0-9]*$");
+    }
+
+    public static boolean checkName(String name) {
+        return name.matches("[a-zA-Z]{1,}");
+    }
+
+
+
+
+
 }

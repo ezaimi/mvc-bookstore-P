@@ -138,6 +138,7 @@ public class ManagerView {
 
        // bttSupply.setOnAction(this);
         setSupplyAction();
+
         bttCheckStock.setOnAction(event -> {
             setCheckStockScene((Stage) bttCheckStock.getScene().getWindow());
         });

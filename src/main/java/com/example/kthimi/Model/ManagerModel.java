@@ -17,7 +17,7 @@ public class ManagerModel extends LibrarianModel{
 
     }
 
-    ManagerModel(String username,String password,String name,double salary,String phone,String email){
+    public ManagerModel(String username, String password, String name, double salary, String phone, String email){
         super(username,password,name,salary,phone,email);
     }
 
