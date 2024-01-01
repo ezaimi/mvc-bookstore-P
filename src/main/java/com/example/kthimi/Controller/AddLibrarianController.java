@@ -3,11 +3,8 @@ package com.example.kthimi.Controller;
 import com.example.kthimi.Model.BookModel;
 import com.example.kthimi.Model.LibrarianModel;
 import com.example.kthimi.Model.SharedDataManager;
-import com.example.kthimi.View.AddStockManagerView;
-import com.example.kthimi.View.LibrarianView;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.Button;
+import com.example.kthimi.View.Manager.AddStockManagerView;
+import com.example.kthimi.View.Librarian.LibrarianView;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
@@ -16,8 +13,8 @@ import java.util.Date;
 
 public class AddLibrarianController {
 
-     Date date;
-
+    LibrarianFuncController librarianFuncController;
+    Date date;
     ArrayList<Integer> bookQuantities = new ArrayList<>();
     ArrayList<String> booksSoldTitles = new ArrayList<>();
     TextField bookISBN = new TextField();
@@ -85,7 +82,7 @@ public class AddLibrarianController {
                 }
 
 
-                if (!LibrarianModel.EnoughStock(librarianView.comboBoxLibrarian.getValue().toString().substring(0,13), Integer.parseInt(librarianView.quantity.getCharacters().toString())) ) {
+                if (!librarianFuncController.EnoughStock(librarianView.comboBoxLibrarian.getValue().toString().substring(0,13), Integer.parseInt(librarianView.quantity.getCharacters().toString())) ) {
                     librarianView.warningsLibrarian.setText("Failed,not enough stock");
                     return;
                 }

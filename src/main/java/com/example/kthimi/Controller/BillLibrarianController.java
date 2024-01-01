@@ -2,9 +2,8 @@ package com.example.kthimi.Controller;
 
 import com.example.kthimi.Model.BookModel;
 import com.example.kthimi.Model.LibrarianModel;
-import com.example.kthimi.Model.SharedDataManager;
-import com.example.kthimi.View.AddStockManagerView;
-import com.example.kthimi.View.LibrarianView;
+import com.example.kthimi.View.Manager.AddStockManagerView;
+import com.example.kthimi.View.Librarian.LibrarianView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
@@ -13,7 +12,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class BillLibrarianController {
-    LibrarianModel librarianModel;
+
+
+    LibrarianFuncController librarianFuncController;
 
     LibrarianView librarianView;
     AddLibrarianController addLibrarianController;
@@ -36,6 +37,8 @@ public class BillLibrarianController {
         this.addLibrarianController = addLibrarianController;
         initializeBillBttLibrarian();
         //this.books = addLibrarianController.getBooksPlus();
+
+        this.librarianFuncController = new LibrarianFuncController(this);
     }
 
     private void initializeBillBttLibrarian() {
@@ -67,7 +70,7 @@ public class BillLibrarianController {
         System.out.println("seshte bosh");
         try {
             System.out.println("CHRISTMAS");
-            LibrarianFuncController.checkOutBooks(books, bookQuantities);
+            librarianFuncController.checkOutBooks(books, bookQuantities);
         } catch (IOException e1) {
             e1.printStackTrace();
         }

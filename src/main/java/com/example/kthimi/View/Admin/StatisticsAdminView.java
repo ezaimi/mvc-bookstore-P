@@ -1,8 +1,5 @@
 package com.example.kthimi.View.Admin;
 
-import com.example.kthimi.View.AdminView;
-import com.example.kthimi.View.BoughtStatisticsManagerView;
-import com.example.kthimi.View.SoldStatisticsManagerView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

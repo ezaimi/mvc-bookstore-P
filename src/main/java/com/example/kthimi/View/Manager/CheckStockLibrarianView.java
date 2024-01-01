@@ -1,10 +1,9 @@
-package com.example.kthimi.View;
+package com.example.kthimi.View.Manager;
 
 import com.example.kthimi.Controller.BookController;
 import com.example.kthimi.Model.BookModel;
+import com.example.kthimi.View.Manager.ManagerView;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;

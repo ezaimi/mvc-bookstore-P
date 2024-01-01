@@ -1,8 +1,9 @@
-package com.example.kthimi.View;
+package com.example.kthimi.View.Manager;
 
 import com.example.kthimi.Controller.*;
 import com.example.kthimi.Model.BookModel;
 import com.example.kthimi.Model.SharedDataManager;
+import com.example.kthimi.View.Librarian.LibrarianView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -256,7 +257,7 @@ public class AddStockManagerView {
             //stage.getIcons().add(new Image("bookIcon.png"));
             stage.setWidth(465);
             stage.setHeight(465);
-            //stage.setScene(scene);
+            stage.setScene(scene);
             stage.show();
 
         }
@@ -314,11 +315,7 @@ public class AddStockManagerView {
                     }
                 }
 
-                try {
-                    BookController.updateBooks(stockbooks);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                LibrarianFuncController.updateBookQuantity(stockbooks);
 
                 quantity.clear();
                 addedOrNot.setText("Added");

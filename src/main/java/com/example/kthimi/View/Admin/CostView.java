@@ -2,8 +2,6 @@ package com.example.kthimi.View.Admin;
 
 import com.example.kthimi.Controller.AdminFuncController;
 import com.example.kthimi.Controller.StatisticsFuncController;
-import com.example.kthimi.Model.AdministratorModel;
-import com.example.kthimi.View.AdminView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;

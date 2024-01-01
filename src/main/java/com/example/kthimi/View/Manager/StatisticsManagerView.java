@@ -1,6 +1,8 @@
-package com.example.kthimi.View;
+package com.example.kthimi.View.Manager;
 
-import com.example.kthimi.Controller.StatisticsFuncController;
+import com.example.kthimi.View.Manager.BoughtStatisticsManagerView;
+import com.example.kthimi.View.Manager.ManagerView;
+import com.example.kthimi.View.Manager.SoldStatisticsManagerView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

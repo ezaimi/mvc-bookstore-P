@@ -1,8 +1,8 @@
 package com.example.kthimi.Controller;
 
 import com.example.kthimi.Model.ManagerModel;
-import com.example.kthimi.View.ManagerView;
-import com.example.kthimi.View.SupplyManagerView;
+import com.example.kthimi.View.Manager.ManagerView;
+import com.example.kthimi.View.Manager.SupplyManagerView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;

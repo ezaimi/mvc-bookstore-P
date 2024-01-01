@@ -6,11 +6,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class LibrarianModel {
-    private int numberOfBills = 0;
     private int booksSold = 0;
-    private double moneyMade = 0;
-    public ArrayList<Date> datesSold;
-    private ArrayList<Double> moneyMadeDates;
+    //public ArrayList<Date> datesSold;
+    //private ArrayList<Double> moneyMadeDates;
     private String username;
     private String password;
     private String name;
@@ -20,7 +18,7 @@ public class LibrarianModel {
 
     private static String STOCK_FILE_PATH = "Books.bin";
 
-    LibrarianModel() {
+    public LibrarianModel() {
 
     }
 
@@ -42,7 +40,7 @@ public class LibrarianModel {
 //        moneyMadeDates = new ArrayList<>();
     }
 
-    public String getUsername() {
+       public String getUsername() {
         return username;
     }
 
@@ -97,33 +95,16 @@ public class LibrarianModel {
 
     ///put it in a controller
 
-    public static boolean EnoughStock(String ISBN, int quantity) {
 
-        ArrayList<BookModel> stockbooks = BookController.getStockBooks();
-
-        for (int i=0;i<stockbooks.size();i++) {
-            if (stockbooks.get(i).getISBN().equals(ISBN))
-                if (stockbooks.get(i).getStock() - quantity >= 0)
-                    return true;
-        }
-
-        return false;
-
-
-    }
 
 
     //put it in a billmodel//////////////////////////
-    public int getNumberOfBills() {
-        return numberOfBills;
-    }
+//    public int getNumberOfBills() {
+//        return numberOfBills;
+//    }
 
     public int getBooksSold() {
         return booksSold;
-    }
-
-    public void setNumberOfBills(int numberOfBills){
-        this.numberOfBills = numberOfBills;
     }
 
     public void setBooksSold(int booksSold){
@@ -133,68 +114,6 @@ public class LibrarianModel {
 
 
 
-    public double moneyMadeInDay() {
-
-        if (this.datesSold==null) {
-            return 0;
-        }
-
-        double ans=0;
-        Date today = new Date();
-
-        for (int i=0;i<this.datesSold.size();i++) {
-
-            if ( datesSold.get(i).getYear()==today.getYear() && datesSold.get(i).getMonth()==today.getMonth() && datesSold.get(i).getDay() == today.getDay()) {
-                System.out.println("here");
-                ans+=moneyMadeDates.get(i);
-            }
-
-        }
-
-        return ans;
-
-    }
-
-    public double moneyMadeInMonth() {
-
-        if (this.datesSold==null) {
-            return 0;
-        }
-
-        double ans=0;
-        Date today = new Date();
-
-
-        for (int i=0;i<datesSold.size();i++) {
-
-            if (datesSold.get(i).getYear() == today.getYear() && datesSold.get(i).getMonth()==today.getMonth()) {
-                ans+=moneyMadeDates.get(i);
-            }
-        }
-
-        return ans;
-
-    }
-
-    public double moneyMadeInYear() {
-
-        if (this.datesSold==null) {
-            return 0;
-        }
-
-        double ans=0;
-        Date today = new Date();
-
-        for (int i=0;i<datesSold.size();i++) {
-
-            if (datesSold.get(i).getYear() == today.getYear()) {
-                ans+=moneyMadeDates.get(i);
-            }
-        }
-
-        return ans;
-
-    }
 
 
 }

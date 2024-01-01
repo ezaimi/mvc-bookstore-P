@@ -1,8 +1,10 @@
-package com.example.kthimi.View;
+package com.example.kthimi.View.Manager;
 
+import com.example.kthimi.Controller.LibrarianFuncController;
 import com.example.kthimi.Controller.StatisticsFuncController;
 import com.example.kthimi.Model.LibrarianModel;
 import com.example.kthimi.Model.ManagerModel;
+import com.example.kthimi.View.Manager.ManagerView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -21,7 +23,7 @@ import java.util.ArrayList;
 
 public class CheckLibrariansManagerView {
 
-
+    LibrarianFuncController librarianFuncController;
     BorderPane borderPane;
     Button bttBack = new Button("Back");
     ManagerView managerView;
@@ -180,7 +182,7 @@ public class CheckLibrariansManagerView {
         totalAmountOfMoneyMadeInMonth.setEditable(false);
         totalAmountOfMoneyMadeInYear.setEditable(false);
 
-        totalNumberBillsLibrarian.setText(Integer.toString(lib.getNumberOfBills()));
+        totalNumberBillsLibrarian.setText(Integer.toString(librarianFuncController.getNumberOfBills()));
         booksSold.setText(Integer.toString(lib.getBooksSold()));
         totalAmountOfMoneyMadeInDay.setText( Double.toString(statisticsFuncController.moneyMadeInDay()) );
         totalAmountOfMoneyMadeInMonth.setText( Double.toString(statisticsFuncController.moneyMadeInMonth()) );

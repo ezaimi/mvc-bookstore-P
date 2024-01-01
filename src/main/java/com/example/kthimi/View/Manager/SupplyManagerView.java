@@ -1,14 +1,16 @@
-package com.example.kthimi.View;
+package com.example.kthimi.View.Manager;
 
 import com.example.kthimi.Controller.AddStockManagerController;
 import com.example.kthimi.Controller.BookController;
 import com.example.kthimi.Controller.NewCategoryManagerController;
 import com.example.kthimi.Controller.SupplyManagerController;
+import com.example.kthimi.View.Manager.AddStockManagerView;
+import com.example.kthimi.View.Manager.ManagerView;
+import com.example.kthimi.View.Manager.NewCategoryManagerView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;

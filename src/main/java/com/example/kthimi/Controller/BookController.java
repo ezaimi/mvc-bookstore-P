@@ -10,6 +10,8 @@ public class BookController {
 
     BookModel bookmodel;
 
+    //public static int billNumber=0;
+
     public BookController(){
         this.bookmodel = new BookModel();
     }

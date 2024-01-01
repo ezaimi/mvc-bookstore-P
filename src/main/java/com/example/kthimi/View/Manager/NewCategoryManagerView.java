@@ -1,4 +1,4 @@
-package com.example.kthimi.View;
+package com.example.kthimi.View.Manager;
 
 import com.example.kthimi.Controller.AddStockManagerController;
 import com.example.kthimi.Controller.BookController;

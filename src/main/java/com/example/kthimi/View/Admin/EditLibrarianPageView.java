@@ -17,6 +17,7 @@ import javafx.scene.text.Text;
 
 public class EditLibrarianPageView {
 
+    LibrarianFuncController librarianFuncController;
     ManageLibrariansView manageLibrariansView;
     Button bttBack = new Button("Back");
     Text textTotalNumberBillsLibrarian = new Text("Total Number of Bills");
@@ -106,11 +107,11 @@ public class EditLibrarianPageView {
         totalAmountOfMoneyMadeInYear.setEditable(false);
         libLoginWarning.setEditable(false);
 
-        totalNumberBillsLibrarian.setText(Integer.toString(lib.getNumberOfBills()));
+        totalNumberBillsLibrarian.setText(Integer.toString(librarianFuncController.getNumberOfBills()));
         booksSold.setText(Integer.toString(lib.getBooksSold()));
-        totalAmountOfMoneyMadeInDay.setText( Double.toString(lib.moneyMadeInDay()) );
-        totalAmountOfMoneyMadeInMonth.setText( Double.toString(lib.moneyMadeInMonth()) );
-        totalAmountOfMoneyMadeInYear.setText( Double.toString(lib.moneyMadeInYear()) );
+        totalAmountOfMoneyMadeInDay.setText( Double.toString(librarianFuncController.moneyMadeInDay()) );
+        totalAmountOfMoneyMadeInMonth.setText( Double.toString(librarianFuncController.moneyMadeInMonth()) );
+        totalAmountOfMoneyMadeInYear.setText( Double.toString(librarianFuncController.moneyMadeInYear()) );
 
         name.setEditable(false);
         name.setText(lib.getName());

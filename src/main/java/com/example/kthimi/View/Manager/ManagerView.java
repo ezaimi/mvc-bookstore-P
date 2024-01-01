@@ -1,8 +1,9 @@
-package com.example.kthimi.View;
+package com.example.kthimi.View.Manager;
 
 import com.example.kthimi.Controller.SupplyManagerController;
 import com.example.kthimi.Model.BookModel;
 import com.example.kthimi.Model.ManagerModel;
+import com.example.kthimi.View.MainView;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

@@ -3,8 +3,6 @@ package com.example.kthimi.View.Admin;
 import com.example.kthimi.Controller.LibrarianFuncController;
 import com.example.kthimi.Model.AdministratorModel;
 import com.example.kthimi.Model.ManagerModel;
-import com.example.kthimi.View.AdminView;
-import com.example.kthimi.View.ManagerView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;

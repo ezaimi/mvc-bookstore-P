@@ -1,10 +1,10 @@
 package com.example.kthimi.Controller;
 
 import com.example.kthimi.Model.AuthenticationModel;
-import com.example.kthimi.View.AdminView;
-import com.example.kthimi.View.LibrarianView;
+import com.example.kthimi.View.Admin.AdminView;
+import com.example.kthimi.View.Librarian.LibrarianView;
 import com.example.kthimi.View.MainView;
-import com.example.kthimi.View.ManagerView;
+import com.example.kthimi.View.Manager.ManagerView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 

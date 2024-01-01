@@ -1,8 +1,6 @@
-package com.example.kthimi.View;
+package com.example.kthimi.View.Manager;
 
-import com.example.kthimi.Controller.BillLibController;
 import com.example.kthimi.Controller.BookController;
-import com.example.kthimi.Controller.LibrarianFuncController;
 import com.example.kthimi.Controller.StatisticsFuncController;
 import com.example.kthimi.Model.BookModel;
 import javafx.geometry.Insets;
