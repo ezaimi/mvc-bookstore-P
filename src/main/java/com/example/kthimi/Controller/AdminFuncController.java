@@ -34,4 +34,22 @@ public class AdminFuncController extends AdministratorModel {
         }
 
     }
+
+    public static double getSalaries() {
+
+        double ans = 0;
+
+        for (int i=0;i<ManagerModel.getLibrarians().size();i++) {
+            ans += ManagerModel.getLibrarians().get(i).getSalary();
+        }
+
+        for (int i=0;i<AdministratorModel.getManagers().size();i++) {
+            ans += AdministratorModel.getManagers().get(i).getSalary();
+        }
+
+        for (int i=0;i<AdministratorModel.getAdmins().size();i++) {
+            ans += AdministratorModel.getAdmins().get(i).getSalary();
+        }
+        return ans;
+    }
 }

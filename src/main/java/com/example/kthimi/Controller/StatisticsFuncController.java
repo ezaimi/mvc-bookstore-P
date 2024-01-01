@@ -8,9 +8,14 @@ import java.util.Iterator;
 
 public class StatisticsFuncController {
 
+
     //te dyja keto jane perdorur tek checkouti
     public ArrayList<Date> datesSold;//gjeje ku eshte new Array...
     public ArrayList<Double> moneyMadeDates;
+
+    private ArrayList<Date> dates;
+    private ArrayList<Integer> purchasedAmount;
+
 
 
 //
@@ -22,6 +27,12 @@ public class StatisticsFuncController {
         moneyMadeDates = new ArrayList<>();
 //        quantitiesPurchased = new ArrayList<>();
 //        purchasedAmount = new ArrayList<>();
+        //dates = new ArrayList<>();
+        //purchasedAmount = new ArrayList<>();
+    }
+
+    public ArrayList<Date> getDates(){
+        return dates;
     }
 
 
@@ -219,6 +230,165 @@ public class StatisticsFuncController {
 
     }
 
+    ///vetem per statistics///
+
+
+
+    //////////////////////////
+
+
+    //per income tek statistics
+    public static int getIntBooksSoldDay() {
+
+        ArrayList<BookModel> array = BookController.getStockBooks();
+        int ans = 0;
+
+        for (int i=0;i<array.size();i++) {
+            ans+=array.get(i).getTotalBooksSoldDay();
+        }
+        return ans;
+
+    }
+
+    public static int getIntBooksSoldMonth() {
+
+        ArrayList<BookModel> array = BookController.getStockBooks();
+        int ans = 0;
+
+        for (int i=0;i<array.size();i++) {
+            ans+=array.get(i).getTotalBooksSoldMonth();
+        }
+        return ans;
+    }
+
+    public static int getIntBooksSoldYear() {
+
+        ArrayList<BookModel> array = BookController.getStockBooks();
+        int ans = 0;
+
+        for (int i=0;i<array.size();i++) {
+            ans+=array.get(i).getTotalBooksSoldYear();
+        }
+        return ans;
+
+    }
+
+
+
+    public static double getIncomeDay() {
+
+        ArrayList<BookModel> array =  BookController.getStockBooks();
+        double ans = 0;
+
+        for (int i=0;i<array.size();i++) {
+            ans+=array.get(i).getTotalBooksSoldDay()*array.get(i).getSellingPrice();
+        }
+
+        return ans;
+
+    }
+
+    public static double getIncomeMonth() {
+
+        ArrayList<BookModel> array = BookController.getStockBooks();
+        double ans = 0;
+
+        for (int i=0;i<array.size();i++) {
+            ans+=array.get(i).getTotalBooksSoldMonth()*array.get(i).getSellingPrice();
+        }
+
+        return ans;
+
+    }
+
+    public static double getIncomeYear() {
+
+        ArrayList<BookModel> array = BookController.getStockBooks();
+        double ans = 0;
+
+        for (int i=0;i<array.size();i++) {
+            ans+=array.get(i).getTotalBooksSoldYear()*array.get(i).getSellingPrice();
+        }
+
+        return ans;
+
+    }
+
+
+
+    //per cost tek statistics
+    public static int getTotalBoughtBooksDay() {
+
+        ArrayList<BookModel> array = BookController.getStockBooks();
+        int ans = 0;
+
+        for (int i=0;i<array.size();i++) {
+            ans+=array.get(i).getTotalBooksBoughtDay();
+        }
+        return ans;
+
+    }
+
+    public static int getTotalBoughtBooksMonth() {
+
+        ArrayList<BookModel> array = BookController.getStockBooks();
+        int ans = 0;
+
+        for (int i=0;i<array.size();i++) {
+            ans+=array.get(i).getTotalBooksBoughtMonth();
+        }
+        return ans;
+    }
+
+    public static int getTotalBoughtBooksYear() {
+
+        ArrayList<BookModel> array = BookController.getStockBooks();
+        int ans = 0;
+
+        for (int i=0;i<array.size();i++) {
+            ans+=array.get(i).getTotalBooksBoughtYear();
+        }
+        return ans;
+
+    }
+
+    public static double getCostDay() {
+
+        ArrayList<BookModel> array = BookController.getStockBooks();
+        double ans = 0;
+
+        for (int i=0;i<array.size();i++) {
+            ans+=array.get(i).getTotalBooksBoughtDay()*array.get(i).getOriginalPrice();
+        }
+
+        return ans;
+
+    }
+
+    public static double getCostMonth() {
+
+        ArrayList<BookModel> array = BookController.getStockBooks();
+        double ans = 0;
+
+        for (int i=0;i<array.size();i++) {
+            ans+=array.get(i).getTotalBooksBoughtMonth()*array.get(i).getOriginalPrice();
+        }
+
+        return ans;
+
+    }
+    public static double getCostYear() {
+
+        ArrayList<BookModel> array = BookController.getStockBooks();
+        double ans = 0;
+
+        for (int i=0;i<array.size();i++) {
+            ans+=array.get(i).getTotalBooksBoughtYear()*array.get(i).getOriginalPrice();
+        }
+
+        return ans;
+
+    }
 
 
 }

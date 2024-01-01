@@ -148,14 +148,15 @@ public class ManagerView {
             setCheckLibrariansAction((Stage) bttCheckLibrarians.getScene().getWindow());
         });
 
+        //check statistics
+        bttbookStatistics.setOnAction(event ->{
+            setStatisticsScene((Stage) bttbookStatistics.getScene().getWindow());
+        });
+
         bttBack.setOnAction(event -> {
             if(event.getSource()==bttBack) {
                 bttBack.getScene().setRoot(mainView.mainPage());
             }
-        });
-
-        bttbookStatistics.setOnAction(event ->{
-            setStatisticsScene((Stage) bttbookStatistics.getScene().getWindow());
         });
 
 

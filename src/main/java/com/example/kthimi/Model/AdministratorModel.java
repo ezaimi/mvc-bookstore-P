@@ -34,6 +34,10 @@ public class AdministratorModel extends ManagerModel{
         super(username,password,name,salary,phone,email);
     }
 
+    public static ArrayList<AdministratorModel> getAdmins(){
+        return admins;
+    }
+
 
 
     public static void InstantiateManagers() {

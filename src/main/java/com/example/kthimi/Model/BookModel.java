@@ -321,4 +321,127 @@ public class BookModel implements Serializable {
     }
 
 
+    ////ne ndonje tip statistics
+
+    //tek income tek stats e admin
+    public int getTotalBooksSoldDay() {
+
+        if (dates == null) {
+            return 0;
+        }
+
+        int ans = 0;
+
+        Date today = new Date();
+
+        for (int i=0;i<dates.size();i++) {
+
+            if (dates.get(i).getYear() == today.getYear() && dates.get(i).getMonth() == today.getMonth() && dates.get(i).getDay() == today.getDay()) {
+                ans+=purchasedAmount.get(i);
+            }
+        }
+        return ans;
+
+    }
+
+    public int getTotalBooksSoldMonth() {
+
+        if (dates == null) {
+            return 0;
+        }
+
+        int ans = 0;
+
+        Date today = new Date();
+
+        for (int i=0;i<dates.size();i++) {
+
+            if (dates.get(i).getYear() == today.getYear() && dates.get(i).getMonth() == today.getMonth()) {
+                ans+=purchasedAmount.get(i);
+            }
+        }
+        return ans;
+
+    }
+
+    public int getTotalBooksSoldYear() {
+
+        if (dates == null) {
+            return 0;
+        }
+
+        int ans = 0;
+
+        Date today = new Date();
+
+        for (int i=0;i<dates.size();i++) {
+
+            if (dates.get(i).getYear() == today.getYear()) {
+                ans+=purchasedAmount.get(i);
+            }
+        }
+        return ans;
+
+    }
+
+    //tek cost te stats e admin
+    public int getTotalBooksBoughtDay() {
+
+        if (purchasedDates.isEmpty()) {
+            return 0;
+        }
+
+        int ans = 0;
+
+        Date today = new Date();
+
+        for (int i=0;i<purchasedDates.size();i++) {
+
+            if (purchasedDates.get(i).getYear() == today.getYear() && purchasedDates.get(i).getMonth() == today.getMonth() && purchasedDates.get(i).getDay() == today.getDay()) {
+                ans+=quantitiesPurchased.get(i);
+            }
+        }
+        return ans;
+    }
+
+    public int getTotalBooksBoughtMonth() {
+
+        if (purchasedDates.isEmpty()) {
+            return 0;
+        }
+
+        int ans = 0;
+
+        Date today = new Date();
+
+        for (int i=0;i<purchasedDates.size();i++) {
+
+            if (purchasedDates.get(i).getYear() == today.getYear() && purchasedDates.get(i).getMonth() == today.getMonth()) {
+                ans+=quantitiesPurchased.get(i);
+            }
+        }
+        return ans;
+    }
+
+    public int getTotalBooksBoughtYear() {
+
+        if (purchasedDates.isEmpty()) {
+            return 0;
+        }
+
+        int ans = 0;
+
+        Date today = new Date();
+
+        for (int i=0;i<purchasedDates.size();i++) {
+
+            if (purchasedDates.get(i).getYear() == today.getYear()) {
+                ans+=quantitiesPurchased.get(i);
+            }
+        }
+        return ans;
+
+    }
+
+
 }

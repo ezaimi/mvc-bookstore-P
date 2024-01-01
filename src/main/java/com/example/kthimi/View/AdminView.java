@@ -2,6 +2,7 @@ package com.example.kthimi.View;
 
 import com.example.kthimi.View.Admin.ManageLibrariansView;
 import com.example.kthimi.View.Admin.ManageManagersView;
+import com.example.kthimi.View.Admin.StatisticsAdminView;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -23,7 +24,7 @@ public class AdminView {
 
     ManageLibrariansView manageLibrariansView;
     ManageManagersView manageManagersView;
-    //StatisticsAdminView statisticsAdminView;
+    StatisticsAdminView statisticsAdminView;
 
     public AdminView(String usernamePage, MainView mainView) {
         this.mainView = mainView;
@@ -32,16 +33,12 @@ public class AdminView {
 
         this.manageLibrariansView = new ManageLibrariansView(this);
         this.manageManagersView = new ManageManagersView(this);
-        //this.statisticsAdminView = new StatisticsAdminView(this);
+        this.statisticsAdminView = new StatisticsAdminView(this);
     }
 
     public BorderPane createAdminMainPage() {
 
         BorderPane borderPane = new BorderPane();
-
-//        Text librarianText = new Text("Welcome " + usernamePage + "!");
-//        librarianText.setFont(new Font(20));
-//        borderPane.setCenter(librarianText);
 
         Text text = new Text("Welcome " + usernamePage + "!");
         StackPane stack = new StackPane();
@@ -111,6 +108,10 @@ public class AdminView {
 
     //butoni 3 - Administrator Statistics
     public void setAdminStatsScene(Stage primaryStage){
+        StatisticsAdminView statisticsAdminView = new StatisticsAdminView(this);
+        BorderPane checkStockPane = statisticsAdminView.administratorStatPage();
+        Scene scene = new Scene(checkStockPane, 800, 600);
+        primaryStage.setScene(scene);
 
     }
 
