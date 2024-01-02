@@ -25,7 +25,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class AddStockManagerView {
-
+    LibrarianFuncController librarianFuncController = new LibrarianFuncController();
+    BookController bookController = new BookController();
 
     public ArrayList<BookModel> books;
     BorderPane borderPane;
@@ -104,7 +105,7 @@ public class AddStockManagerView {
         border.setBottom(stackBackButton);
 
         initializeCategories();
-        categ = BookController.removeDuplicates(categ);
+        categ = bookController.removeDuplicates(categ);
         System.out.println(categ + "Pas FUNKSI");
 
         GridPane grid = new GridPane();
@@ -184,7 +185,7 @@ public class AddStockManagerView {
         border.setTop(stack);
 
 
-        books = BookController.getBookFromCategory(category);
+        books = bookController.getBookFromCategory(category);
         System.out.println("Ktu duhen printuar" + books);
         GridPane grid = new GridPane();
         grid.setHgap(5);
@@ -304,7 +305,7 @@ public class AddStockManagerView {
                     return;
                 }
 
-                ArrayList<BookModel> stockbooks = BookController.getStockBooks();
+                ArrayList<BookModel> stockbooks = bookController.getStockBooks();
 
                 for (int i=0;i<stockbooks.size();i++) {
                     if (stockbooks.get(i).getISBN().equals(book.getISBN())) {
@@ -315,7 +316,7 @@ public class AddStockManagerView {
                     }
                 }
 
-                LibrarianFuncController.updateBookQuantity(stockbooks);
+                librarianFuncController.updateBookQuantity(stockbooks);
 
                 quantity.clear();
                 addedOrNot.setText("Added");
@@ -427,7 +428,7 @@ public class AddStockManagerView {
                     return;
                 }
 
-                if (BookController.isPartOfBooks((bookISBN.getCharacters().toString()))){
+                if (bookController.isPartOfBooks((bookISBN.getCharacters().toString()))){
                     addedOrNotStockCategory.setText("Failed, Already In Stock");
                     return;
 
@@ -447,7 +448,7 @@ public class AddStockManagerView {
                 book.addPurchasedDate(date);
 
                 //this adds the books to the stock and saves it to the file
-                BookController.addBookToStock(book);
+                bookController.addBookToStock(book);
 
                 bookISBN.clear();
                 title.clear();

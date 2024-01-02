@@ -5,7 +5,7 @@ import com.example.kthimi.Controller.BookController;
 import java.util.ArrayList;
 
 public class ManagerModel extends LibrarianModel{
-
+    BookController bookController = new BookController();
     static ArrayList<LibrarianModel> librarians = new ArrayList<>();
 
     public ManagerModel(){
@@ -51,22 +51,7 @@ public class ManagerModel extends LibrarianModel{
 
     //KETE METODEN FUTE TE NJE KONTROLLER I VECANT BASHK ME GETALLCATEGORIES
     //QE ESHTE TEK MANAGER.JAVA SEPSE KANE LIDHJE ME VEPRIMET E LIBRAVE TEK MANAGERVIEW
-    public static ArrayList<BookModel> getLowStock(){
-
-        ArrayList<BookModel> stockbooks = BookController.getStockBooks();
-        ArrayList<BookModel> ans = new ArrayList<>();
-
-        for (int i=0;i<stockbooks.size();i++) {
-
-            if (stockbooks.get(i).getStock() < 5 ) {
-                ans.add(stockbooks.get(i));
-            }
-
-        }
-
-        return ans;
-
-    }
+   ////\\\\\\ u be
 
 
     public static ArrayList<String> getAllCategories(){

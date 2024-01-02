@@ -1,9 +1,6 @@
 package com.example.kthimi.View.Librarian;
 
-import com.example.kthimi.Controller.AddLibrarianController;
-import com.example.kthimi.Controller.BillLibrarianController;
-import com.example.kthimi.Controller.BookController;
-import com.example.kthimi.Controller.LibrarianFuncController;
+import com.example.kthimi.Controller.*;
 import com.example.kthimi.Model.BookModel;
 import com.example.kthimi.Model.LibrarianModel;
 import com.example.kthimi.Model.SharedDataManager;
@@ -30,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class LibrarianView {
+    BookController bookController = new BookController();
     Date date;
     ArrayList<Integer> bookQuantities = new ArrayList<>();
     ArrayList<String> booksSoldTitles = new ArrayList<>();
@@ -65,7 +63,7 @@ public class LibrarianView {
     Text textSystem = new Text("System");
 
     AddStockManagerView.ButtonHandler buttonHandler;
-    LibrarianFuncController librarianFuncController;
+    LibrarianFuncController librarianFuncController = new LibrarianFuncController();
 
     public Button getBttBack() {
         return bttBack;
@@ -91,6 +89,7 @@ public class LibrarianView {
 
         setAddAction();
         setBillAction();
+
     }
 
     public LibrarianView(AddStockManagerView addStockManagerView) {
@@ -134,7 +133,7 @@ public class LibrarianView {
 //        borderPane.setCenter(comboBoxLibrarian);
 //        borderPane.setCenter(librarianText);
 
-        comboBoxLibrarian = new ComboBox(FXCollections.observableArrayList(BookController.getISBNName()));
+        comboBoxLibrarian = new ComboBox(FXCollections.observableArrayList(bookController.getISBNName()));
 
         Text textHeaderLibrarian = new Text("Welcome "+usernamePage);
         StackPane stackHeader = new StackPane();
@@ -223,7 +222,7 @@ public class LibrarianView {
             String Title = comboBoxLibrarian.getValue().toString().substring(16);
             date = new Date();
 
-            ArrayList<BookModel> stockbooks = BookController.getStockBooks();
+            ArrayList<BookModel> stockbooks = bookController.getStockBooks();
             for (int i=0;i<stockbooks.size();i++) {
                 if (stockbooks.get(i).getISBN().equals(isbn)) {
 
@@ -231,7 +230,7 @@ public class LibrarianView {
                 }
             }
             try {
-                BookController.updateBooks(stockbooks);
+                bookController.updateBooks(stockbooks);
             } catch (IOException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();

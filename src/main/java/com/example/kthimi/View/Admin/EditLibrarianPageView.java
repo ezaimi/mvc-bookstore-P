@@ -17,7 +17,7 @@ import javafx.scene.text.Text;
 
 public class EditLibrarianPageView {
 
-    LibrarianFuncController librarianFuncController;
+    LibrarianFuncController librarianFuncController = new LibrarianFuncController();
     ManageLibrariansView manageLibrariansView;
     Button bttBack = new Button("Back");
     Text textTotalNumberBillsLibrarian = new Text("Total Number of Bills");

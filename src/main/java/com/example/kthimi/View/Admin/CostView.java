@@ -14,6 +14,7 @@ import javafx.scene.text.Text;
 
 public class CostView {
 
+    StatisticsFuncController statisticsFuncController = new StatisticsFuncController();
     StatisticsAdminView statisticsAdminView;
     Button bttBack = new Button("Back");
 
@@ -90,15 +91,15 @@ public class CostView {
 
 
 
-        totalBooksDay.setText( Integer.toString( StatisticsFuncController.getTotalBoughtBooksDay() ) );
-        totalIncomeDay.setText( Double.toString( StatisticsFuncController.getCostDay()) );
+        totalBooksDay.setText( Integer.toString( statisticsFuncController.getTotalBoughtBooksDay() ) );
+        totalIncomeDay.setText( Double.toString( statisticsFuncController.getCostDay()) );
 
-        totalBooksMonth.setText( Integer.toString( StatisticsFuncController.getTotalBoughtBooksMonth() )  );
-        totalIncomeMonth.setText( Double.toString( StatisticsFuncController.getCostMonth())  );
+        totalBooksMonth.setText( Integer.toString( statisticsFuncController.getTotalBoughtBooksMonth() )  );
+        totalIncomeMonth.setText( Double.toString( statisticsFuncController.getCostMonth())  );
         salaryMonth.setText( Double.toString(AdminFuncController.getSalaries()) );
 
-        totalBooksYearly.setText( Integer.toString( StatisticsFuncController.getTotalBoughtBooksYear() ));
-        totalIncomeYearly.setText( Double.toString( StatisticsFuncController.getCostYear() ));
+        totalBooksYearly.setText( Integer.toString( statisticsFuncController.getTotalBoughtBooksYear() ));
+        totalIncomeYearly.setText( Double.toString( statisticsFuncController.getCostYear() ));
         salaryYear.setText( Double.toString(AdminFuncController.getSalaries()*12) );
 
         StackPane stackBackButton = new StackPane();

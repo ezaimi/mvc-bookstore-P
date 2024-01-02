@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class CheckLibrariansManagerView {
 
-    LibrarianFuncController librarianFuncController;
+    LibrarianFuncController librarianFuncController = new LibrarianFuncController();
     BorderPane borderPane;
     Button bttBack = new Button("Back");
     ManagerView managerView;
@@ -37,7 +37,7 @@ public class CheckLibrariansManagerView {
     Text textTotalMoneyMonth = new Text("Money made in a month");
     TextField totalAmountOfMoneyMadeInYear = new TextField();
     Text textTotalMoneyYear = new Text("Money made in a year");
-    StatisticsFuncController statisticsFuncController;
+    StatisticsFuncController statisticsFuncController = new StatisticsFuncController();
 
 
 

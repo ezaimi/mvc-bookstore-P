@@ -16,7 +16,8 @@ import javafx.scene.text.Text;
 import java.util.ArrayList;
 
 public class BoughtStatisticsAdminView {
-
+    StatisticsFuncController statisticsFuncController = new StatisticsFuncController();
+    BookController bookController = new BookController();
     StatisticsAdminView statisticsAdminView;
     Button bttBack = new Button("Back");
     ArrayList<String> titlesBought = new ArrayList<>();
@@ -32,7 +33,7 @@ public class BoughtStatisticsAdminView {
 
         BorderPane border = new BorderPane();
 
-        ArrayList<BookModel> stockBooks = BookController.getStockBooks();
+        ArrayList<BookModel> stockBooks = bookController.getStockBooks();
         for(int i=0;i<stockBooks.size();i++) {
             if (stockBooks.get(i).getQuantitiesPurchased()>0) {
                 titlesBought.add(stockBooks.get(i).getTitle());
@@ -42,7 +43,7 @@ public class BoughtStatisticsAdminView {
 
 
         PieChart pieChart = new PieChart();
-        StatisticsFuncController.removeDuplicatesSoldTitles(titlesBought,quantitiesBought);
+        statisticsFuncController.removeDuplicatesSoldTitles(titlesBought,quantitiesBought);
 
         for (int i=0;i<titlesBought.size();i++) {
             PieChart.Data test = new PieChart.Data(titlesBought.get(i), quantitiesBought.get(i));
@@ -56,9 +57,9 @@ public class BoughtStatisticsAdminView {
         stack.setPadding(new Insets(20));
         border.setTop(stack);
 
-        Text text1 = new Text(StatisticsFuncController.getBooksBoughtDay());
-        Text text2 = new Text(StatisticsFuncController.getBooksBoughtMonth());
-        Text text3 = new Text(StatisticsFuncController.getBooksBoughtYear());
+        Text text1 = new Text(statisticsFuncController.getBooksBoughtDay());
+        Text text2 = new Text(statisticsFuncController.getBooksBoughtMonth());
+        Text text3 = new Text(statisticsFuncController.getBooksBoughtYear());
         //Text text4 = new Text(BillNumber.getBooksBoughtTotal());
 
         GridPane grid = new GridPane();

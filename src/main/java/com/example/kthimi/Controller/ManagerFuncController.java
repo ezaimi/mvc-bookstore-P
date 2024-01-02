@@ -1,5 +1,6 @@
 package com.example.kthimi.Controller;
 
+import com.example.kthimi.Model.BookModel;
 import com.example.kthimi.Model.LibrarianModel;
 import com.example.kthimi.Model.ManagerModel;
 
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 
 public class ManagerFuncController extends ManagerModel {
 
-
+BookController bookController = new BookController();
     static ArrayList<LibrarianModel> librarians = ManagerModel.getLibrarians();
 
 
@@ -34,6 +35,23 @@ public class ManagerFuncController extends ManagerModel {
 
         }
 
+
+    }
+
+    public ArrayList<BookModel> getLowStock(){
+
+        ArrayList<BookModel> stockbooks = bookController.getStockBooks();
+        ArrayList<BookModel> ans = new ArrayList<>();
+
+        for (int i=0;i<stockbooks.size();i++) {
+
+            if (stockbooks.get(i).getStock() < 5 ) {
+                ans.add(stockbooks.get(i));
+            }
+
+        }
+
+        return ans;
 
     }
 

@@ -8,7 +8,7 @@ import java.util.Iterator;
 
 public class StatisticsFuncController {
 
-
+    BookController bookController = new BookController();
     //te dyja keto jane perdorur tek checkouti
     public ArrayList<Date> datesSold;//gjeje ku eshte new Array...
     public ArrayList<Double> moneyMadeDates;
@@ -118,7 +118,7 @@ public class StatisticsFuncController {
 
 
 
-    public static void removeDuplicatesSoldTitles(ArrayList<String> titles, ArrayList<Integer> quantities) {
+    public void removeDuplicatesSoldTitles(ArrayList<String> titles, ArrayList<Integer> quantities) {
         for (int k = 0; k < 2; k++) {
             Iterator<String> titleIterator = titles.iterator();
             Iterator<Integer> quantityIterator = quantities.iterator();
@@ -155,11 +155,11 @@ public class StatisticsFuncController {
 
 
 
-    public static String getBooksSoldDay() {
+    public  String getBooksSoldDay() {
 
         String ans = "For Books Sold Today We Have:\n\n";
 
-        ArrayList<BookModel> array = BookController.getStockBooks();
+        ArrayList<BookModel> array = bookController.getStockBooks();
 
         for (int i=0;i<array.size();i++) {
             ans = ans.concat(array.get(i).getSoldDatesQuantitiesDay());
@@ -170,22 +170,22 @@ public class StatisticsFuncController {
 
     }
 
-    public static String getBooksSoldMonth() {
+    public  String getBooksSoldMonth() {
 
         String ans = "For Books Sold In A Month We Have\n\n";
 
-        ArrayList<BookModel> arr = BookController.getStockBooks();
+        ArrayList<BookModel> arr = bookController.getStockBooks();
         for (int i=0;i<arr.size();i++) {
             ans = ans.concat(arr.get(i).getSoldDatesQuantitiesMonth());
         }
         return ans;
     }
 
-    public static String getBooksSoldYear() {
+    public String getBooksSoldYear() {
 
         String ans = "For Books Sold In A Year We Have\n\n";
 
-        ArrayList<BookModel> arr = BookController.getStockBooks();
+        ArrayList<BookModel> arr = bookController.getStockBooks();
         for (int i=0;i<arr.size();i++) {
             ans = ans.concat(arr.get(i).getSoldDatesQuantitiesYear());
         }
@@ -193,22 +193,22 @@ public class StatisticsFuncController {
     }
 
 
-    public static String getBooksBoughtDay() {
+    public String getBooksBoughtDay() {
 
         String ans = "For Books Bought Today We Have\n\n";
 
-        ArrayList<BookModel> array = BookController.getStockBooks();
+        ArrayList<BookModel> array = bookController.getStockBooks();
         for (int i=0;i<array.size();i++) {
 
             ans = ans.concat(array.get(i).getBoughtDatesQuantitiesDay());}
         return ans;
     }
 
-    public static String getBooksBoughtMonth() {
+    public  String getBooksBoughtMonth() {
 
         String ans = "For Books Bought In A Month We Have\n\n";
 
-        ArrayList<BookModel> array = BookController.getStockBooks();
+        ArrayList<BookModel> array = bookController.getStockBooks();
 
         for (int i=0;i<array.size();i++) {
             ans = ans.concat(array.get(i).getBoughtDatesQuantitiesMonth());
@@ -217,11 +217,11 @@ public class StatisticsFuncController {
 
     }
 
-    public static String getBooksBoughtYear() {
+    public String getBooksBoughtYear() {
 
         String ans = "For Books Bought In A Year We Have\n\n";
 
-        ArrayList<BookModel> array = BookController.getStockBooks();
+        ArrayList<BookModel> array = bookController.getStockBooks();
 
         for (int i=0;i<array.size();i++) {
             ans = ans.concat(array.get(i).getBoughtDatesQuantitiesYear());
@@ -238,9 +238,9 @@ public class StatisticsFuncController {
 
 
     //per income tek statistics
-    public static int getIntBooksSoldDay() {
+    public int getIntBooksSoldDay() {
 
-        ArrayList<BookModel> array = BookController.getStockBooks();
+        ArrayList<BookModel> array = bookController.getStockBooks();
         int ans = 0;
 
         for (int i=0;i<array.size();i++) {
@@ -250,9 +250,9 @@ public class StatisticsFuncController {
 
     }
 
-    public static int getIntBooksSoldMonth() {
+    public int getIntBooksSoldMonth() {
 
-        ArrayList<BookModel> array = BookController.getStockBooks();
+        ArrayList<BookModel> array = bookController.getStockBooks();
         int ans = 0;
 
         for (int i=0;i<array.size();i++) {
@@ -261,9 +261,9 @@ public class StatisticsFuncController {
         return ans;
     }
 
-    public static int getIntBooksSoldYear() {
+    public int getIntBooksSoldYear() {
 
-        ArrayList<BookModel> array = BookController.getStockBooks();
+        ArrayList<BookModel> array = bookController.getStockBooks();
         int ans = 0;
 
         for (int i=0;i<array.size();i++) {
@@ -275,9 +275,9 @@ public class StatisticsFuncController {
 
 
 
-    public static double getIncomeDay() {
+    public double getIncomeDay() {
 
-        ArrayList<BookModel> array =  BookController.getStockBooks();
+        ArrayList<BookModel> array =  bookController.getStockBooks();
         double ans = 0;
 
         for (int i=0;i<array.size();i++) {
@@ -288,9 +288,9 @@ public class StatisticsFuncController {
 
     }
 
-    public static double getIncomeMonth() {
+    public double getIncomeMonth() {
 
-        ArrayList<BookModel> array = BookController.getStockBooks();
+        ArrayList<BookModel> array = bookController.getStockBooks();
         double ans = 0;
 
         for (int i=0;i<array.size();i++) {
@@ -301,9 +301,9 @@ public class StatisticsFuncController {
 
     }
 
-    public static double getIncomeYear() {
+    public double getIncomeYear() {
 
-        ArrayList<BookModel> array = BookController.getStockBooks();
+        ArrayList<BookModel> array = bookController.getStockBooks();
         double ans = 0;
 
         for (int i=0;i<array.size();i++) {
@@ -317,9 +317,9 @@ public class StatisticsFuncController {
 
 
     //per cost tek statistics
-    public static int getTotalBoughtBooksDay() {
+    public int getTotalBoughtBooksDay() {
 
-        ArrayList<BookModel> array = BookController.getStockBooks();
+        ArrayList<BookModel> array = bookController.getStockBooks();
         int ans = 0;
 
         for (int i=0;i<array.size();i++) {
@@ -329,9 +329,9 @@ public class StatisticsFuncController {
 
     }
 
-    public static int getTotalBoughtBooksMonth() {
+    public int getTotalBoughtBooksMonth() {
 
-        ArrayList<BookModel> array = BookController.getStockBooks();
+        ArrayList<BookModel> array = bookController.getStockBooks();
         int ans = 0;
 
         for (int i=0;i<array.size();i++) {
@@ -340,9 +340,9 @@ public class StatisticsFuncController {
         return ans;
     }
 
-    public static int getTotalBoughtBooksYear() {
+    public int getTotalBoughtBooksYear() {
 
-        ArrayList<BookModel> array = BookController.getStockBooks();
+        ArrayList<BookModel> array = bookController.getStockBooks();
         int ans = 0;
 
         for (int i=0;i<array.size();i++) {
@@ -352,9 +352,9 @@ public class StatisticsFuncController {
 
     }
 
-    public static double getCostDay() {
+    public double getCostDay() {
 
-        ArrayList<BookModel> array = BookController.getStockBooks();
+        ArrayList<BookModel> array = bookController.getStockBooks();
         double ans = 0;
 
         for (int i=0;i<array.size();i++) {
@@ -365,9 +365,9 @@ public class StatisticsFuncController {
 
     }
 
-    public static double getCostMonth() {
+    public double getCostMonth() {
 
-        ArrayList<BookModel> array = BookController.getStockBooks();
+        ArrayList<BookModel> array = bookController.getStockBooks();
         double ans = 0;
 
         for (int i=0;i<array.size();i++) {
@@ -377,9 +377,9 @@ public class StatisticsFuncController {
         return ans;
 
     }
-    public static double getCostYear() {
+    public double getCostYear() {
 
-        ArrayList<BookModel> array = BookController.getStockBooks();
+        ArrayList<BookModel> array = bookController.getStockBooks();
         double ans = 0;
 
         for (int i=0;i<array.size();i++) {

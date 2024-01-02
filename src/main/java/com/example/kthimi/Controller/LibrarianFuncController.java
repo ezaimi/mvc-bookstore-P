@@ -10,6 +10,7 @@ import java.util.Date;
 //permban funksionet e billit tek librarian view
 //mund te emertohet dhe BillController til now
 public class LibrarianFuncController {
+    BookController bookController = new BookController();
     BillLibrarianController billLibrarianController;
     LibrarianModel librarianModel;
     public static int totalBooksSold=0;
@@ -21,6 +22,10 @@ public class LibrarianFuncController {
     private int booksSold=0;
     private static String STOCK_FILE_PATH = "Books.bin";
     private static final String BILL_COUNTER_FILE_PATH = "bill_counter.txt";
+
+    public LibrarianFuncController(){
+
+    }
 
     public LibrarianFuncController(BillLibrarianController billLibrarianController) {
         this.billLibrarianController = billLibrarianController;
@@ -61,7 +66,7 @@ public class LibrarianFuncController {
     public void checkOutBooks(ArrayList<BookModel> books, ArrayList<Integer> quantities) throws  IOException{
 
         PrintWriter writer = new PrintWriter("Bill"+(++numberOfBills)+".txt");
-        ArrayList<BookModel> stockbooks = BookController.getStockBooks();
+        ArrayList<BookModel> stockbooks = bookController.getStockBooks();
         double totalPrice = 0;
 
         System.out.println("TEK LIBRARIAN STOCKU FILLESTAR");
@@ -154,8 +159,8 @@ public class LibrarianFuncController {
     }
 
 
-    public static void updateBookQuantity(ArrayList<BookModel> updatedBooks) {
-        ArrayList<BookModel> books = BookController.getStockBooks();
+    public void updateBookQuantity(ArrayList<BookModel> updatedBooks) {
+        ArrayList<BookModel> books = bookController.getStockBooks();
         for (BookModel updatedBook : updatedBooks) {
             for (int i = 0; i < books.size(); i++) {
                 BookModel currentBook = books.get(i);
@@ -267,9 +272,9 @@ public class LibrarianFuncController {
 
 
 
-    public static boolean EnoughStock(String ISBN, int quantity) {
+    public boolean EnoughStock(String ISBN, int quantity) {
 
-        ArrayList<BookModel> stockbooks = BookController.getStockBooks();
+        ArrayList<BookModel> stockbooks = bookController.getStockBooks();
 
         for (int i=0;i<stockbooks.size();i++) {
             if (stockbooks.get(i).getISBN().equals(ISBN))

@@ -2,7 +2,6 @@ package com.example.kthimi.View.Manager;
 
 import com.example.kthimi.Controller.BookController;
 import com.example.kthimi.Model.BookModel;
-import com.example.kthimi.View.Manager.ManagerView;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -15,7 +14,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class CheckStockLibrarianView {
-
+BookController bookController = new BookController();
     ManagerView managerView;
     Button bttBack = new Button("Back");
 
@@ -64,7 +63,7 @@ public class CheckStockLibrarianView {
         table.getColumns().add(column7);
         table.getColumns().add(column8);
 
-        table.setItems(FXCollections.observableArrayList(BookController.getStockBooks()));
+        table.setItems(FXCollections.observableArrayList(bookController.getStockBooks()));
 
         border.setCenter(table);
 

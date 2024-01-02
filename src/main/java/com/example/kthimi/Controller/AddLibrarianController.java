@@ -13,14 +13,14 @@ import java.util.Date;
 
 public class AddLibrarianController {
 
-    LibrarianFuncController librarianFuncController;
+    BookController bookController = new BookController();
+    LibrarianFuncController librarianFuncController = new LibrarianFuncController();
     Date date;
     ArrayList<Integer> bookQuantities = new ArrayList<>();
     ArrayList<String> booksSoldTitles = new ArrayList<>();
     TextField bookISBN = new TextField();
     TextField quantity = new TextField();
     TextField warningsLibrarian = new TextField();
-
 
     AddStockManagerView addStockManagerView;
     ArrayList<BookModel> books;;
@@ -93,7 +93,7 @@ public class AddLibrarianController {
                 String Title = librarianView.comboBoxLibrarian.getValue().toString().substring(16);
                 date = new Date();
 
-                ArrayList<BookModel> stockbooks = BookController.getStockBooks();
+                ArrayList<BookModel> stockbooks = bookController.getStockBooks();
                 for (int i=0;i<stockbooks.size();i++) {
                     if (stockbooks.get(i).getISBN().equals(isbn)) {
 
@@ -101,7 +101,7 @@ public class AddLibrarianController {
                     }
                 }
                 try {
-                    BookController.updateBooks(stockbooks);
+                    bookController.updateBooks(stockbooks);
                 } catch (IOException e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();

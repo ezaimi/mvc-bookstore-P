@@ -19,7 +19,7 @@ import javafx.scene.text.Text;
 import java.util.ArrayList;
 
 public class NewCategoryManagerView {
-
+    BookController bookController = new BookController();
     BorderPane borderPane;
     Button bttBack = new Button("Back");
     Text textCategory = new Text("Category");
@@ -52,7 +52,7 @@ public class NewCategoryManagerView {
     public BorderPane createNewCategory(){
         System.out.println("Para selektimit kateg");
         ChoiceBox menuNewCategory = new ChoiceBox(FXCollections.observableArrayList(ManagerModel.getAllCategories()));
-        ArrayList<BookModel> stockbooks = BookController.getStockBooks();
+        ArrayList<BookModel> stockbooks = bookController.getStockBooks();
 
         BorderPane border = new BorderPane();
 
@@ -103,7 +103,7 @@ public class NewCategoryManagerView {
                     textAddCategoryWarning.setText("Failed, Invalid Category");
                     return;
                 }
-                if (BookController.partOfCateogriesChecker(categ,menuNewCategory.getSelectionModel().getSelectedItem().toString())) {
+                if (bookController.partOfCateogriesChecker(categ,menuNewCategory.getSelectionModel().getSelectedItem().toString())) {
                     textAddCategoryWarning.setText("Failed, Not New");
                     return;
                 }

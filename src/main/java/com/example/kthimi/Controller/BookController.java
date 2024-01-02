@@ -18,7 +18,7 @@ public class BookController {
 
     private static String STOCK_FILE_PATH = "Books.bin";
 
-    public static void updateBooks(ArrayList<BookModel> arr) throws IOException {
+    public void updateBooks(ArrayList<BookModel> arr) throws IOException {
 
         // Read existing books from the file
         ArrayList<BookModel> existingBooks = getStockBooks();
@@ -35,7 +35,7 @@ public class BookController {
         }
 
     }
-    public static ArrayList<BookModel> getStockBooks(){
+    public ArrayList<BookModel> getStockBooks(){
 
         ArrayList<BookModel> stockBooks = new ArrayList<>();
         System.out.println("pm");
@@ -57,7 +57,7 @@ public class BookController {
     }
 
     //it saves the books to a file when the user adds a book
-    public static void addBookToStock(BookModel book) {
+    public void addBookToStock(BookModel book) {
         ArrayList<BookModel> stockBooks = getStockBooks();
         stockBooks.add(book);
         try (ObjectOutputStream objout = new ObjectOutputStream(new FileOutputStream(STOCK_FILE_PATH))) {
@@ -68,7 +68,7 @@ public class BookController {
         }
     }
 
-    private static boolean bookExists(ArrayList<BookModel> existingBooks, BookModel newBook) {
+    private boolean bookExists(ArrayList<BookModel> existingBooks, BookModel newBook) {
         for (BookModel book : existingBooks) {
             if (book.getISBN().equals(newBook.getISBN())) {
                 // Book with the same ISBN already exists
@@ -79,7 +79,7 @@ public class BookController {
         return false;
     }
 
-    public static void saveBooksToFile(ArrayList<BookModel> books) {
+    public void saveBooksToFile(ArrayList<BookModel> books) {
         try (ObjectOutputStream objout = new ObjectOutputStream(new FileOutputStream(STOCK_FILE_PATH))) {
             objout.writeObject(books);
         } catch (IOException e) {
@@ -88,7 +88,7 @@ public class BookController {
         }
     }
 
-    public static ArrayList<String> getISBNName(){
+    public ArrayList<String> getISBNName(){
 
         ArrayList<BookModel> array = getStockBooks();
         System.out.println("TekISBN" + array);
@@ -113,7 +113,7 @@ public class BookController {
 
 
 
-    public static BookModel findBookInStock(ArrayList<BookModel> stockBooks, String ISBN) {
+    public BookModel findBookInStock(ArrayList<BookModel> stockBooks, String ISBN) {
         for (BookModel stockBook : stockBooks) {
             if (ISBN.equals(stockBook.getISBN())) {
                 return stockBook;
@@ -136,7 +136,7 @@ public class BookController {
 
     //////////////Keto 5 te fundit mire do ishte te futen ne nje controller tjt
 
-    public static <T> ArrayList<T> removeDuplicates(ArrayList<T> list)
+    public <T> ArrayList<T> removeDuplicates(ArrayList<T> list)
     {
 
         ArrayList<T> newList = new ArrayList<T>();
@@ -152,7 +152,7 @@ public class BookController {
         return newList;
     }
 
-    public static ArrayList<String> getCategories() {
+    public ArrayList<String> getCategories() {
 
         ArrayList<String> ans = new ArrayList<>();
 
@@ -167,7 +167,7 @@ public class BookController {
 
     }
 
-    public static ArrayList<BookModel> getBookFromCategory(String category){
+    public ArrayList<BookModel> getBookFromCategory(String category){
 
         ArrayList<BookModel> ans = new ArrayList<>();
         ArrayList<BookModel> stockbooks = getStockBooks();
@@ -185,7 +185,7 @@ public class BookController {
     }
 
 
-    public static boolean partOfCateogriesChecker(ArrayList<String> categoriesStock,String category) {
+    public boolean partOfCateogriesChecker(ArrayList<String> categoriesStock,String category) {
 
 
         for (int i=0;i<categoriesStock.size();i++) {
@@ -195,7 +195,7 @@ public class BookController {
         return false;
     }
 
-    public static boolean isPartOfBooks(String ISBN) {
+    public boolean isPartOfBooks(String ISBN) {
 
         ArrayList<BookModel> array = getStockBooks();
 

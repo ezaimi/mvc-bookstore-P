@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 public class SupplyManagerView {
 
+    BookController bookController = new BookController();
     private BorderPane borderPane;
 
     Button bttAddStock = new Button("Add Stock");
@@ -36,7 +37,7 @@ public class SupplyManagerView {
     NewCategoryManagerView newCategoryManagerView;
 
     // Create the categ array instance
-    ArrayList<String> categ = BookController.getCategories();
+    ArrayList<String> categ = bookController.getCategories();
 
     // Create instances of views, passing the categ array
     private AddStockManagerView addStockManagerView;

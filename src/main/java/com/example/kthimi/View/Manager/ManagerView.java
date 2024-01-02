@@ -1,5 +1,6 @@
 package com.example.kthimi.View.Manager;
 
+import com.example.kthimi.Controller.ManagerFuncController;
 import com.example.kthimi.Controller.SupplyManagerController;
 import com.example.kthimi.Model.BookModel;
 import com.example.kthimi.Model.ManagerModel;
@@ -22,7 +23,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class ManagerView {
-
+    ManagerFuncController managerFuncController = new ManagerFuncController();
     SupplyManagerController managerController;
     private BorderPane managerPage;
     String usernamePage;
@@ -125,7 +126,7 @@ public class ManagerView {
         table.getColumns().add(column7);
         table.getColumns().add(column8);
 
-        table.setItems(FXCollections.observableArrayList(ManagerModel.getLowStock()));
+        table.setItems(FXCollections.observableArrayList(managerFuncController.getLowStock()));
         table.setMaxHeight(150);
         pane.getChildren().add(table);
 
