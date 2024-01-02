@@ -31,7 +31,6 @@ public class BookstoreApplication extends Application {
         AdministratorModel.InstantiateManagers();
 
 
-        // Launch the JavaFX application
         launch(args);
     }
 

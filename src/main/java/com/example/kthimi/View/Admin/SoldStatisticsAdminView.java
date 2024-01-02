@@ -1,6 +1,8 @@
 package com.example.kthimi.View.Admin;
 
 import com.example.kthimi.Controller.BookController;
+import com.example.kthimi.Controller.Mockers.FileBasedStockBookRepository;
+import com.example.kthimi.Controller.Mockers.StockBookRepository;
 import com.example.kthimi.Controller.StatisticsFuncController;
 import com.example.kthimi.Model.BookModel;
 import javafx.geometry.Insets;
@@ -17,7 +19,8 @@ import java.util.ArrayList;
 
 public class SoldStatisticsAdminView {
     StatisticsFuncController statisticsFuncController = new StatisticsFuncController();
-    BookController bookController = new BookController();
+    StockBookRepository stockBookRepository = new FileBasedStockBookRepository();
+    BookController bookController = new BookController(stockBookRepository);
     StatisticsAdminView statisticsAdminView;
     Button bttBack = new Button("Back");
     ArrayList<String> titlesSold = new ArrayList<>();

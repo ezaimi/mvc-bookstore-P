@@ -1,5 +1,7 @@
 package com.example.kthimi.Controller;
 
+import com.example.kthimi.Controller.Mockers.FileBasedStockBookRepository;
+import com.example.kthimi.Controller.Mockers.StockBookRepository;
 import com.example.kthimi.Model.BookModel;
 import com.example.kthimi.Model.LibrarianModel;
 import com.example.kthimi.Model.SharedDataManager;
@@ -12,8 +14,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class AddLibrarianController {
-
-    BookController bookController = new BookController();
+    StockBookRepository stockBookRepository = new FileBasedStockBookRepository();
+    BookController bookController = new BookController(stockBookRepository);
     LibrarianFuncController librarianFuncController = new LibrarianFuncController();
     Date date;
     ArrayList<Integer> bookQuantities = new ArrayList<>();
@@ -50,11 +52,6 @@ public class AddLibrarianController {
 //            }
 //        });
         librarianView.getBttAdd().setOnAction(event -> handleAdd());
-//
-//        librarianView.getBttAdd().setOnAction(new AddButtonHandler());
-//        // Set actions for other buttons if needed
-//        //librarianView.getBttAdd().setOnAction(event -> handleAddButton());
-//        books = addStockManagerView.getBooks();
 
     }
 

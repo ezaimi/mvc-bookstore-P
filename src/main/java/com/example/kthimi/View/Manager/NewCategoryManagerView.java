@@ -2,6 +2,8 @@ package com.example.kthimi.View.Manager;
 
 import com.example.kthimi.Controller.AddStockManagerController;
 import com.example.kthimi.Controller.BookController;
+import com.example.kthimi.Controller.Mockers.FileBasedStockBookRepository;
+import com.example.kthimi.Controller.Mockers.StockBookRepository;
 import com.example.kthimi.Model.BookModel;
 import com.example.kthimi.Model.ManagerModel;
 import javafx.collections.FXCollections;
@@ -19,7 +21,8 @@ import javafx.scene.text.Text;
 import java.util.ArrayList;
 
 public class NewCategoryManagerView {
-    BookController bookController = new BookController();
+    StockBookRepository stockBookRepository = new FileBasedStockBookRepository();
+    BookController bookController = new BookController(stockBookRepository);
     BorderPane borderPane;
     Button bttBack = new Button("Back");
     Text textCategory = new Text("Category");
@@ -42,7 +45,6 @@ public class NewCategoryManagerView {
 
     public NewCategoryManagerView(ArrayList<String> categ){
         this.categ = categ;
-        // Rest of your constructor code...
     }
 //    public void updateCategInAddStockManagerView(String category) {
 //        addStockManagerController.updateCateg(category);

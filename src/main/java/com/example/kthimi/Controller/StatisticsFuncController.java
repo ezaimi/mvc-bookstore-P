@@ -1,5 +1,7 @@
 package com.example.kthimi.Controller;
 
+import com.example.kthimi.Controller.Mockers.FileBasedStockBookRepository;
+import com.example.kthimi.Controller.Mockers.StockBookRepository;
 import com.example.kthimi.Model.BookModel;
 
 import java.util.ArrayList;
@@ -7,8 +9,8 @@ import java.util.Date;
 import java.util.Iterator;
 
 public class StatisticsFuncController {
-
-    BookController bookController = new BookController();
+    StockBookRepository stockBookRepository = new FileBasedStockBookRepository();
+    BookController bookController = new BookController(stockBookRepository);
     //te dyja keto jane perdorur tek checkouti
     public ArrayList<Date> datesSold;//gjeje ku eshte new Array...
     public ArrayList<Double> moneyMadeDates;

@@ -2,6 +2,8 @@ package com.example.kthimi.View.Manager;
 
 import com.example.kthimi.Controller.AddStockManagerController;
 import com.example.kthimi.Controller.BookController;
+import com.example.kthimi.Controller.Mockers.FileBasedStockBookRepository;
+import com.example.kthimi.Controller.Mockers.StockBookRepository;
 import com.example.kthimi.Controller.NewCategoryManagerController;
 import com.example.kthimi.Controller.SupplyManagerController;
 import com.example.kthimi.View.Manager.AddStockManagerView;
@@ -22,7 +24,8 @@ import java.util.ArrayList;
 
 public class SupplyManagerView {
 
-    BookController bookController = new BookController();
+    StockBookRepository stockBookRepository = new FileBasedStockBookRepository();
+    BookController bookController = new BookController(stockBookRepository);
     private BorderPane borderPane;
 
     Button bttAddStock = new Button("Add Stock");
@@ -36,10 +39,8 @@ public class SupplyManagerView {
 
     NewCategoryManagerView newCategoryManagerView;
 
-    // Create the categ array instance
     ArrayList<String> categ = bookController.getCategories();
 
-    // Create instances of views, passing the categ array
     private AddStockManagerView addStockManagerView;
 
 

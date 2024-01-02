@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
-
+import java.util.Objects;
 
 
 public class BookModel implements Serializable {
@@ -442,6 +442,28 @@ public class BookModel implements Serializable {
         return ans;
 
     }
+
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        BookModel book = (BookModel) obj;
+        return Objects.equals(ISBN, book.ISBN) &&
+                Objects.equals(title, book.title) &&
+                Objects.equals(category, book.category) &&
+                Objects.equals(supplier, book.supplier) &&
+                Objects.equals(sellingPrice, book.sellingPrice) &&
+                Objects.equals(originalPrice, book.originalPrice) &&
+                Objects.equals(author, book.author) &&
+                Objects.equals(stock, book.stock);
+    }
+
 
 
 }

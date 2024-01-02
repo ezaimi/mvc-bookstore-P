@@ -1,6 +1,8 @@
 package com.example.kthimi.View.Librarian;
 
 import com.example.kthimi.Controller.*;
+import com.example.kthimi.Controller.Mockers.FileBasedStockBookRepository;
+import com.example.kthimi.Controller.Mockers.StockBookRepository;
 import com.example.kthimi.Model.BookModel;
 import com.example.kthimi.Model.LibrarianModel;
 import com.example.kthimi.Model.SharedDataManager;
@@ -27,7 +29,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class LibrarianView {
-    BookController bookController = new BookController();
+    StockBookRepository stockBookRepository = new FileBasedStockBookRepository();
+    BookController bookController = new BookController(stockBookRepository);
     Date date;
     ArrayList<Integer> bookQuantities = new ArrayList<>();
     ArrayList<String> booksSoldTitles = new ArrayList<>();
@@ -294,32 +297,6 @@ public class LibrarianView {
 
 
     }
-
-//    public void accessBooksArray() {
-//        AddStockManagerView addStockManagerView = new AddStockManagerView();
-//        ArrayList<BookModel> books = addStockManagerView.getBooksFromSharedManager();
-//        // Use the 'books' array as needed within LibrarianView
-//        // For example:
-//        for (BookModel book : books) {
-//            System.out.println(book.getTitle());
-//        }
-//    }
-
-//    public void someMethod() {
-//        // Create an instance of AddStockManagerView
-//        AddStockManagerView addStockManagerView = new AddStockManagerView();
-//
-//        // Access the books array using the method from AddStockManagerView
-//        ArrayList<BookModel> books = addStockManagerView.getBooksFromSharedManager();
-//
-//        // Use the 'books' array as needed within LibrarianView
-//        // For example:
-//        for (BookModel book : books) {
-//            System.out.println(book.getTitle());
-//            // Do other operations with the book details
-//        }
-//    }
-
 
 
 

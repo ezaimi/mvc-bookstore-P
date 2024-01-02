@@ -1,6 +1,8 @@
 package com.example.kthimi.View.Manager;
 
 import com.example.kthimi.Controller.BookController;
+import com.example.kthimi.Controller.Mockers.FileBasedStockBookRepository;
+import com.example.kthimi.Controller.Mockers.StockBookRepository;
 import com.example.kthimi.Model.BookModel;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
@@ -14,7 +16,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class CheckStockLibrarianView {
-BookController bookController = new BookController();
+    StockBookRepository stockBookRepository = new FileBasedStockBookRepository();
+    BookController bookController = new BookController(stockBookRepository);
     ManagerView managerView;
     Button bttBack = new Button("Back");
 

@@ -1,6 +1,8 @@
 package com.example.kthimi.View.Manager;
 
 import com.example.kthimi.Controller.*;
+import com.example.kthimi.Controller.Mockers.FileBasedStockBookRepository;
+import com.example.kthimi.Controller.Mockers.StockBookRepository;
 import com.example.kthimi.Model.BookModel;
 import com.example.kthimi.Model.SharedDataManager;
 import com.example.kthimi.View.Librarian.LibrarianView;
@@ -26,7 +28,8 @@ import java.util.Date;
 
 public class AddStockManagerView {
     LibrarianFuncController librarianFuncController = new LibrarianFuncController();
-    BookController bookController = new BookController();
+    StockBookRepository stockBookRepository = new FileBasedStockBookRepository();
+    BookController bookController = new BookController(stockBookRepository);
 
     public ArrayList<BookModel> books;
     BorderPane borderPane;
@@ -479,22 +482,20 @@ public class AddStockManagerView {
 
     private void initializeCategories() {
         if (newCategoryManagerView != null) {
-            categ = newCategoryManagerView.getCategories(); // Initialize categories here
+            categ = newCategoryManagerView.getCategories();
         } else {
-            categ = new ArrayList<>(); // Or handle it as per your application logic
+            categ = new ArrayList<>();
         }
     }
 
-    // Existing code...
 
     public void setNewCategoryManagerView(NewCategoryManagerView newCategoryManagerView) {
         this.newCategoryManagerView = newCategoryManagerView;
-        initializeCategories(); // Initialize categories when newCategoryManagerView is set
+        initializeCategories();
     }
 
     public String getText() {
-        // Implement logic to retrieve or generate the 'text' attribute
-        return "Your text value here"; // Replace this with the logic to get the 'text'
+        return "text";
     }
 
 

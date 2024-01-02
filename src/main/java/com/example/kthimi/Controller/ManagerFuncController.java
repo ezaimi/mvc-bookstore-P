@@ -1,5 +1,7 @@
 package com.example.kthimi.Controller;
 
+import com.example.kthimi.Controller.Mockers.FileBasedStockBookRepository;
+import com.example.kthimi.Controller.Mockers.StockBookRepository;
 import com.example.kthimi.Model.BookModel;
 import com.example.kthimi.Model.LibrarianModel;
 import com.example.kthimi.Model.ManagerModel;
@@ -7,8 +9,8 @@ import com.example.kthimi.Model.ManagerModel;
 import java.util.ArrayList;
 
 public class ManagerFuncController extends ManagerModel {
-
-BookController bookController = new BookController();
+    StockBookRepository stockBookRepository = new FileBasedStockBookRepository();
+    BookController bookController = new BookController(stockBookRepository);
     static ArrayList<LibrarianModel> librarians = ManagerModel.getLibrarians();
 
 

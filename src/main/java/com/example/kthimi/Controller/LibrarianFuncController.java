@@ -1,5 +1,7 @@
 package com.example.kthimi.Controller;
 
+import com.example.kthimi.Controller.Mockers.FileBasedStockBookRepository;
+import com.example.kthimi.Controller.Mockers.StockBookRepository;
 import com.example.kthimi.Model.BookModel;
 import com.example.kthimi.Model.LibrarianModel;
 
@@ -10,7 +12,8 @@ import java.util.Date;
 //permban funksionet e billit tek librarian view
 //mund te emertohet dhe BillController til now
 public class LibrarianFuncController {
-    BookController bookController = new BookController();
+    StockBookRepository stockBookRepository = new FileBasedStockBookRepository();
+    BookController bookController = new BookController(stockBookRepository);
     BillLibrarianController billLibrarianController;
     LibrarianModel librarianModel;
     public static int totalBooksSold=0;
@@ -44,9 +47,8 @@ public class LibrarianFuncController {
             }
         } catch (IOException | NumberFormatException e) {
             e.printStackTrace();
-            // Handle file reading or parsing errors
         }
-        return 0; // Default value if the file doesn't exist or has invalid content
+        return 0;
     }
 
     private void saveNumberOfBills() {
@@ -54,18 +56,17 @@ public class LibrarianFuncController {
             writer.println(numberOfBills);
         } catch (IOException e) {
             e.printStackTrace();
-            // Handle file writing errors
         }
     }
 
     public void incrementNumberOfBills() {
-        numberOfBills++;
-        saveNumberOfBills(); // Save the incremented value to the file
+        //numberOfBills++;
+        saveNumberOfBills();
     }
 
     public void checkOutBooks(ArrayList<BookModel> books, ArrayList<Integer> quantities) throws  IOException{
 
-        PrintWriter writer = new PrintWriter("Bill"+(++numberOfBills)+".txt");
+        PrintWriter writer = new PrintWriter("Bill"+(numberOfBills++)+".txt");
         ArrayList<BookModel> stockbooks = bookController.getStockBooks();
         double totalPrice = 0;
 
@@ -279,9 +280,10 @@ public class LibrarianFuncController {
         for (int i=0;i<stockbooks.size();i++) {
             if (stockbooks.get(i).getISBN().equals(ISBN))
                 if (stockbooks.get(i).getStock() - quantity >= 0)
+                    System.out.println("STOCKUUUUUUUUU" + stockbooks.get(i).getStock());
                     return true;
         }
-
+        System.out.println("QUANTITYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY"+quantity);
         return false;
 
 

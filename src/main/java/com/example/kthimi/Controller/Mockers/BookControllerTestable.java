@@ -1,5 +1,6 @@
-package com.example.kthimi.Controller;
+package com.example.kthimi.Controller.Mockers;
 
+import com.example.kthimi.Controller.BookController;
 import com.example.kthimi.Model.BookModel;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ public class BookControllerTestable extends BookController {
 
     @Override
     public ArrayList<BookModel> getStockBooks() {
+        System.out.println("lol1");
         return stockBooks;
     }
 

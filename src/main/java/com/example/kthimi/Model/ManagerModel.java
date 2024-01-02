@@ -1,11 +1,14 @@
 package com.example.kthimi.Model;
 
 import com.example.kthimi.Controller.BookController;
+import com.example.kthimi.Controller.Mockers.FileBasedStockBookRepository;
+import com.example.kthimi.Controller.Mockers.StockBookRepository;
 
 import java.util.ArrayList;
 
 public class ManagerModel extends LibrarianModel{
-    BookController bookController = new BookController();
+    StockBookRepository stockBookRepository = new FileBasedStockBookRepository();
+    BookController bookController = new BookController(stockBookRepository);
     static ArrayList<LibrarianModel> librarians = new ArrayList<>();
 
     public ManagerModel(){

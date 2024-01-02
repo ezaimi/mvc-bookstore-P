@@ -23,7 +23,7 @@ public class MainView {
         this.controller = controller;
     }
 
-    private Stage primaryStage; // Reference to the primary stage
+    private Stage primaryStage;
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -68,39 +68,35 @@ public class MainView {
     }
 
     public void clearFields() {
-        // Method to clear input fields
         username.clear();
         password.clear();
         mainLoginWarning.clear();
     }
     /////////////////
 
-    public void showLibrarianPage() {
-        // Method to display librarian page
-        System.out.println("tek show");
-        BorderPane librarianPage = new BorderPane();
-        Text librarianText = new Text("Welcome, Librarian!");
-        librarianText.setFont(new Font(20));
-        StackPane librarianPane = new StackPane(librarianText);
-        librarianPage.setCenter(librarianPane);
+//    public void showLibrarianPage() {
+//        System.out.println("tek show");
+//        BorderPane librarianPage = new BorderPane();
+//        Text librarianText = new Text("Welcome, Librarian!");
+//        librarianText.setFont(new Font(20));
+//        StackPane librarianPane = new StackPane(librarianText);
+//        librarianPage.setCenter(librarianPane);
+//
+//        Scene librarianScene = new Scene(librarianPage, 400, 300);
+//        Stage librarianStage = new Stage();
+//        librarianStage.setScene(librarianScene);
+//        librarianStage.setTitle("Librarian Page");
+//
+//        librarianStage.show();
+//    }
+//
+//    public void showManagerPage() {
+//
+//    }
 
-        Scene librarianScene = new Scene(librarianPage, 400, 300);
-        Stage librarianStage = new Stage();
-        librarianStage.setScene(librarianScene);
-        librarianStage.setTitle("Librarian Page");
-
-        // Display librarian page in a new window
-        librarianStage.show();
-    }
-
-    public void showManagerPage() {
-        // Method to display manager page
-        // Implement logic to show the manager page
-    }
-
-    public void showAdminPage(){
-
-    }
+//    public void showAdminPage(){
+//
+//    }
 
     ///////////////////////
     public BorderPane mainPage() {
