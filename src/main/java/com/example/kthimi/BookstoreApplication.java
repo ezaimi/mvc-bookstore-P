@@ -12,7 +12,7 @@ public class BookstoreApplication extends Application {
     @Override
     public void start(Stage primaryStage) {
         MainView mainView = new MainView();
-//
+
         mainView.setPrimaryStage(primaryStage);
 
         MainController mainController = new MainController(mainView);
