@@ -13,6 +13,13 @@ public class ManagerFuncController extends ManagerModel {
     BookController bookController = new BookController(stockBookRepository);
     static ArrayList<LibrarianModel> librarians = ManagerModel.getLibrarians();
 
+    public ManagerFuncController(){
+
+    }
+
+    public ManagerFuncController(BookController bookController){
+        this.bookController = bookController;
+    }
 
     public static void deleteLibrarian(LibrarianModel lib) {
         for (int i=0;i<librarians.size();i++) {

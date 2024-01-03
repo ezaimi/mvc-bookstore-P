@@ -101,14 +101,14 @@ public class BookController {
         return false;
     }
 
-    public void saveBooksToFile(ArrayList<BookModel> books) {
-        try (ObjectOutputStream objout = new ObjectOutputStream(new FileOutputStream(STOCK_FILE_PATH))) {
-            objout.writeObject(books);
-        } catch (IOException e) {
-            e.printStackTrace();
-            // Handle the exception accordingly
-        }
-    }
+//    public void saveBooksToFile(ArrayList<BookModel> books) {
+//        try (ObjectOutputStream objout = new ObjectOutputStream(new FileOutputStream(STOCK_FILE_PATH))) {
+//            objout.writeObject(books);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            // Handle the exception accordingly
+//        }
+//    }
 
     public ArrayList<String> getISBNName(){
 
@@ -125,24 +125,24 @@ public class BookController {
 
 
 
-    public void removeStock(int quantity) {
-        if (bookmodel.getStock() >= quantity) {
-            bookmodel.setStock(bookmodel.getStock() - quantity);
-        } else {
-            System.out.println("Insufficient stock!");
-        }
-    }
+//    public void removeStock(int quantity) {
+//        if (bookmodel.getStock() >= quantity) {
+//            bookmodel.setStock(bookmodel.getStock() - quantity);
+//        } else {
+//            System.out.println("Insufficient stock!");
+//        }
+//    }
 
 
 
-    public BookModel findBookInStock(ArrayList<BookModel> stockBooks, String ISBN) {
-        for (BookModel stockBook : stockBooks) {
-            if (ISBN.equals(stockBook.getISBN())) {
-                return stockBook;
-            }
-        }
-        return null;
-    }
+//    public BookModel findBookInStock(ArrayList<BookModel> stockBooks, String ISBN) {
+//        for (BookModel stockBook : stockBooks) {
+//            if (ISBN.equals(stockBook.getISBN())) {
+//                return stockBook;
+//            }
+//        }
+//        return null;
+//    }
 
     public boolean equals(Object obj) {
         if (this == obj) {

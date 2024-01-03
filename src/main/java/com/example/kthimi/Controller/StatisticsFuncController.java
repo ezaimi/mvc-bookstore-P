@@ -11,6 +11,16 @@ import java.util.Iterator;
 public class StatisticsFuncController {
     StockBookRepository stockBookRepository = new FileBasedStockBookRepository();
     BookController bookController = new BookController(stockBookRepository);
+
+//    public StatisticsFuncController(StockBookRepository stockBookRepository) {
+//        this.stockBookRepository = stockBookRepository;
+//    }
+
+    public StatisticsFuncController(BookController bookController) {
+        this.bookController = bookController;
+       // this.stockBookRepository = bookController.getStockBookRepository();
+    }
+
     //te dyja keto jane perdorur tek checkouti
     public ArrayList<Date> datesSold;//gjeje ku eshte new Array...
     public ArrayList<Double> moneyMadeDates;
