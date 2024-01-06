@@ -45,14 +45,7 @@ public class AddLibrarianController {
     }
 
     private void initializeAddBttLibrarian() {
-//        librarianView.getBttAdd().setOnAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent event) {
-//                handleAdd();
-//            }
-//        });
         librarianView.getBttAdd().setOnAction(event -> handleAdd());
-
     }
 
 
@@ -125,54 +118,6 @@ public class AddLibrarianController {
         System.out.println("TEK GETI Plus" + books);
         return bookQuantities;
     }
-
-//            if (e.getSource()==bttBill)  {
-//
-//
-//                if (books.isEmpty() || bookQuantities.isEmpty()) {
-//                    warningsLibrarian.setText("Failed, No Books to add");
-//                    return;
-//                }
-//
-//                try {
-//                    librarian.checkOutBooks(books, bookQuantities);
-//                } catch (IOException e1) {
-//                    e1.printStackTrace();
-//                }
-//
-//
-//                bookISBN.clear();
-//                booksSoldTitles.clear();
-//                quantity.clear();
-//                books.clear();
-//                bookQuantities.clear();
-//                warningsLibrarian.setText("Bill File Created!");
-//            }
-
-//
-//            if (e.getSource()==bttSupply) {
-//                bttSupply.getScene().setRoot(ManagerSupplyCickPage());
-//
-//            }
-//
-//            if (e.getSource()==bttAddStock) {
-//                bttAddStock.getScene().setRoot(chooseAddCurretStock());
-//            }
-//
-//            if (e.getSource()==bttCheckStock) {
-//                bttCheckStock.getScene().setRoot(checkStoragePage());
-//            }
-//            if (e.getSource()==bttNewCategory) {
-//                bttNewCategory.getScene().setRoot(chooseNewCategoryAddStock());
-//            }
-//
-//            if (e.getSource()==bttManageLibrarians) {
-//                bttManageLibrarians.getScene().setRoot( administratorManageLibrariansPage() );
-//            }
-
-
-
-
 
 
 }

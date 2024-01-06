@@ -13,23 +13,21 @@ public class MainController {
     private AuthenticationModel model;
     String usernamePage;
 
+
     public MainController(MainView view) {
+        System.out.println("kontroller plot" + view);
         this.view = view;
+        this.view.setController(this);
+        System.out.println(view.getUsername() + " te kontroller ploti");
         this.model = new AuthenticationModel();
-        initSubmitButtonAction();
+        //initSubmitButtonAction();
 
-    }
-
-    private void initSubmitButtonAction() {
-        view.getBttSubmit().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                handleLogin();
-            }
-        });
     }
 
     public void handleLogin() {
+
+        System.out.println(this.view + "is null");
+
         String user = view.getUsername().getText();
         String pass = view.getPassword().getText();
 
@@ -58,7 +56,15 @@ public class MainController {
             //view.showAdminPage();
         } else {
             view.getMainLoginWarning().setText("Wrong Information");
-            view.clearFields();
+            //view.clearFields();
         }
+    }
+
+//    public void setView(MainView view) {
+//        this.view = view;
+//        //initSubmitButtonAction();
+//    }
+    public void setAuthenticationModel(AuthenticationModel authenticationModel) {
+        this.model = authenticationModel;
     }
 }

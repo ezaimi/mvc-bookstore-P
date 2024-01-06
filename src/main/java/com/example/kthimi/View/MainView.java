@@ -18,38 +18,36 @@ import javafx.stage.Stage;
 
 public class MainView {
 
-    private MainController controller;
-    public void setController(MainController controller){
-        this.controller = controller;
-    }
-
-    private Stage primaryStage;
-
-    public void setPrimaryStage(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-    }
-
-    public Stage getPrimaryStage() {
-        return primaryStage;
-    }
-
-    public void setSubmitAction(){
-        bttSubmit.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                controller.handleLogin();
-            }
-        });
-    }
 
     TextField mainLoginWarning = new TextField();
-
     TextField username = new TextField();
     Text textUsername = new Text("Username");
     PasswordField password = new PasswordField();
     Text textPassword = new Text("Password");
     Text textSystem = new Text("System");
     Button bttSubmit = new Button("Submit");
+    private MainController controller;
+    BorderPane mainPage;
+    private Stage primaryStage;
+
+
+    public MainView() {
+        mainPage = mainPage();
+    }
+
+
+    public void setController(MainController controller) {
+        this.controller = controller;
+        initSubmitButtonAction();
+    }
+
+    private void initSubmitButtonAction() {
+        Button bttSubmit = getBttSubmit();
+        bttSubmit.setOnAction(event -> controller.handleLogin());
+    }
+
+
+
 
     public Button getBttSubmit() {
         return bttSubmit;
@@ -67,40 +65,24 @@ public class MainView {
         return mainLoginWarning;
     }
 
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+    }
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
+
     public void clearFields() {
         username.clear();
         password.clear();
         mainLoginWarning.clear();
     }
-    /////////////////
 
-//    public void showLibrarianPage() {
-//        System.out.println("tek show");
-//        BorderPane librarianPage = new BorderPane();
-//        Text librarianText = new Text("Welcome, Librarian!");
-//        librarianText.setFont(new Font(20));
-//        StackPane librarianPane = new StackPane(librarianText);
-//        librarianPage.setCenter(librarianPane);
-//
-//        Scene librarianScene = new Scene(librarianPage, 400, 300);
-//        Stage librarianStage = new Stage();
-//        librarianStage.setScene(librarianScene);
-//        librarianStage.setTitle("Librarian Page");
-//
-//        librarianStage.show();
-//    }
-//
-//    public void showManagerPage() {
-//
-//    }
 
-//    public void showAdminPage(){
-//
-//    }
-
-    ///////////////////////
     public BorderPane mainPage() {
-
+        bttSubmit.setId("Submit");
         BorderPane border = new BorderPane();
         border.setMinSize(500,300);
 
@@ -127,9 +109,10 @@ public class MainView {
 
 
         //Funksioni per event handler te butonit submit tek main page
-        setSubmitAction();
+        // setSubmitAction();
 
 
         return border;
     }
+
 }
