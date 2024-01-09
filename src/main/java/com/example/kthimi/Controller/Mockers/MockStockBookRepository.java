@@ -16,5 +16,4 @@ public class MockStockBookRepository implements StockBookRepository {
         return stockBooks;
     }
 
-    // Other mock implementations for file operations...
 }

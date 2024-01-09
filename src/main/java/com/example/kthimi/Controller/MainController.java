@@ -11,8 +11,9 @@ import javafx.event.EventHandler;
 public class MainController {
     private MainView view;
     private AuthenticationModel model;
-    String usernamePage;
 
+    //
+    private LibrarianView librarianView;
 
     public MainController(MainView view) {
         System.out.println("kontroller plot" + view);
@@ -39,7 +40,7 @@ public class MainController {
             // performing actions for authenticated librarian
             view.clearFields();
             //System.out.println("tek handle brenda");
-            LibrarianView librarianView = new LibrarianView(user,view);
+            librarianView = new LibrarianView(user,view);
             view.getPrimaryStage().getScene().setRoot(librarianView.getLibrarianMainPage());
             //view.showLibrarianPage(); // Method in MainView to display librarian page
         } else if (model.authenticateManager(user, pass)) {
@@ -66,5 +67,10 @@ public class MainController {
 //    }
     public void setAuthenticationModel(AuthenticationModel authenticationModel) {
         this.model = authenticationModel;
+    }
+
+
+    public LibrarianView getLibrarianView() {
+        return librarianView;
     }
 }

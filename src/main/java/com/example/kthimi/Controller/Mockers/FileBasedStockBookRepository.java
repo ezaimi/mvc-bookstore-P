@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class FileBasedStockBookRepository implements StockBookRepository{
 
-    private static String STOCK_FILE_PATH = "Books.bin";
+    public static String STOCK_FILE_PATH = "Books.bin";
 
 
     public ArrayList<BookModel> getStockBooks(){

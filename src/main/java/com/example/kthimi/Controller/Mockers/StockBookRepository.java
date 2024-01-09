@@ -6,5 +6,4 @@ import java.util.ArrayList;
 
 public interface StockBookRepository {
     ArrayList<BookModel> getStockBooks();
-    // Other methods related to file operations...
 }

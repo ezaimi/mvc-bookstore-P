@@ -72,15 +72,15 @@ public class AddLibrarianController {
                 }
 
 
-                if (!librarianFuncController.EnoughStock(librarianView.comboBoxLibrarian.getValue().toString().substring(0,13), Integer.parseInt(librarianView.quantity.getCharacters().toString())) ) {
+                if (!librarianFuncController.EnoughStock(librarianView.comboBoxLibrarian.getValue().toString(), Integer.parseInt(librarianView.quantity.getCharacters().toString())) ) {
                     librarianView.warningsLibrarian.setText("Failed,not enough stock");
                     return;
                 }
 
-                String isbn = librarianView.comboBoxLibrarian.getValue().toString().substring(0,13);
+                String isbn = librarianView.comboBoxLibrarian.getValue().toString();
                 int quan = Integer.parseInt(librarianView.quantity.getCharacters().toString());
 
-                String Title = librarianView.comboBoxLibrarian.getValue().toString().substring(16);
+                String Title = librarianView.comboBoxLibrarian.getValue().toString();
                 date = new Date();
 
                 ArrayList<BookModel> stockbooks = bookController.getStockBooks();
@@ -103,9 +103,9 @@ public class AddLibrarianController {
             System.out.println(books);
                 bookQuantities.add(quan);
                 booksSoldTitles.add(Title);
-                bookISBN.clear();
-                quantity.clear();
-                warningsLibrarian.setText("Added");
+//                bookISBN.clear();
+//                quantity.clear();
+                librarianView.warningsLibrarian.setText("Added");
 
             }
 

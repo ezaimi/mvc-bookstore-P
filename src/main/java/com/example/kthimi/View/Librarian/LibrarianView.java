@@ -95,31 +95,45 @@ public class LibrarianView {
 
     }
 
-    public LibrarianView(AddStockManagerView addStockManagerView) {
-        this.addStockManagerView = addStockManagerView;
+    public void setBookController(BookController bookController) {
+        this.bookController = bookController;
+        // Set the comboBox or other components with test data from the injected bookController
+        // e.g., comboBoxLibrarian.setItems(bookController.getISBNName());
     }
 
+
+
+
+//    public LibrarianView(AddStockManagerView addStockManagerView) {
+//        this.addStockManagerView = addStockManagerView;
+//    }
+
     public void setAddAction(){
-        bttAdd.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                System.out.println("addi po funksionon");
-                addLibrarianController.handleAdd();
-            }
-        });
+        //Button bttSubmit = getBttSubmit();
+        //bttSubmit.setOnAction(event -> controller.handleLogin());
+        bttAdd.setOnAction(event-> addLibrarianController.handleAdd());
+//        bttAdd.setOnAction(new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent actionEvent) {
+//                System.out.println("addi po funksionon");
+//                addLibrarianController.handleAdd();
+//            }
+//        });
     }
 
     public void setBillAction(){
-        bttBill.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                System.out.println("billi u printua");
-                billLibrarianController.handleBill();
-            }
-        });
+        bttBill.setOnAction(event-> billLibrarianController.handleBill());
+//        bttBill.setOnAction(new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent actionEvent) {
+//                System.out.println("billi u printua");
+//                billLibrarianController.handleBill();
+//            }
+//        });
     }
 
     public BorderPane createLibrarianMainPage() {
+
         BorderPane borderPane = new BorderPane();
 
         //comboBoxLibrarian = new ComboBox(FXCollections.observableArrayList(BookController.getISBNName()));
@@ -173,6 +187,10 @@ public class LibrarianView {
         //bttBill.setOnAction(this);
         //setBillAction();
 
+        comboBoxLibrarian.setId("comboBoxLibrarian");
+        quantity.setId("quantity");
+        bttAdd.setId("bttAdd");
+        warningsLibrarian.setId("warningsLibrarian");
 
         return borderPane;
     }
@@ -191,69 +209,68 @@ public class LibrarianView {
     }
 
 
-    private class AddButtonHandler implements EventHandler<ActionEvent> {
-        @Override
-        public void handle(ActionEvent event) {
-
-            if (comboBoxLibrarian.getValue() == null && quantity.getCharacters().toString().isEmpty()) {
-                warningsLibrarian.setText("Failed, Empty fields");
-                return;
-            }
-            else if (comboBoxLibrarian.getValue() == null) {
-                warningsLibrarian.setText("Failed to add,Empty ISBN");
-                return;
-            }
-            else if (quantity.getCharacters().toString().isEmpty()) {
-                warningsLibrarian.setText("Failed, Empty Quantity");
-                return;
-            }
-
-            else if(!quantity.getCharacters().toString().matches("\\d{1,}") || Integer.parseInt(quantity.getCharacters().toString()) == 0) {
-                warningsLibrarian.setText("Failed, Invalid Quantity");
-                return;
-            }
-
-
-            if (!librarianFuncController.EnoughStock(comboBoxLibrarian.getValue().toString().substring(0,13), Integer.parseInt(quantity.getCharacters().toString())) ) {
-                warningsLibrarian.setText("Failed,not enough stock");
-                return;
-            }
-
-            String isbn = comboBoxLibrarian.getValue().toString().substring(0,13);
-            int quan = Integer.parseInt(quantity.getCharacters().toString());
-
-            String Title = comboBoxLibrarian.getValue().toString().substring(16);
-            date = new Date();
-
-            ArrayList<BookModel> stockbooks = bookController.getStockBooks();
-            for (int i=0;i<stockbooks.size();i++) {
-                if (stockbooks.get(i).getISBN().equals(isbn)) {
-
-                    stockbooks.get(i).RemoveStock(quan);
-                }
-            }
-            try {
-                bookController.updateBooks(stockbooks);
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            }
-
-            BookModel book = new BookModel(isbn);
-
-            // books = addStockManagerView.getBooks();
-            books.add(book);
-            bookQuantities.add(quan);
-            booksSoldTitles.add(Title);
-            bookISBN.clear();
-            quantity.clear();
-            warningsLibrarian.setText("Added");
-
-        }
-
-
-
-    }
+//    private class AddButtonHandler implements EventHandler<ActionEvent> {
+//        @Override
+//        public void handle(ActionEvent event) {
+//
+//            if (comboBoxLibrarian.getValue() == null && quantity.getCharacters().toString().isEmpty()) {
+//                warningsLibrarian.setText("Failed, Empty fields");
+//                return;
+//            }
+//            else if (comboBoxLibrarian.getValue() == null) {
+//                warningsLibrarian.setText("Failed to add,Empty ISBN");
+//                return;
+//            }
+//            else if (quantity.getCharacters().toString().isEmpty()) {
+//                warningsLibrarian.setText("Failed, Empty Quantity");
+//                return;
+//            }
+//
+//            else if(!quantity.getCharacters().toString().matches("\\d{1,}") || Integer.parseInt(quantity.getCharacters().toString()) == 0) {
+//                warningsLibrarian.setText("Failed, Invalid Quantity");
+//                return;
+//            }
+//
+//
+//            if (!librarianFuncController.EnoughStock(comboBoxLibrarian.getValue().toString().substring(0,13), Integer.parseInt(quantity.getCharacters().toString())) ) {
+//                warningsLibrarian.setText("Failed,not enough stock");
+//                return;
+//            }
+//
+//            String isbn = comboBoxLibrarian.getValue().toString().substring(0,13);
+//            int quan = Integer.parseInt(quantity.getCharacters().toString());
+//
+//            String Title = comboBoxLibrarian.getValue().toString().substring(16);
+//            date = new Date();
+//
+//            ArrayList<BookModel> stockbooks = bookController.getStockBooks();
+//            for (int i=0;i<stockbooks.size();i++) {
+//                if (stockbooks.get(i).getISBN().equals(isbn)) {
+//
+//                    stockbooks.get(i).RemoveStock(quan);
+//                }
+//            }
+//            try {
+//                bookController.updateBooks(stockbooks);
+//            } catch (IOException e1) {
+//                e1.printStackTrace();
+//            }
+//
+//            BookModel book = new BookModel(isbn);
+//
+//            // books = addStockManagerView.getBooks();
+//            books.add(book);
+//            bookQuantities.add(quan);
+//            booksSoldTitles.add(Title);
+//            bookISBN.clear();
+//            quantity.clear();
+//            warningsLibrarian.setText("Added");
+//
+//        }
+//
+//
+//
+//    }
 
 
 
