@@ -33,7 +33,7 @@ public class LibrarianModel {
 //        moneyMadeDates = new ArrayList<>();
     }
 
-    LibrarianModel(String username, String password) {
+    public LibrarianModel(String username, String password) {
         this.username = username;
         this.password = password;
 //        datesSold = new ArrayList<>();

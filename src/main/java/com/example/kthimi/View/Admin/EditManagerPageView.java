@@ -24,6 +24,7 @@ public class EditManagerPageView {
     TextField magLoginWarning = new TextField();
     Text textSystem = new Text("System");
     ManagerModel manager;
+    ArrayList<ManagerModel> magList = new ArrayList<>();
 
 
     public EditManagerPageView(ManageManagersView manageManagersView){
@@ -130,7 +131,7 @@ public class EditManagerPageView {
             manager = new ManagerModel( username.getCharacters().toString(), password.getCharacters().toString(), mag.getName(), Double.parseDouble(salary.getCharacters().toString()), phone.getCharacters().toString(),
                     email.getCharacters().toString());
 
-            AdminFuncController.deleteManager(manager);
+            AdminFuncController.deleteManager(manager,magList);
             username.clear();
             name.clear();
             password.clear();
@@ -176,7 +177,7 @@ public class EditManagerPageView {
                     email.getCharacters().toString());
 
 
-            AdminFuncController.updateManagers(manager);
+            AdminFuncController.updateManagers(manager,magList);
             magLoginWarning.setText("Success!");
 
         });

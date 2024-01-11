@@ -403,4 +403,25 @@ public class StatisticsFuncController {
     }
 
 
+    public void printBookDates(ArrayList<BookModel> arr) {
+
+        ArrayList<BookModel> stockbooks = arr;
+        ArrayList<Date> dates;
+
+        for (int i=0;i<stockbooks.size();i++) {
+
+            dates = stockbooks.get(i).getDates();
+            if (dates.isEmpty()) {
+                System.out.println("empty");
+                continue;
+            }
+            for (int j=0;j<dates.size();j++) {
+                System.out.println(dates.get(j));
+            }
+
+        }
+    }
+
+
+
 }

@@ -20,19 +20,20 @@ public class LibrarianFuncController {
     public double  totalIncome=0;
     private double moneyMade=0;
     public ArrayList<Date> datesSold;
-    private ArrayList<Double> moneyMadeDates;
+    public ArrayList<Double> moneyMadeDates;
     private int numberOfBills;
     private int booksSold=0;
     private static String STOCK_FILE_PATH = "Books.bin";
     private static final String BILL_COUNTER_FILE_PATH = "bill_counter.txt";
 
     public LibrarianFuncController(){
-
+        datesSold = new ArrayList<>();
+        moneyMadeDates = new ArrayList<>();
     }
 
     public LibrarianFuncController(BillLibrarianController billLibrarianController) {
         this.billLibrarianController = billLibrarianController;
-
+        System.out.println("kajjhfdakshfddkshfkdkjdshldsjhhhjhfdshf");
         datesSold = new ArrayList<>();
         moneyMadeDates = new ArrayList<>();
 
@@ -205,70 +206,6 @@ public class LibrarianFuncController {
 
     public static boolean checkName(String name) {
         return name.matches("[a-zA-Z]{1,}");
-    }
-
-
-    public double moneyMadeInDay() {
-
-        if (this.datesSold==null) {
-            return 0;
-        }
-
-        double ans=0;
-        Date today = new Date();
-
-        for (int i=0;i<this.datesSold.size();i++) {
-
-            if ( datesSold.get(i).getYear()==today.getYear() && datesSold.get(i).getMonth()==today.getMonth() && datesSold.get(i).getDay() == today.getDay()) {
-                System.out.println("here");
-                ans+=moneyMadeDates.get(i);
-            }
-
-        }
-
-        return ans;
-
-    }
-
-    public double moneyMadeInMonth() {
-
-        if (this.datesSold==null) {
-            return 0;
-        }
-
-        double ans=0;
-        Date today = new Date();
-
-
-        for (int i=0;i<datesSold.size();i++) {
-
-            if (datesSold.get(i).getYear() == today.getYear() && datesSold.get(i).getMonth()==today.getMonth()) {
-                ans+=moneyMadeDates.get(i);
-            }
-        }
-
-        return ans;
-
-    }
-
-    public double moneyMadeInYear() {
-
-        if (this.datesSold==null) {
-            return 0;
-        }
-
-        double ans=0;
-        Date today = new Date();
-
-        for (int i=0;i<datesSold.size();i++) {
-
-            if (datesSold.get(i).getYear() == today.getYear()) {
-                ans+=moneyMadeDates.get(i);
-            }
-        }
-
-        return ans;
-
     }
 
 

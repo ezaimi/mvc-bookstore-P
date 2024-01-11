@@ -13,6 +13,7 @@ public class ManagerFuncController extends ManagerModel {
     BookController bookController = new BookController(stockBookRepository);
     static ArrayList<LibrarianModel> librarians = ManagerModel.getLibrarians();
 
+
     public ManagerFuncController(){
 
     }
@@ -22,6 +23,9 @@ public class ManagerFuncController extends ManagerModel {
     }
 
     public static void deleteLibrarian(LibrarianModel lib) {
+
+        ArrayList<LibrarianModel> librarians = getLibrarians();
+
         for (int i=0;i<librarians.size();i++) {
             if (librarians.get(i).getUsername().equals(lib.getUsername())) {
                 librarians.remove(i);
@@ -31,6 +35,8 @@ public class ManagerFuncController extends ManagerModel {
     }
 
     public static void updateLibrarians(LibrarianModel lib) {
+
+        ArrayList<LibrarianModel> librarians = getLibrarians();
 
         for (int i=0;i<librarians.size();i++){
             if (librarians.get(i).getUsername().equals(lib.getUsername())) {

@@ -30,9 +30,9 @@ public class AdministratorModel extends ManagerModel{
         this.password=password;
     }
 
-    public AdministratorModel(String username,String password,String name,double salary,String phone,String email){
-        super(username,password,name,salary,phone,email);
-    }
+//    public AdministratorModel(String username,String password,String name,double salary,String phone,String email){
+//        super(username,password,name,salary,phone,email);
+//    }
 
     public static ArrayList<AdministratorModel> getAdmins(){
         return admins;
@@ -56,6 +56,13 @@ public class AdministratorModel extends ManagerModel{
     public static ArrayList<ManagerModel> getManagers(){
         return managers;
     }
+    public static String[] getUsernames(){
+        return usernames;
+    }
+    public static String[] getPasswords(){
+        return passwords;
+    }
+
     public static void AddManager(ManagerModel mag) {
         managers.add(mag);
     }

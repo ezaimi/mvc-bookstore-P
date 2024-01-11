@@ -2,6 +2,7 @@ package com.example.kthimi.View.Admin;
 
 import com.example.kthimi.Controller.LibrarianFuncController;
 import com.example.kthimi.Controller.ManagerFuncController;
+import com.example.kthimi.Controller.StatisticsFuncController;
 import com.example.kthimi.Model.LibrarianModel;
 import com.example.kthimi.Model.ManagerModel;
 import javafx.geometry.Insets;
@@ -18,6 +19,7 @@ import javafx.scene.text.Text;
 public class EditLibrarianPageView {
 
     LibrarianFuncController librarianFuncController = new LibrarianFuncController();
+    StatisticsFuncController statisticsFuncController = new StatisticsFuncController();
     ManageLibrariansView manageLibrariansView;
     Button bttBack = new Button("Back");
     Text textTotalNumberBillsLibrarian = new Text("Total Number of Bills");
@@ -109,9 +111,9 @@ public class EditLibrarianPageView {
 
         totalNumberBillsLibrarian.setText(Integer.toString(librarianFuncController.getNumberOfBills()));
         booksSold.setText(Integer.toString(lib.getBooksSold()));
-        totalAmountOfMoneyMadeInDay.setText( Double.toString(librarianFuncController.moneyMadeInDay()) );
-        totalAmountOfMoneyMadeInMonth.setText( Double.toString(librarianFuncController.moneyMadeInMonth()) );
-        totalAmountOfMoneyMadeInYear.setText( Double.toString(librarianFuncController.moneyMadeInYear()) );
+        totalAmountOfMoneyMadeInDay.setText( Double.toString(statisticsFuncController.moneyMadeInDay()) );
+        totalAmountOfMoneyMadeInMonth.setText( Double.toString(statisticsFuncController.moneyMadeInMonth()) );
+        totalAmountOfMoneyMadeInYear.setText( Double.toString(statisticsFuncController.moneyMadeInYear()) );
 
         name.setEditable(false);
         name.setText(lib.getName());

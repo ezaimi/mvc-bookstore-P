@@ -465,5 +465,14 @@ public class BookModel implements Serializable {
     }
 
 
+    public void addSale(Date date, int quantity) {
+        if (dates == null) {
+            dates = new ArrayList<>();
+            purchasedAmount = new ArrayList<>();
+        }
+        dates.add(date);
+        purchasedAmount.add(quantity);
+    }
+
 
 }

@@ -1,5 +1,6 @@
 package com.example.kthimi.Controller;
 
+import com.example.kthimi.Controller.Mockers.FileBasedStockBookRepository;
 import com.example.kthimi.Controller.Mockers.StockBookRepository;
 import com.example.kthimi.Model.BookModel;
 
@@ -27,7 +28,7 @@ public class BookController {
 
 
 
-    private StockBookRepository stockBookRepository;
+    private StockBookRepository stockBookRepository = new FileBasedStockBookRepository();
 
     public BookController(StockBookRepository stockBookRepository) {
         this.stockBookRepository = stockBookRepository;
@@ -228,6 +229,33 @@ public class BookController {
         return false;
     }
 
+
+    public void showStock() {
+
+        try {
+            FileInputStream fis = new FileInputStream(STOCK_FILE_PATH);
+            ObjectInputStream objis = new ObjectInputStream(fis);
+
+            while (true) {
+                try {
+                    Object obj = objis.readObject();
+                    if (obj instanceof BookModel) {
+                        System.out.println((BookModel) obj);
+                    } else if (obj instanceof ArrayList) {
+                        ArrayList<BookModel> books = (ArrayList<BookModel>) obj;
+                        for (BookModel book : books) {
+                            System.out.println(book);
+                        }
+                    }
+                } catch (EOFException e) {
+                    // End of file reached, exit the loop
+                    break;
+                }
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 

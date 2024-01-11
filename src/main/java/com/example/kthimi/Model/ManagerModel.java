@@ -9,13 +9,13 @@ import java.util.ArrayList;
 public class ManagerModel extends LibrarianModel{
     StockBookRepository stockBookRepository = new FileBasedStockBookRepository();
     BookController bookController = new BookController(stockBookRepository);
-    static ArrayList<LibrarianModel> librarians = new ArrayList<>();
+    public static ArrayList<LibrarianModel> librarians = new ArrayList<>();
 
     public ManagerModel(){
 
     }
 
-    ManagerModel(String username, String password) {
+    public ManagerModel(String username, String password) {
         super(username, password);
 
     }
