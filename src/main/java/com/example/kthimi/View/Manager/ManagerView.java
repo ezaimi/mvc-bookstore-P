@@ -139,7 +139,8 @@ public class ManagerView {
 
 
        // bttSupply.setOnAction(this);
-        setSupplyAction();
+        //setSupplyAction();
+        bttSupply.setOnAction(event->  managerController.handleSupply());
 
         bttCheckStock.setOnAction(event -> {
             setCheckStockScene((Stage) bttCheckStock.getScene().getWindow());
@@ -161,6 +162,7 @@ public class ManagerView {
             }
         });
 
+        bttSupply.setId("bttSupply");
 
         return borderPane;
     }
@@ -168,20 +170,21 @@ public class ManagerView {
 
 
     //butoni 1 - supply
-    public void setSupplyAction(){
-        bttSupply.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-               // managerController.handleSupply();
-                if (managerController != null) {
-                    managerController.handleSupply();
-                } else {
-                    // Handle the scenario where managerController is null
-                    System.out.println("ManagerController is null!");
-                }
-            }
-        });
-    }
+//    public void setSupplyAction(){
+//        bttSupply.setOnAction(event->  managerController.handleSupply());
+////        bttSupply.setOnAction(new EventHandler<ActionEvent>() {
+////            @Override
+////            public void handle(ActionEvent actionEvent) {
+////               // managerController.handleSupply();
+////                if (managerController != null) {
+////                    managerController.handleSupply();
+////                } else {
+////                    // Handle the scenario where managerController is null
+////                    System.out.println("ManagerController is null!");
+////                }
+////            }
+////        });
+//    }
 
 
     //butoni 2 - check librarians

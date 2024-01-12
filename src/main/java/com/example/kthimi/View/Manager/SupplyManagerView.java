@@ -89,18 +89,15 @@ public class SupplyManagerView {
         supplyPageGrid.setAlignment(Pos.CENTER);
         border.setCenter(supplyPageGrid);
 
+        bttAddStock.setId("bttAddStock");
+        bttNewCategory.setId("bttNewCategory");
 
         return border;
     }
 
 
     public void setAddStockAction(){
-        bttAddStock.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                addStockManagerController.handleAddStock();
-            }
-        });
+        bttAddStock.setOnAction(event -> addStockManagerController.handleAddStock());
     }
 
     public Button getBttAddStock() {
@@ -110,12 +107,7 @@ public class SupplyManagerView {
 
 
     public void setNewCategoryAction(){
-        bttNewCategory.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                newCategoryManagerController.handleNewCategory();
-            }
-        });
+        bttNewCategory.setOnAction(event-> newCategoryManagerController.handleNewCategory());
     }
 
     public Button getBttNewCategory() {

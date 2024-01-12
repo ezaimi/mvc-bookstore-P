@@ -127,10 +127,13 @@ public class NewCategoryManagerView {
             }
 
 
+
         });
 
 
-
+        bttAddCategory.setId("bttAddCategory");
+        menuNewCategory.setId("menuNewCategory");
+        textAddCategoryWarning.setId("textAddCategoryWarning");
         return border;
 
 

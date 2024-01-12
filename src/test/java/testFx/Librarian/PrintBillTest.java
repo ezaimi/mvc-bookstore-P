@@ -5,13 +5,11 @@ import com.example.kthimi.Controller.LibrarianFuncController;
 import com.example.kthimi.Controller.MainController;
 import com.example.kthimi.Controller.Mockers.FileBasedStockBookRepository;
 import com.example.kthimi.Controller.Mockers.MockAuthenticationModel;
-import com.example.kthimi.Controller.Mockers.MockStockBookRepository;
 import com.example.kthimi.Model.AuthenticationModel;
 import com.example.kthimi.Model.BookModel;
 import com.example.kthimi.Model.LibrarianModel;
 import com.example.kthimi.View.Librarian.LibrarianView;
 import com.example.kthimi.View.MainView;
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -36,7 +34,7 @@ import static org.testfx.util.WaitForAsyncUtils.waitForFxEvents;
 
 
 
-public class SystemE1 extends ApplicationTest {
+public class PrintBillTest extends ApplicationTest {
 
     private MainController mainController;
     private MainView mainView;

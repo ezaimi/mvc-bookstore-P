@@ -146,6 +146,7 @@ public class AddStockManagerView {
         System.out.println("Butoni i ri");
         Button button = new Button(text);
         button.setOnAction(new ButtonHandler(button.getText()));
+        button.setId("newCateg");
         return button;
     }
 
@@ -234,7 +235,7 @@ public class AddStockManagerView {
 
         });
 
-
+        bttNewBook.setId("bttNewBook");
         return border;
 
 
@@ -259,8 +260,8 @@ public class AddStockManagerView {
             Stage stage = new Stage();
             Scene scene = new Scene(stockBookPage(book));
             //stage.getIcons().add(new Image("bookIcon.png"));
-            stage.setWidth(465);
-            stage.setHeight(465);
+            stage.setWidth(800);
+            stage.setHeight(600);
             stage.setScene(scene);
             stage.show();
 
@@ -470,7 +471,16 @@ public class AddStockManagerView {
 
         border.setCenter(grid);
 
+        bookISBN.setId("bookISBN");
+        title.setId("title");
+        gridSupplier.setId("gridSupplier");
+        originalPrice.setId("originalPrice");
+        sellingPrice.setId("sellingPrice");
+        author.setId("author");
+        quantity.setId("quantity");
 
+        stockCategoryAddBook.setId("stockCategoryAddBook");
+        addedOrNotStockCategory.setId("addedOrNotStockCategory");
 
         return border;
     }
