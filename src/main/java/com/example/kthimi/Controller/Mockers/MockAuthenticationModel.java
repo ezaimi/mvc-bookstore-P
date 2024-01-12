@@ -9,5 +9,15 @@ public class MockAuthenticationModel extends AuthenticationModel {
         return "1".equals(username) && "11".equals(password);
     }
 
-    // Implement other methods if required for testing different scenarios
+    @Override
+    public boolean authenticateManager(String username, String password) {
+
+        return "2".equals(username) && "22".equals(password);
+    }
+
+    @Override
+    public boolean authenticateAdmin(String username, String password) {
+
+        return "3".equals(username) && "33".equals(password);
+    }
 }

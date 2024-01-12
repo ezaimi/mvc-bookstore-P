@@ -36,6 +36,7 @@ public class BillLibrarianController {
         this.addStockManagerView = new AddStockManagerView();
         this.addLibrarianController = addLibrarianController;
         initializeBillBttLibrarian();
+
         //this.books = addLibrarianController.getBooksPlus();
 
         this.librarianFuncController = new LibrarianFuncController(this);
@@ -76,12 +77,15 @@ public class BillLibrarianController {
         }
 
 
+        librarianView.warningsLibrarian.setText("");
+        librarianView.warningsLibrarian.setText("Bill File Created!");
         bookISBN.clear();
         booksSoldTitles.clear();
         quantity.clear();
         books.clear();
         bookQuantities.clear();
-        warningsLibrarian.setText("Bill File Created!");
+
+        warningsLibrarian.setId("warningsLibrarian");
     }
 
 

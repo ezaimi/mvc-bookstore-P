@@ -23,7 +23,7 @@ public class LibrarianFuncController {
     public ArrayList<Double> moneyMadeDates;
     private int numberOfBills;
     private int booksSold=0;
-    private static String STOCK_FILE_PATH = "Books.bin";
+    public static String STOCK_FILE_PATH = "Books.bin";
     private static final String BILL_COUNTER_FILE_PATH = "bill_counter.txt";
 
     public LibrarianFuncController(){
@@ -74,17 +74,22 @@ public class LibrarianFuncController {
         System.out.println("TEK LIBRARIAN STOCKU FILLESTAR");
         System.out.println(stockbooks.toString());
 
-        removeDuplicatesSoldBooks(books,quantities);
+        removeDuplicatesSoldBooks(stockbooks,quantities);
 
 
         System.out.println("After removing duplicates");
-        System.out.println(books.toString());
+        System.out.println(stockbooks.toString());
 
         for (int i=0;i<books.size();i++) {
             for (int j=0;j<stockbooks.size();j++) {
+                System.out.println("jessssssssssssssssssssssssssssssss" + books);
+                System.out.println("jessssssssssssssssssssssssssssssss" + stockbooks);
+
+                System.out.println(books.get(i).getISBN().equals(stockbooks.get(j).getISBN())+ "WOW" );
 
                 if (books.get(i).getISBN().equals(stockbooks.get(j).getISBN()))
                 {
+                    System.out.println(books.get(i).getISBN().equals(stockbooks.get(j).getISBN())+ "WOW jO");
                     writer.write("Title: \""+stockbooks.get(j).getTitle()+"\", Quantities: "+quantities.get(i)+", OriginalPrice "+
                             stockbooks.get(j).getSellingPrice() +", Price: "+stockbooks.get(j).getSellingPrice()*quantities.get(i)+"\n");
 
@@ -124,7 +129,7 @@ public class LibrarianFuncController {
         datesSold.add(new Date());
         moneyMadeDates.add(moneyMade);
 
-        writer.write("\nTotal price: "+totalPrice+" Date: "+(new Date()).toString());
+        writer.write("\nTotal price: "+totalPrice+" Date: "+ (new Date()));
         writer.close();
 
 
@@ -145,6 +150,9 @@ public class LibrarianFuncController {
         if (books.isEmpty() || quantities.isEmpty()) {
             return;
         }
+
+        if(books.size() == 1)
+            return;
 
         for (int i = 0; i < books.size(); i++) {
             for (int j = i + 1; j < books.size(); j++) {

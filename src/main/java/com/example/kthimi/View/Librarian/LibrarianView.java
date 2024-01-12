@@ -190,6 +190,7 @@ public class LibrarianView {
         comboBoxLibrarian.setId("comboBoxLibrarian");
         quantity.setId("quantity");
         bttAdd.setId("bttAdd");
+        bttBill.setId("bttBill");
         warningsLibrarian.setId("warningsLibrarian");
 
         return borderPane;

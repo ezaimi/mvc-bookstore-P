@@ -16,7 +16,7 @@ public class LibrarianModel {
     private String phone;
     private String email;
 
-    private static String STOCK_FILE_PATH = "Books.bin";
+    public static String STOCK_FILE_PATH = "Books.bin";
 
     public LibrarianModel() {
 

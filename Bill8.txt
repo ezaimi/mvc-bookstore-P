@@ -1,3 +1,0 @@
-Title: "great", Quantities: 1, OriginalPrice 56.0, Price: 56.0
-
-Total price: 56.0 Date: Tue Jan 09 16:13:25 CET 2024

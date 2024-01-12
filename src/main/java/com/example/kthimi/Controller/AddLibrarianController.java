@@ -78,10 +78,18 @@ public class AddLibrarianController {
                 }
 
                 String isbn = librarianView.comboBoxLibrarian.getValue().toString();
+                if (isbn.length() >= 13) {
+                    isbn = isbn.substring(0, 13);
+                }
                 int quan = Integer.parseInt(librarianView.quantity.getCharacters().toString());
 
-                String Title = librarianView.comboBoxLibrarian.getValue().toString();
-                date = new Date();
+                //String Title = librarianView.comboBoxLibrarian.getValue().toString().substring(16);
+            String Title = librarianView.comboBoxLibrarian.getValue().toString();
+            if (Title.length() > 16) {
+                Title = Title.substring(16);
+            }
+
+            date = new Date();
 
                 ArrayList<BookModel> stockbooks = bookController.getStockBooks();
                 for (int i=0;i<stockbooks.size();i++) {
