@@ -90,6 +90,8 @@ public class CheckStockLibrarianView {
 
         border.setPrefSize(800, 600);
 
+        bttBack.setId("bttBack");
+
         return border;
 
     }

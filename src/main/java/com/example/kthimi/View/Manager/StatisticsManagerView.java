@@ -73,6 +73,9 @@ public class StatisticsManagerView {
         stackBackButton.setPadding(new Insets(0, 0, 40, 0));
         border.setBottom(stackBackButton);
 
+        bttBought.setId("bttBought");
+        bttSold.setId("bttSold");
+
         return border;
 
     }

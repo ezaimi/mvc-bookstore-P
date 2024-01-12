@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+//--add-opens javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
 public class BookstoreApplication extends Application {
     @Override
     public void start(Stage primaryStage) {

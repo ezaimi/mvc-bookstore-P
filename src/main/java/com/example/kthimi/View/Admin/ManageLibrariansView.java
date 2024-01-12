@@ -84,6 +84,7 @@ public class ManageLibrariansView {
             bttAddNew.getScene().setRoot(manageLibAddNew.addLibrarian());
         });
 
+        bttAddNew.setId("bttAddNew");
 
         return border;
     }
@@ -99,7 +100,7 @@ public class ManageLibrariansView {
         else
             button = new Button(lib.getName());
 
-
+        button.setId("button");
         button.setOnAction(new ButtonHandler4(lib));
         return button ;
     }
@@ -116,8 +117,8 @@ public class ManageLibrariansView {
         public void handle(ActionEvent event) {
             Stage stage = new Stage();
             Scene scene = new Scene(editLibrarianPage.editLibrarianPage(lib));
-            stage.setWidth(465);
-            stage.setHeight(465);
+            stage.setWidth(800);
+            stage.setHeight(600);
             stage.setScene(scene);
             stage.show();
 

@@ -93,6 +93,8 @@ public class CheckLibrariansManagerView {
         }
         border.setCenter(grid);
 
+        bttBack.setId("bttBack");
+
 
         return border;
 
@@ -113,6 +115,7 @@ public class CheckLibrariansManagerView {
 
 
         button.setOnAction(new ButtonHandler3(lib));
+        button.setId("button");
         return button ;
     }
 
@@ -129,8 +132,8 @@ public class CheckLibrariansManagerView {
             Stage stage = new Stage();
             Scene scene = new Scene(selectLibrarianPage(lib));
             //stage.getIcons().add(new Image("bookIcon.png"));
-            stage.setWidth(465);
-            stage.setHeight(465);
+            stage.setWidth(800);
+            stage.setHeight(600);
             stage.setScene(scene);
             stage.show();
 
@@ -145,6 +148,7 @@ public class CheckLibrariansManagerView {
     public BorderPane selectLibrarianPage(LibrarianModel lib) {
 
         BorderPane border = new BorderPane();
+        // Button bttBackIn = new Button("Back");
 
         Text text;
         if (lib.getName() == null)
@@ -176,6 +180,8 @@ public class CheckLibrariansManagerView {
         grid.add(textTotalMoneyYear, 0, 4);
         grid.add(totalAmountOfMoneyMadeInYear, 1, 4);
 
+        //grid.add(bttBackIn,1,5);
+
         totalNumberBillsLibrarian.setEditable(false);
         booksSold.setEditable(false);
         totalAmountOfMoneyMadeInDay.setEditable(false);
@@ -189,6 +195,10 @@ public class CheckLibrariansManagerView {
         totalAmountOfMoneyMadeInYear.setText( Double.toString(statisticsFuncController.moneyMadeInYear()) );
 
         border.setCenter(grid);
+
+        //bttBackIn.setOnAction(event -> librariansAllPage());
+
+       // bttBackIn.setId("bttBackIn");
 
         return border;
     }

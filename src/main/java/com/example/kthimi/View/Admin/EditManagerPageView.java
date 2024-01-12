@@ -183,8 +183,20 @@ public class EditManagerPageView {
         });
 
         border.setCenter(grid);
+        name.setId("name");
+        password.setId("password");
+        username.setId("username");
+        salary.setId("salary");
+        phone.setId("phone");
+        email.setId("email");
+
+        bttSubmit.setId("bttSubmit");
+
+        magLoginWarning.setId("magLoginWarning");
+
 
         return border;
+
 
     }
 

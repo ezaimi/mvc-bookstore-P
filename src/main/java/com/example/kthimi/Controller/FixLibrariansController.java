@@ -30,13 +30,6 @@ public class FixLibrariansController {
     }
 
 
-    public static void AddLibrarian(LibrarianModel lib) {
-        librarians.add(lib);
-    }
-    public static ArrayList<LibrarianModel> getLibrarians() {
-        return librarians;
-    }
-
     public static boolean LibrarianChecker(LibrarianModel lib) {
         for (int i=0;i<librarians.size();i++) {
             if (librarians.get(i).getUsername().equals(lib.getUsername()) && librarians.get(i).getPassword().equals(lib.getPassword()))
@@ -56,22 +49,6 @@ public class FixLibrariansController {
         return null;
     }
 
-    public static void updateLibrarians(LibrarianModel lib) {
-
-        for (int i=0;i<librarians.size();i++){
-            if (librarians.get(i).getUsername().equals(lib.getUsername())) {
-                librarians.get(i).setEmail( lib.getEmail() );
-                librarians.get(i).setPhone( lib.getPhone() );
-                librarians.get(i).setSalary( lib.getSalary() );
-                librarians.get(i).setPassword( lib.getPassword() );
-                librarians.get(i).setUsername( lib.getUsername() );
-                return;
-            }
-
-        }
-
-    }
-
     public static void deleteLibrarian(LibrarianModel lib) {
         for (int i=0;i<librarians.size();i++) {
             if (librarians.get(i).getUsername().equals(lib.getUsername())) {
@@ -80,6 +57,5 @@ public class FixLibrariansController {
             }
         }
     }
-
 
 }

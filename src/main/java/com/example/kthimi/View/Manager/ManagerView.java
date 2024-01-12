@@ -82,7 +82,7 @@ public class ManagerView {
         stackHeader.setPadding(new Insets(20));
         borderPane.setTop(stackHeader);
 
-        Button bttbookStatistics = new Button("Book Statistics");
+        Button bttBookStatistics = new Button("Book Statistics");
 
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -92,7 +92,7 @@ public class ManagerView {
         grid.add(bttCheckLibrarians, 1, 0);
         grid.add(bttBack, 4, 0);
         grid.add(bttCheckStock, 2, 0);
-        grid.add(bttbookStatistics, 3, 0);
+        grid.add(bttBookStatistics, 3, 0);
         grid.setPadding(new Insets(30));
         borderPane.setCenter(grid);
 
@@ -152,8 +152,8 @@ public class ManagerView {
         });
 
         //check statistics
-        bttbookStatistics.setOnAction(event ->{
-            setStatisticsScene((Stage) bttbookStatistics.getScene().getWindow());
+        bttBookStatistics.setOnAction(event ->{
+            setStatisticsScene((Stage) bttBookStatistics.getScene().getWindow());
         });
 
         bttBack.setOnAction(event -> {
@@ -163,6 +163,9 @@ public class ManagerView {
         });
 
         bttSupply.setId("bttSupply");
+        bttCheckLibrarians.setId("bttCheckLibrarians");
+        bttCheckStock.setId("bttCheckStock");
+        bttBookStatistics.setId("bttBookStatistics");
 
         return borderPane;
     }

@@ -132,6 +132,15 @@ public class ManageManAddNew {
 
         });
 
+        name.setId("name");
+        password.setId("password");
+        username.setId("username");
+        salary.setId("salary");
+        phone.setId("phone");
+        email.setId("email");
+
+        magWarningNew.setId("magWarningNew");
+        bttAdd.setId("bttAdd");
 
         return border;
 

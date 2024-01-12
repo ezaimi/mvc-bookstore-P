@@ -70,7 +70,4 @@ public class MainController {
     }
 
 
-    public LibrarianView getLibrarianView() {
-        return librarianView;
-    }
 }

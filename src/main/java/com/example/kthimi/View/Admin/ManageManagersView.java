@@ -84,6 +84,7 @@ public class ManageManagersView {
             bttAddNew.getScene().setRoot(manageManAddNew.addManager());
         });
 
+        bttAddNew.setId("bttAddNew");
 
         return border;
 
@@ -101,6 +102,7 @@ public class ManageManagersView {
 
 
         button.setOnAction(new ButtonHandler5(mag));
+        button.setId("button");
         return button ;
     }
 
@@ -116,8 +118,8 @@ public class ManageManagersView {
         public void handle(ActionEvent event) {
             Stage stage = new Stage();
             Scene scene = new Scene( editManagerPage.editManagerPage(mag) );
-            stage.setWidth(465);
-            stage.setHeight(465);
+            stage.setWidth(800);
+            stage.setHeight(600);
             stage.setScene(scene);
             stage.show();
 

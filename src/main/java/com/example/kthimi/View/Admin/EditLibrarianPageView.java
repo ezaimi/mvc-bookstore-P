@@ -218,6 +218,15 @@ public class EditLibrarianPageView {
         });
 
 
+        name.setId("name");
+        password.setId("password");
+        username.setId("username");
+        salary.setId("salary");
+        phone.setId("phone");
+        email.setId("email");
+
+        libLoginWarning.setId("libLoginWarning");
+        bttSubmit.setId("bttSubmit");
 
         border.setCenter(grid);
 

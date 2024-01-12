@@ -84,6 +84,10 @@ public class AdminView {
             }
         });
 
+        bttStats.setId("bttStats");
+        bttManageLibrarians.setId("bttManageLibrarians");
+        bttManageManager.setId("bttManageManagers");
+        bttBack.setId("bttBack");
 
         return borderPane;
     }

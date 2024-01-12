@@ -1,38 +1,26 @@
-package testFx.Librarian;
+package testFx.Manager;
 
-import com.example.kthimi.Controller.BookController;
-import com.example.kthimi.Controller.LibrarianFuncController;
+
+
 import com.example.kthimi.Controller.MainController;
-import com.example.kthimi.Controller.Mockers.FileBasedStockBookRepository;
 import com.example.kthimi.Controller.Mockers.MockAuthenticationModel;
 import com.example.kthimi.Model.AuthenticationModel;
-import com.example.kthimi.Model.BookModel;
-import com.example.kthimi.Model.LibrarianModel;
-import com.example.kthimi.Model.ManagerModel;
 import com.example.kthimi.View.MainView;
-import com.example.kthimi.View.Manager.ManagerView;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.util.WaitForAsyncUtils;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class NewCategoryTest extends ApplicationTest {
+public class BookStatsTest extends ApplicationTest {
 
     private MainController mainController;
     private MainView mainView;
@@ -53,7 +41,7 @@ public class NewCategoryTest extends ApplicationTest {
     }
 
     @Test
-    public void newCategoryTry() throws TimeoutException, InterruptedException, IOException {
+    public void addStockTry() throws TimeoutException, InterruptedException, IOException {
 
         WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#Submit").queryAll().isEmpty());
 
@@ -71,26 +59,34 @@ public class NewCategoryTest extends ApplicationTest {
         Thread.sleep(1000);
         clickOn("#Submit");
 
+        WaitForAsyncUtils.waitForFxEvents();
 
-        ManagerView managerView = new ManagerView("2",mainView);
+        Thread.sleep(1000);
 
         FxRobot robot = new FxRobot();
 
-        robot.clickOn((Button) lookup("#bttSupply").query());
+
+        robot.clickOn((Button) lookup("#bttBookStatistics").query());
         Thread.sleep(1000);
-        robot.clickOn((Button) lookup("#bttNewCategory").query());
+
+        robot.clickOn((Button) lookup("#bttSold").query());
         Thread.sleep(1000);
 
-        ChoiceBox menuNewCategory = lookup("#menuNewCategory").query();
+        robot.clickOn((Button) lookup("#bttBack").query());
+        Thread.sleep(1000);
 
-        robot.interact(() -> menuNewCategory.getSelectionModel().select("Novel"));
+        robot.clickOn((Button) lookup("#bttBought").query());
+        Thread.sleep(1000);
+
+        robot.clickOn((Button) lookup("#bttBack").query());
+        Thread.sleep(1000);
 
 
-        robot.clickOn((Button) lookup("#bttAddCategory").query());
 
-        assertEquals("Added!",((TextField) lookup("#textAddCategoryWarning").query()).getText());
 
 
     }
+
+
 
 }

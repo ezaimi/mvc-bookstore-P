@@ -1,4 +1,5 @@
-package testFx.Librarian;
+package testFx.Admin;
+
 
 
 import com.example.kthimi.Controller.BookController;
@@ -10,6 +11,7 @@ import com.example.kthimi.Model.AuthenticationModel;
 import com.example.kthimi.Model.BookModel;
 import com.example.kthimi.Model.LibrarianModel;
 import com.example.kthimi.Model.ManagerModel;
+import com.example.kthimi.View.Admin.AdminView;
 import com.example.kthimi.View.MainView;
 import com.example.kthimi.View.Manager.ManagerView;
 import javafx.scene.Scene;
@@ -32,7 +34,7 @@ import java.util.concurrent.TimeoutException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AddStockTest extends ApplicationTest {
+public class NewManagerTest extends ApplicationTest {
 
     private MainController mainController;
     private MainView mainView;
@@ -53,12 +55,12 @@ public class AddStockTest extends ApplicationTest {
     }
 
     @Test
-    public void addStockTry() throws TimeoutException, InterruptedException, IOException {
+    public void newLibrarianTry() throws TimeoutException, InterruptedException, IOException {
 
         WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#Submit").queryAll().isEmpty());
 
-        String validManagerUsername = "2";
-        String validManagerPassword = "22";
+        String validManagerUsername = "3";
+        String validManagerPassword = "33";
 
         AuthenticationModel mockModel = new MockAuthenticationModel();
         mainController.setAuthenticationModel(mockModel);
@@ -80,48 +82,33 @@ public class AddStockTest extends ApplicationTest {
         LibrarianModel.STOCK_FILE_PATH = tempFile.getAbsolutePath();
 
 
-        ManagerView managerView = new ManagerView("2",mainView);
+        AdminView managerView = new AdminView("3",mainView);
 
         FxRobot robot = new FxRobot();
 
-        robot.clickOn((Button) lookup("#bttSupply").query());
+        robot.clickOn((Button) lookup("#bttManageManagers").query());
         Thread.sleep(1000);
-        robot.clickOn((Button) lookup("#bttAddStock").query());
+        robot.clickOn((Button) lookup("#bttAddNew").query());
         Thread.sleep(1000);
-        robot.clickOn((Button) lookup("#newCateg").query());
-        Thread.sleep(1000);
-        robot.clickOn((Button) lookup("#bttNewBook").query());
 
-        TextField bookISBNField = lookup("#bookISBN").query();
-        TextField titleField = lookup("#title").query();
-        GridPane gridSupplier = lookup("#gridSupplier").query();
-        TextField originalPrice = lookup("#originalPrice").query();
-        TextField sellingPrice = lookup("#sellingPrice").query();
-        TextField authorField = lookup("#author").query();
-        TextField quantityField = lookup("#quantity").query();
+        TextField name = lookup("#name").query();
+        TextField password = lookup("#password").query();
+        TextField username = lookup("#username").query();
+        TextField salary = lookup("#salary").query();
+        TextField phone = lookup("#phone").query();
+        TextField email = lookup("#email").query();
 
 
+        robot.clickOn(name).write("Jonian");
+        robot.clickOn(username).write("Joni");
+        robot.clickOn(password).write("lot");
+        robot.clickOn(salary).write("900");
+        robot.clickOn(phone).write("+355698659312");
+        robot.clickOn(email).write("joni@gmail.com");
 
-        //bookISBN
-        robot.clickOn(bookISBNField).write("1234567893628");
-        //title
-        robot.clickOn(titleField).write("hello");
-        //supplier
-        robot.clickOn(gridSupplier.getChildren().get(1));
-        //originalPrice
-        robot.clickOn(originalPrice).write("12");
-        //sellingPrice
-        robot.clickOn(sellingPrice).write("20");
-        //author
-        robot.clickOn(authorField).write("Someone");
-        //quantity
-        robot.clickOn(quantityField).write("10");
+        robot.clickOn((Button) lookup("#bttAdd").query());
 
-        //stockCategoryAddBook
-        robot.clickOn((Button) lookup("#stockCategoryAddBook").query());
-
-
-        assertEquals("Added",((TextField) lookup("#addedOrNotStockCategory").query()).getText());
+        assertEquals("Invalid password",((TextField) lookup("#magWarningNew").query()).getText());
 
 
     }

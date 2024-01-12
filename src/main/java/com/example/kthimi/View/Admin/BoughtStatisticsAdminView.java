@@ -85,6 +85,9 @@ public class BoughtStatisticsAdminView {
         stackBackButton.setPadding(new Insets(0, 0, 40, 0));
         border.setBottom(stackBackButton);
 
+        bttBack.setId("bttBack");
+
+
         return border;
 
 

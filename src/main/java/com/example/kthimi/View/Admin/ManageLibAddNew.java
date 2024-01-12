@@ -136,6 +136,17 @@ public class ManageLibAddNew {
         });
 
 
+        name.setId("name");
+        password.setId("password");
+        username.setId("username");
+        salary.setId("salary");
+        phone.setId("phone");
+        email.setId("email");
+
+        libWarningNew.setId("libWarningNew");
+        bttAdd.setId("bttAdd");
+
+
         return border;
 
 
