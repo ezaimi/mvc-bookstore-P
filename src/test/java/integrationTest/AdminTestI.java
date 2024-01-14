@@ -82,28 +82,63 @@ class AdminTestI {
 
     ///////////Klea//////////////
 
-    @Test
-    public void testGetSalaries() {
-        FixLibrariansController.InstantiateLibrarians();
-        AdminFuncController.InstantiateManagers();
-        //AdminFuncController.InstantiateAdmins();
-
-        double expected = 0;
-
-        for (LibrarianModel librarian : ManagerModel.getLibrarians()) {
-            expected += librarian.getSalary();
-        }
-
-        for (ManagerModel manager : AdministratorModel.getManagers()) {
-            expected += manager.getSalary();
-        }
-
-//        for (Administrator admin : Administrator.getAdmins()) {
-//            expected += admin.getSalary();
+//    @Test
+//    public void testGetSalaries() {
+//        FixLibrariansController.InstantiateLibrarians();
+//        AdminFuncController.InstantiateManagers();
+//        //AdminFuncController.InstantiateAdmins();
+//
+//        double expected = 0;
+//
+//        for (LibrarianModel librarian : ManagerModel.getLibrarians()) {
+//            expected += librarian.getSalary();
 //        }
+//
+//        for (ManagerModel manager : AdministratorModel.getManagers()) {
+//            expected += manager.getSalary();
+//        }
+//
+////        for (Administrator admin : Administrator.getAdmins()) {
+////            expected += admin.getSalary();
+////        }
+//
+//        double actual = AdminFuncController.getSalaries();
+//        assertEquals(expected, actual);
+//    }
 
-        double actual = AdminFuncController.getSalaries();
-        assertEquals(expected, actual);
+    @Test
+    public void testSalary(){
+
+        LibrarianModel librarian1 = new LibrarianModel("librarian1", "password1", "John Doe", 50000.0, "123456789", "john@example.com");
+        LibrarianModel librarian2 = new LibrarianModel("librarian2", "password2", "Jane Doe", 50000.0, "987654321", "jane@example.com");
+        ManagerModel.getLibrarians().add(librarian1);
+        ManagerModel.getLibrarians().add(librarian2);
+
+        double salary=0;
+        int size=ManagerModel.getLibrarians().size();
+        System.out.println(size);
+
+        for (int i=0;i<ManagerModel.getLibrarians().size();i++) {
+            salary+=ManagerModel.getLibrarians().get(i).getSalary();
+            System.out.println(salary);
+        }
+
+//
+        ManagerModel mag =new ManagerModel("Alfie123","SSU6umwt","Alfie",500,"(912) 921-2728","aflie@librarian.com");
+        AdministratorModel.getManagers().add(mag);
+        for (int i=0;i<AdministratorModel.getManagers().size();i++) {
+            salary += AdministratorModel.getManagers().get(i).getSalary();
+        }
+        System.out.println("total"+salary);
+
+
+        AdministratorModel adm =new AdministratorModel("Alfie123","SSU6umwt","Alfie",500,"(912) 921-2728","aflie@librarian.com");
+        AdministratorModel.getAdmins().add(adm);
+        for (int i=0;i<AdministratorModel.getAdmins().size();i++) {
+            salary += AdministratorModel.getAdmins().get(i).getSalary();
+        }
+
+        assertEquals(salary,AdminFuncController.getSalaries());
     }
 
     @Test

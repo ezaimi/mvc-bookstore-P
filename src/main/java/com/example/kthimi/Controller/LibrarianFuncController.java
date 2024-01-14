@@ -4,6 +4,7 @@ import com.example.kthimi.Controller.Mockers.FileBasedStockBookRepository;
 import com.example.kthimi.Controller.Mockers.StockBookRepository;
 import com.example.kthimi.Model.BookModel;
 import com.example.kthimi.Model.LibrarianModel;
+import com.example.kthimi.View.Librarian.LibrarianView;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class LibrarianFuncController {
     private int booksSold=0;
     public static String STOCK_FILE_PATH = "Books.bin";
     private static final String BILL_COUNTER_FILE_PATH = "bill_counter.txt";
+
 
     public LibrarianFuncController(){
         datesSold = new ArrayList<>();
@@ -90,6 +92,7 @@ public class LibrarianFuncController {
                 if (books.get(i).getISBN().equals(stockbooks.get(j).getISBN()))
                 {
                     System.out.println(books.get(i).getISBN().equals(stockbooks.get(j).getISBN())+ "WOW jO");
+                    System.out.println("Title: \""+stockbooks.get(j).getTitle());
                     writer.write("Title: \""+stockbooks.get(j).getTitle()+"\", Quantities: "+quantities.get(i)+", OriginalPrice "+
                             stockbooks.get(j).getSellingPrice() +", Price: "+stockbooks.get(j).getSellingPrice()*quantities.get(i)+"\n");
 
@@ -134,8 +137,8 @@ public class LibrarianFuncController {
 
 
     }
-    public ArrayList<Date> getDatesSold() {return datesSold;}
-    public void setDatesSold(ArrayList<Date> datesSold){this.datesSold = datesSold;}
+//    public ArrayList<Date> getDatesSold() {return datesSold;}
+//    public void setDatesSold(ArrayList<Date> datesSold){this.datesSold = datesSold;}
 
     public int getNumberOfBills() {
         return numberOfBills;
@@ -222,15 +225,27 @@ public class LibrarianFuncController {
 
         ArrayList<BookModel> stockbooks = bookController.getStockBooks();
 
-        for (int i=0;i<stockbooks.size();i++) {
-            if (stockbooks.get(i).getISBN().equals(ISBN))
-                if (stockbooks.get(i).getStock() - quantity >= 0)
-                    System.out.println("STOCKUUUUUUUUU" + stockbooks.get(i).getStock());
-                    return true;
+        if (ISBN.length() >= 13) {
+            ISBN = ISBN.substring(0, 13);
         }
-        System.out.println("QUANTITYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY"+quantity);
-        return false;
 
+        for (int i=0;i<stockbooks.size();i++) {
+            System.out.println(stockbooks.get(i).getISBN().equals(ISBN) + "Yeeeeeeeeeeeeeeeeeeeeeeee");
+            System.out.println("book1: " + stockbooks.get(i).getISBN());
+            System.out.println("book2: " + ISBN);
+            if (stockbooks.get(i).getISBN().equals(ISBN))
+                //System.out.println(stockbooks.get(i).getISBN().equals(ISBN)+"Yeeeeeeeeeeeeeeeeeeeeeeee");
+                if (stockbooks.get(i).getStock() - quantity >= 0) {
+                    System.out.println("STOCKUUUUUUUUU" + stockbooks.get(i).getStock());
+                    System.out.println("quant" + quantity);
+
+                    return true;
+                } else {
+                    System.out.println("QUANTITYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY" + quantity);
+                    return false;
+                }
+        }
+            return false;
 
     }
 

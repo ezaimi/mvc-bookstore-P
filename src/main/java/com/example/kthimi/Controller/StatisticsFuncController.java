@@ -43,9 +43,9 @@ public class StatisticsFuncController {
         //purchasedAmount = new ArrayList<>();
     }
 
-    public ArrayList<Date> getDates(){
-        return dates;
-    }
+//    public ArrayList<Date> getDates(){
+//        return dates;
+//    }
 
 
     public double moneyMadeInDay() {

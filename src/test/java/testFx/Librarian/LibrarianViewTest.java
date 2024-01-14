@@ -198,7 +198,7 @@ public class LibrarianViewTest extends ApplicationTest {
         TextField quantityField = lookup("#quantity").query();
         FxRobot robot = new FxRobot();
 
-        robot.interact(() -> comboBox.getSelectionModel().select("Test Book"));
+        robot.interact(() -> comboBox.getSelectionModel().select("1234567899876"));
         robot.clickOn(quantityField).write("5");
         robot.clickOn((Button) lookup("#bttAdd").query());
 

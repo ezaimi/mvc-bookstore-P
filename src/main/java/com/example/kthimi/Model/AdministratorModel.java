@@ -30,9 +30,9 @@ public class AdministratorModel extends ManagerModel{
         this.password=password;
     }
 
-//    public AdministratorModel(String username,String password,String name,double salary,String phone,String email){
-//        super(username,password,name,salary,phone,email);
-//    }
+    public AdministratorModel(String username,String password,String name,double salary,String phone,String email){
+        super(username,password,name,salary,phone,email);
+    }
 
     public static ArrayList<AdministratorModel> getAdmins(){
         return admins;

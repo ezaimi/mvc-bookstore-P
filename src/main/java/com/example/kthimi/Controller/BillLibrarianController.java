@@ -43,12 +43,14 @@ public class BillLibrarianController {
     }
 
     private void initializeBillBttLibrarian() {
-        librarianView.getBttBill().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                handleBill();
-            }
-        });
+        System.out.println("its britney bitch");
+//        librarianView.getBttBill().setOnAction(new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent event) {
+//                handleBill();
+//            }
+//        });
+        librarianView.getBttBill().setOnAction(event->handleBill());
 //
 //        librarianView.getBttAdd().setOnAction(new AddButtonHandler());
 //        // Set actions for other buttons if needed
@@ -64,7 +66,6 @@ public class BillLibrarianController {
         System.out.println("Books array: " + books);
         System.out.println("POSI PRAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         if (books.isEmpty() || bookQuantities.isEmpty()) {
-            System.out.println("qenka bosh");
             warningsLibrarian.setText("Failed, No Books to add");
             return;
         }
@@ -76,7 +77,6 @@ public class BillLibrarianController {
             e1.printStackTrace();
         }
 
-
         librarianView.warningsLibrarian.setText("");
         librarianView.warningsLibrarian.setText("Bill File Created!");
         bookISBN.clear();
@@ -84,7 +84,6 @@ public class BillLibrarianController {
         quantity.clear();
         books.clear();
         bookQuantities.clear();
-
         warningsLibrarian.setId("warningsLibrarian");
     }
 

@@ -27,12 +27,13 @@ public class SupplyManagerController {
     }
 
     private void initSupplyButtonAction() {
-        managerView.getBttSupply().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                handleSupply();
-            }
-        });
+//        managerView.getBttSupply().setOnAction(new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent event) {
+//                handleSupply();
+//            }
+//        });
+        managerView.getBttSupply().setOnAction(event->handleSupply());
     }
 
     public void handleSupply(){

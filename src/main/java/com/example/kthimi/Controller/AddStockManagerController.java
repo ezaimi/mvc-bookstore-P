@@ -49,16 +49,18 @@ public class AddStockManagerController {
     }
 
     private void initAddStockButtonAction() {
-        supplyManagerView.getBttAddStock().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                handleAddStock();
-            }
-        });
+//        supplyManagerView.getBttAddStock().setOnAction(new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent event) {
+//                handleAddStock();
+//            }
+//        });
+        supplyManagerView.getBttAddStock().setOnAction(event->handleAddStock());
+
     }
 
     public void handleAddStock(){
-        BorderPane supplyPage = view.createAddToStock(); // Create the supply view content
+        BorderPane supplyPage = view.createAddToStock();
 
         Stage currentStage = (Stage) supplyManagerView.getBttAddStock().getScene().getWindow();
         currentStage.setScene(new Scene(supplyPage, 800, 600));

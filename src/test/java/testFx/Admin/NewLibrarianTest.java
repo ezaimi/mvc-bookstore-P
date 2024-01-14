@@ -119,7 +119,7 @@ public class NewLibrarianTest extends ApplicationTest {
         String testFilePath = tempFile.getAbsolutePath();
 
         ArrayList<BookModel> testData = new ArrayList<>();
-        testData.add(new BookModel("1234567898765", "LOT", "Category", "Supplier", 20.0, 15.0, "Author", 50));
+        testData.add(new BookModel("1234567898765", "LOT", "War", "Supplier", 20.0, 15.0, "Author", 50));
 
         try (ObjectOutputStream objout = new ObjectOutputStream(new FileOutputStream(testFilePath))) {
             objout.writeObject(testData);

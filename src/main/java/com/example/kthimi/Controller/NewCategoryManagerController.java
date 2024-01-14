@@ -33,12 +33,13 @@ public class NewCategoryManagerController {
     }
 
     private void initNewCategoryButtonAction() {
-        supplyManagerView.getBttNewCategory().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                handleNewCategory();
-            }
-        });
+//        supplyManagerView.getBttNewCategory().setOnAction(new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent event) {
+//                handleNewCategory();
+//            }
+//        });
+        supplyManagerView.getBttNewCategory().setOnAction(event->handleNewCategory());
     }
 
     public void handleNewCategory(){

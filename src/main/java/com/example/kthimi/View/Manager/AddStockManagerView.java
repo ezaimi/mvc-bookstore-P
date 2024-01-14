@@ -108,6 +108,9 @@ public class AddStockManagerView {
         border.setBottom(stackBackButton);
 
         initializeCategories();
+        if(categ.isEmpty()){
+            categ.add("War");
+        }
         categ = bookController.removeDuplicates(categ);
         System.out.println(categ + "Pas FUNKSI");
 
@@ -146,7 +149,7 @@ public class AddStockManagerView {
         System.out.println("Butoni i ri");
         Button button = new Button(text);
         button.setOnAction(new ButtonHandler(button.getText()));
-        button.setId("newCateg");
+        button.setId("button");
         return button;
     }
 
@@ -244,6 +247,7 @@ public class AddStockManagerView {
     private Button createButton2(BookModel book) {
         Button button = new Button(book.getTitle());
         button.setOnAction(new ButtonHandler2(book));
+        button.setId("newCateg");
         return button ;
     }
 
@@ -328,7 +332,7 @@ public class AddStockManagerView {
 
         });
 
-
+        bttAddBookToStock.setId("bttAddBookToStock");
 
         return border;
 

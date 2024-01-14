@@ -227,42 +227,135 @@ class LibrarianTestI {
     ////////////Ardisa////////////
 
     @Test
-    public void testMoneyMadeInDayNoSales() {
-        LibrarianModel librarian = new LibrarianModel("1", "1"); // Instantiate your Librarian class
-        librarianFuncController.datesSold = null; // Set datesSold to null explicitly
-        double moneyMade = statisticsFuncController.moneyMadeInDay();
-        assertEquals(0, moneyMade, 0); // Assuming a negligible error    }
+    public void testMoneymadeinDay1(){
+        var stat=new StatisticsFuncController();
+        stat.datesSold = null;
+        double result =stat.moneyMadeInDay(); // Replace with the actual method you're testing
+        assertEquals(0, result);
+
+
+
     }
     @Test
-    public void testMoneyMadeInDayWithSales() throws IOException {
-        LibrarianModel librarian = new LibrarianModel("1","1"); // Instantiate your Librarian class
+    public void testMoneymadeinDay2(){
+        Date today = new Date();
 
-        // Add some sales to datesSold and moneyMadeDates
+        System.out.println(today);
+
+        var stat=new StatisticsFuncController();
+        ArrayList<Date> getDates=new ArrayList<>();
+        getDates.add(today);
+
+        // Create an instance of your class
+
+        // Set up datesSold and moneyMadeDates with specific values
         ArrayList<Date> datesSold = new ArrayList<>();
         ArrayList<Double> moneyMadeDates = new ArrayList<>();
-        datesSold.add(new Date()); // Add today's date
-        moneyMadeDates.add(1.0); // Add some money made for today
 
-        // Set the datesSold and moneyMadeDates in librarian
-        BookModel  b1=createTestBook();
-        BookModel b2=createTestBook();
+        // Add dates and corresponding money made values for today (replace with actual logic)
+        datesSold.add(today);
+        moneyMadeDates.add(50.0);  // Replace with the actual money made for today
 
-        ArrayList<BookModel>arrayList=new ArrayList<>();
-        arrayList.add(b1);
-        arrayList.add(b2);
+        // Set datesSold and moneyMadeDates in your class
+        stat.datesSold = datesSold;
+        stat.moneyMadeDates = moneyMadeDates;
 
-        int x=b1.getPurchasedAmount();
-        int y=b2.getPurchasedAmount();
-        System.out.println("x");
-        System.out.println(x);
-        ArrayList<Integer>quantities=new ArrayList<>();
-        quantities.add(x);
-        quantities.add(y);
-        librarianFuncController.checkOutBooks(arrayList,quantities);
+        // Test the method
+        double result = stat.moneyMadeInDay();  // Replace with the actual method you're testing
+
+        // Assert the result
+        // If today's date is present in datesSold, the result should be the corresponding money made value
+        assertEquals(50.0, result);
 
 
-        double moneyMade = statisticsFuncController.moneyMadeInDay();
-        assertEquals(1.0, moneyMade, 1.0); // Adjust the expected value based on your test data
+    }
+
+    @Test
+    public void testMoneymadeinMonthy1(){
+        var stat=new StatisticsFuncController();
+        stat.datesSold = null;
+        double result =stat.moneyMadeInMonth(); // Replace with the actual method you're testing
+        assertEquals(0, result);
+
+
+
+    }
+    @Test
+    public void testMoneymadeinMonth2(){
+        Date today = new Date();
+
+        System.out.println(today);
+
+        var stat=new StatisticsFuncController();
+        ArrayList<Date> getDates=new ArrayList<>();
+        getDates.add(today);
+
+        // Create an instance of your class
+
+        // Set up datesSold and moneyMadeDates with specific values
+        ArrayList<Date> datesSold = new ArrayList<>();
+        ArrayList<Double> moneyMadeDates = new ArrayList<>();
+
+        // Add dates and corresponding money made values for today (replace with actual logic)
+        datesSold.add(today);
+        moneyMadeDates.add(50.0);  // Replace with the actual money made for today
+
+        // Set datesSold and moneyMadeDates in your class
+        stat.datesSold = datesSold;
+        stat.moneyMadeDates = moneyMadeDates;
+
+        // Test the method
+        double result = stat.moneyMadeInMonth();  // Replace with the actual method you're testing
+
+        // Assert the result
+        // If today's date is present in datesSold, the result should be the corresponding money made value
+        assertEquals(50.0, result);
+
+
+    }
+
+    @Test
+    public void testMoneymadeinYear1(){
+        var stat=new StatisticsFuncController();
+        stat.datesSold = null;
+        double result =stat.moneyMadeInYear(); // Replace with the actual method you're testing
+        assertEquals(0, result);
+
+
+
+    }
+    @Test
+    public void testMoneymadeinYear2(){
+        Date today = new Date();
+
+        System.out.println(today);
+
+        var stat=new StatisticsFuncController();
+        ArrayList<Date> getDates=new ArrayList<>();
+        getDates.add(today);
+
+        // Create an instance of your class
+
+        // Set up datesSold and moneyMadeDates with specific values
+        ArrayList<Date> datesSold = new ArrayList<>();
+        ArrayList<Double> moneyMadeDates = new ArrayList<>();
+
+        // Add dates and corresponding money made values for today (replace with actual logic)
+        datesSold.add(today);
+        moneyMadeDates.add(50.0);  // Replace with the actual money made for today
+
+        // Set datesSold and moneyMadeDates in your class
+        stat.datesSold = datesSold;
+        stat.moneyMadeDates = moneyMadeDates;
+
+        // Test the method
+        double result = stat.moneyMadeInYear();  // Replace with the actual method you're testing
+
+        // Assert the result
+        // If today's date is present in datesSold, the result should be the corresponding money made value
+        assertEquals(50.0, result);
+
+
     }
 
     @Test
@@ -656,6 +749,43 @@ class LibrarianTestI {
         ArrayList<BookModel> updatedStock = bookController.getStockBooks();
         assertEquals(initialStockSize, updatedStock.size());
         assertEquals(initialStock, updatedStock);
+    }
+
+    @Test
+    public void testEquals() {
+        BookModel obj1 = new BookModel("1234567890123", "Test Book", "Category1", "Test Publisher", 20.00, 25.00, "Test Author", 1);
+        BookModel obj2 = new BookModel("1234567890123", "Test Book", "Category1", "Test Publisher", 20.00, 25.00, "Test Author", 1);
+        BookModel obj3 = new BookModel("9876543210987", "Different Book", "Category2", "Another Publisher", 30.00, 35.00, "Another Author", 2);
+        // Arrange
+        bookController.equals(obj1);
+
+        // Act & Assert
+        // Test equality with itself
+        assertTrue(obj1.equals(obj1));
+
+        // Test equality with an identical instance
+        assertTrue(obj1.equals(obj2));
+        assertTrue(obj2.equals(obj1));
+
+        // Test inequality with a different instance
+        assertFalse(obj1.equals(obj3));
+        assertFalse(obj3.equals(obj1));
+
+        // Test inequality with null
+        assertFalse(obj1.equals(null));
+
+        // Test inequality with an object of a different class
+        assertFalse(obj1.equals("Not an instance of BookModel"));
+
+        // Test inequality when ISBN is different
+        BookModel objWithDifferentIsbn = new BookModel("9999999999999", "Test Book", "Category1", "Test Publisher", 20.00, 25.00, "Test Author", 1);
+        assertFalse(obj1.equals(objWithDifferentIsbn));
+
+        // Test inequality when Title is different
+        BookModel objWithDifferentTitle = new BookModel("1234567890123", "Different Title", "Category1", "Test Publisher", 20.00, 25.00, "Test Author", 1);
+        assertFalse(obj1.equals(objWithDifferentTitle));
+
+        // Add similar tests for other properties (e.g., Category, Publisher, Price, Author, Quantity)
     }
 
 }

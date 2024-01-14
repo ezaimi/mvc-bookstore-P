@@ -72,7 +72,7 @@ public class AddLibrarianController {
                 }
 
 
-                if (!librarianFuncController.EnoughStock(librarianView.comboBoxLibrarian.getValue().toString(), Integer.parseInt(librarianView.quantity.getCharacters().toString())) ) {
+                if (!librarianFuncController.EnoughStock(librarianView.comboBoxLibrarian.getValue(), Integer.parseInt(librarianView.quantity.getCharacters().toString())) ) {
                     librarianView.warningsLibrarian.setText("Failed,not enough stock");
                     return;
                 }
