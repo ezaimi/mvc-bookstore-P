@@ -57,7 +57,7 @@ public class BookModel implements Serializable {
     }
 
     public BookModel() {
-
+        purchasedAmount = new ArrayList<>();
     }
 
 
@@ -137,6 +137,10 @@ public class BookModel implements Serializable {
     public void setPurchasedAmount(ArrayList<Integer> purchasedAmount) {
         this.purchasedAmount = purchasedAmount;
     }
+    public void setPurchasedDates(ArrayList<Date> purchasedDates) {
+        this.purchasedDates = purchasedDates;
+    }
+
 
 
     // Methods related to book data manipulation...
@@ -186,7 +190,6 @@ public class BookModel implements Serializable {
     }
 
 
-//Hiqi nga  ketu
     public int getPurchasedAmount(){
         int sum=0;
         for (int i=0;i<purchasedAmount.size();i++) {
@@ -203,7 +206,6 @@ public class BookModel implements Serializable {
     }
 
 
-    //HIQI NGA KETU///////////////////////////////////////////
     public String getSoldDatesQuantitiesDay(){
         StringBuilder ans = new StringBuilder("For \"" + this.title + "\" We have sold in a day:\n");
 

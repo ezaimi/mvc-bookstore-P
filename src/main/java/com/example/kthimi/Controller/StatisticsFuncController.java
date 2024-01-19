@@ -111,23 +111,6 @@ public class StatisticsFuncController {
 
     }
 
-//DUHET TE JENE TEK KJO KLASE, Problemi eshte tek SoldStatisticsManagerView
-//
-//    public int getPurchasedAmount(){
-//        int sum=0;
-//        for (int i=0;i<purchasedAmount.size();i++) {
-//            sum+=purchasedAmount.get(i);
-//        }
-//        return sum;
-//    }
-//    public int getQuantitiesPurchased(){
-//        int sum=0;
-//        for (int i=0;i<quantitiesPurchased.size();i++) {
-//            sum+=quantitiesPurchased.get(i);
-//        }
-//        return sum;
-//    }
-
 
 
     public void removeDuplicatesSoldTitles(ArrayList<String> titles, ArrayList<Integer> quantities) {
@@ -402,25 +385,6 @@ public class StatisticsFuncController {
 
     }
 
-
-    public void printBookDates(ArrayList<BookModel> arr) {
-
-        ArrayList<BookModel> stockbooks = arr;
-        ArrayList<Date> dates;
-
-        for (int i=0;i<stockbooks.size();i++) {
-
-            dates = stockbooks.get(i).getDates();
-            if (dates.isEmpty()) {
-                System.out.println("empty");
-                continue;
-            }
-            for (int j=0;j<dates.size();j++) {
-                System.out.println(dates.get(j));
-            }
-
-        }
-    }
 
 
 

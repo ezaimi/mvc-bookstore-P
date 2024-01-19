@@ -8,16 +8,19 @@ import com.example.kthimi.Model.BookModel;
 import com.example.kthimi.Model.LibrarianModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import unitTesting.BillFuncTest;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.lang.reflect.Field;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class LibrarianTestI {
-
+public class BillTest {
     LibrarianFuncController librarianFuncController = new LibrarianFuncController();
     BookController bookController = new BookController();
     StatisticsFuncController statisticsFuncController = new StatisticsFuncController();
@@ -51,7 +54,7 @@ class LibrarianTestI {
 
     @BeforeEach
     public void setUp() {
-        LibrarianTestI.setStockFilePath(TEMP_STOCK_FILE_PATH);
+        BillFuncTest.setStockFilePath(TEMP_STOCK_FILE_PATH);
         // Create a temporary file for testing
         createTemporaryFile();
     }
@@ -79,55 +82,44 @@ class LibrarianTestI {
 
 
     @Test
-    public void testCheckoutBooks() throws IOException, ClassNotFoundException {
+    public void testAddBookToStock() {
+        BookModel testBook = createTestBook();
 
-        //LibrarianModel librarian = new LibrarianModel("username", "password", "name", 1000.00, "1234567890", "test@example.com");
+        bookController.addBookToStock(testBook);
 
-        // Create a list of stock books
-        ArrayList<BookModel> stockBooks = new ArrayList<>();
-        stockBooks.add(createTestBook()); // Adding a test book to the stock
+        ArrayList<BookModel> stockBooks = bookController.getStockBooks();
 
-        // Set up the initial stock data
-        saveBooksToTemporaryFile(stockBooks);
+        assertTrue(stockBooks.contains(testBook));
 
-        // Choose a book to check out
-        ArrayList<BookModel> chosenBooks = new ArrayList<>();
-        chosenBooks.add(createTestBook()); // Choosing the test book to buy
-
-        // Specify the quantity of the chosen book
-        ArrayList<Integer> quantities = new ArrayList<>();
-        quantities.add(2); // Buying two copies of the test book
-
-        // Execute the checkout process
-        librarianFuncController.checkOutBooks(chosenBooks, quantities);
-        System.out.println("te testi");
-        //System.out.println(stockBooks.toString());
-
-        // Directly query the Librarian instance for the current stockBooks
-        ArrayList<BookModel> updatedStock = bookController.getStockBooks();
-
-        // Retrieve the updated book after checkout
-        BookModel updatedBook = null;
-            for (BookModel book : updatedStock) {
-                System.out.println(createTestBook().getTitle() + "hhahhahhahahaha" + book.getTitle());
-                if (book.getISBN().equals(createTestBook().getISBN())) {
-                updatedBook = book;
-                break;
-            }
+        File testFile = new File(TEMP_STOCK_FILE_PATH);
+        if (testFile.exists()) {
+            testFile.delete();
         }
-
-        // Print the book with the reduced quantity
-        if (updatedBook != null) {
-            System.out.println("Updated Book: " + updatedBook.toString());
-        } else {
-            System.out.println("Book not found.");
-        }
-
-        // Assert the stock has reduced after checkout
-        assertNotNull(updatedBook);
-        assertEquals(8, updatedBook.getStock(), "Stock should decrease after checkout");
-
     }
 
+    @Test
+    void testAddBookToStockMultipleBooks() {
+        ArrayList<BookModel> initialStock = bookController.getStockBooks();
+        BookModel book1 = createTestBook();
+        BookModel book2 = createTestBook();
+
+        bookController.addBookToStock(book1);
+        bookController.addBookToStock(book2);
+
+        ArrayList<BookModel> updatedStock = bookController.getStockBooks();
+        assertTrue(updatedStock.contains(book1));
+        assertTrue(updatedStock.contains(book2));
+        assertEquals(initialStock.size() + 2, updatedStock.size());
+    }
+
+    @Test
+    void testAddBookToStockNoBooksAdded() {
+        ArrayList<BookModel> initialStock = bookController.getStockBooks();
+        int initialStockSize = initialStock.size();
+
+        ArrayList<BookModel> updatedStock = bookController.getStockBooks();
+        assertEquals(initialStockSize, updatedStock.size());
+        assertEquals(initialStock, updatedStock);
+    }
 
 }

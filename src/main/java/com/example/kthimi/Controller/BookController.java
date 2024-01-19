@@ -35,6 +35,7 @@ public class BookController {
     }
 
     public ArrayList<BookModel> getStockBooks() {
+        System.out.println(stockBookRepository.getStockBooks() + "david keqi");
         return stockBookRepository.getStockBooks();
     }
 
@@ -159,12 +160,12 @@ public class BookController {
 
     //////////////Keto 5 te fundit mire do ishte te futen ne nje controller tjt
 
-    public <T> ArrayList<T> removeDuplicates(ArrayList<T> list)
+    public <String> ArrayList<String> removeDuplicates(ArrayList<String> list)
     {
 
-        ArrayList<T> newList = new ArrayList<T>();
+        ArrayList<String> newList = new ArrayList<String>();
 
-        for (T element : list) {
+        for (String element : list) {
 
             if (!newList.contains(element)) {
 

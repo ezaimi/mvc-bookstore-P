@@ -52,10 +52,6 @@ public class ManagerModel extends LibrarianModel{
     }
 
 
-    //KETE METODEN FUTE TE NJE KONTROLLER I VECANT BASHK ME GETALLCATEGORIES
-    //QE ESHTE TEK MANAGER.JAVA SEPSE KANE LIDHJE ME VEPRIMET E LIBRAVE TEK MANAGERVIEW
-   ////\\\\\\ u be
-
 
     public static ArrayList<String> getAllCategories(){
 

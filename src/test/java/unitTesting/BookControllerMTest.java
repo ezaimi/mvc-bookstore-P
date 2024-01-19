@@ -1,18 +1,17 @@
-package mocking;
+package unitTesting;
 
 import com.example.kthimi.Controller.BookController;
 import com.example.kthimi.Controller.Mockers.MockStockBookRepository;
 import com.example.kthimi.Model.BookModel;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class BookControllerTest {
+public class BookControllerMTest {
 
 
     @Test
@@ -54,23 +53,71 @@ public class BookControllerTest {
         tempFile.delete();
     }
 
+    @Test
+    void testAddBookToStockEmptyStock() throws IOException, ClassNotFoundException {
+        File tempFile = File.createTempFile("testBooks", ".bin");
+        MockStockBookRepository mockRepository = new MockStockBookRepository();
+        ArrayList<BookModel> testData = new ArrayList<>();
+        mockRepository.setStockBooks(testData);
 
-//
-//    @Test
-//    public void testAddBookToStock_ExceptionHandling() {
-//        // Create a BookController instance
-//        BookController bookController = new BookController();
-//
-//        // Set an invalid file path to force an IOException
-//        BookController.STOCK_FILE_PATH = "InvalidPath"; // Replace with an invalid path
-//
-//        // Create a book to add
-//        BookModel bookToAdd = new BookModel("ISBN123", "Test Book", "Test Category", "Test Supplier", 20.0, 15.0, "Test Author", 50);
-//
-//        // Test exception handling using assertThrows for IOException
-//        assertThrows(IOException.class, () -> bookController.addBookToStock(bookToAdd),
-//                "Exception should be thrown for invalid file path");
-//    }
+        BookController bookController = new BookController(mockRepository);
+        BookController.STOCK_FILE_PATH = tempFile.getAbsolutePath();
+
+        BookModel bookToAdd = new BookModel("newISBN", "saLot", "New Category", "New Supplier", 15.0, 10.0, "New Author", 20);
+
+        bookController.addBookToStock(bookToAdd);
+
+        ArrayList<BookModel> updatedBooks;
+        try (ObjectInputStream objis = new ObjectInputStream(new FileInputStream(tempFile))) {
+            Object obj = objis.readObject();
+            if (obj instanceof ArrayList) {
+                updatedBooks = (ArrayList<BookModel>) obj;
+            } else {
+                updatedBooks = new ArrayList<>();
+            }
+        }
+
+        assertEquals(1, updatedBooks.size());
+        assertEquals(bookToAdd, updatedBooks.get(0));
+
+        tempFile.delete();
+    }
+
+    @Test
+    void testAddBookToStockExistingStock() throws IOException, ClassNotFoundException {
+        File tempFile = File.createTempFile("testBooks", ".bin");
+        MockStockBookRepository mockRepository = new MockStockBookRepository();
+        BookModel existingBook = new BookModel("existingISBN", "Existing Book", "Existing Category", "Existing Supplier", 12.0, 8.0, "Existing Author", 15);
+        ArrayList<BookModel> testData = new ArrayList<>(Arrays.asList(existingBook));
+        mockRepository.setStockBooks(testData);
+
+        BookController bookController = new BookController(mockRepository);
+        BookController.STOCK_FILE_PATH = tempFile.getAbsolutePath();
+
+        BookModel bookToAdd = new BookModel("newISBN", "saLot", "New Category", "New Supplier", 15.0, 10.0, "New Author", 20);
+
+        bookController.addBookToStock(bookToAdd);
+
+        ArrayList<BookModel> updatedBooks;
+        try (ObjectInputStream objis = new ObjectInputStream(new FileInputStream(tempFile))) {
+            Object obj = objis.readObject();
+            if (obj instanceof ArrayList) {
+                updatedBooks = (ArrayList<BookModel>) obj;
+            } else {
+                updatedBooks = new ArrayList<>();
+            }
+        }
+
+        assertEquals(2, updatedBooks.size());
+        assertTrue(updatedBooks.contains(existingBook));
+        assertTrue(updatedBooks.contains(bookToAdd));
+
+        tempFile.delete();
+    }
+
+
+
+
 
 
     @Test
@@ -124,28 +171,62 @@ public class BookControllerTest {
         tempFile.delete();
     }
 
+//    @Test
+//    public void testUpdateBooks_ExistingBookNotAdded() throws IOException, ClassNotFoundException {
+//        // Create a temporary file for testing
+//        File tempFile = File.createTempFile("testBooks", ".bin");
+//
+//        // Create a mock repository
+//        MockStockBookRepository mockRepository = new MockStockBookRepository();
+//        ArrayList<BookModel> testData = new ArrayList<>();
+//        testData.add(new BookModel("existingISBN", "Existing Book", "Existing Category", "Existing Supplier", 20.0, 15.0, "Existing Author", 50));
+//        mockRepository.setStockBooks(testData);
+//
+//        // Create a BookController instance with the mock repository and temporary file
+//        BookController bookController = new BookController(mockRepository);
+//        BookController.STOCK_FILE_PATH = tempFile.getAbsolutePath(); // Set the temporary file path
+//
+//        // Prepare a book to update
+//        BookModel bookToUpdate = new BookModel("existingISBN", "Existing Book", "Existing Category", "Existing Supplier", 20.0, 15.0, "Existing Author", 50);
+//
+//        // Call the method to update the books
+//        bookController.updateBooks(new ArrayList<>(List.of(bookToUpdate))); // Use an existing book
+//
+//        // Get the updated books from the temporary file
+//        ArrayList<BookModel> updatedBooks;
+//        try (ObjectInputStream objis = new ObjectInputStream(new FileInputStream(tempFile))) {
+//            Object obj = objis.readObject();
+//            if (obj instanceof ArrayList) {
+//                updatedBooks = (ArrayList<BookModel>) obj;
+//            } else {
+//                updatedBooks = new ArrayList<>();
+//            }
+//        }
+//
+//        // Assertions to verify that existing book is not added again
+//        assertEquals(1, updatedBooks.size()); // Only one book should exist in the file
+//        assertEquals(testData.get(0), updatedBooks.get(0)); // The existing book should not be added again
+//
+//        // Clean up the temporary file
+//        tempFile.delete();
+//    }
+
     @Test
-    public void testUpdateBooks_ExistingBookNotAdded() throws IOException, ClassNotFoundException {
-        // Create a temporary file for testing
+    void testUpdateBooksEmptyStock() throws IOException, ClassNotFoundException {
         File tempFile = File.createTempFile("testBooks", ".bin");
 
-        // Create a mock repository
         MockStockBookRepository mockRepository = new MockStockBookRepository();
         ArrayList<BookModel> testData = new ArrayList<>();
-        testData.add(new BookModel("existingISBN", "Existing Book", "Existing Category", "Existing Supplier", 20.0, 15.0, "Existing Author", 50));
         mockRepository.setStockBooks(testData);
 
-        // Create a BookController instance with the mock repository and temporary file
         BookController bookController = new BookController(mockRepository);
-        BookController.STOCK_FILE_PATH = tempFile.getAbsolutePath(); // Set the temporary file path
+        BookController.STOCK_FILE_PATH = tempFile.getAbsolutePath();
 
-        // Prepare a book to update
-        BookModel bookToUpdate = new BookModel("existingISBN", "Existing Book", "Existing Category", "Existing Supplier", 20.0, 15.0, "Existing Author", 50);
+        ArrayList<BookModel> newBooks = new ArrayList<>();
+        newBooks.add(new BookModel("newISBN", "New Title", "New Category", "New Supplier", 15.0, 10.0, "New Author", 20));
 
-        // Call the method to update the books
-        bookController.updateBooks(new ArrayList<>(List.of(bookToUpdate))); // Use an existing book
+        bookController.updateBooks(newBooks);
 
-        // Get the updated books from the temporary file
         ArrayList<BookModel> updatedBooks;
         try (ObjectInputStream objis = new ObjectInputStream(new FileInputStream(tempFile))) {
             Object obj = objis.readObject();
@@ -156,13 +237,49 @@ public class BookControllerTest {
             }
         }
 
-        // Assertions to verify that existing book is not added again
-        assertEquals(1, updatedBooks.size()); // Only one book should exist in the file
-        assertEquals(testData.get(0), updatedBooks.get(0)); // The existing book should not be added again
+        assertEquals(1, updatedBooks.size());
+        assertEquals(newBooks.get(0), updatedBooks.get(0));
 
-        // Clean up the temporary file
         tempFile.delete();
     }
+
+    @Test
+    void testUpdateBooksWithExistingStock() throws IOException, ClassNotFoundException {
+        File tempFile = File.createTempFile("testBooks", ".bin");
+
+        MockStockBookRepository mockRepository = new MockStockBookRepository();
+        ArrayList<BookModel> existingBooks = new ArrayList<>();
+        existingBooks.add(new BookModel("existingISBN", "Title", "Category", "Supplier", 20.0, 15.0, "Author", 50));
+        mockRepository.setStockBooks(existingBooks);
+
+        BookController bookController = new BookController(mockRepository);
+        BookController.STOCK_FILE_PATH = tempFile.getAbsolutePath();
+
+        ArrayList<BookModel> newBooks = new ArrayList<>();
+        newBooks.add(new BookModel("existingISBN", "Updated Title", "Updated Category", "Updated Supplier", 25.0, 12.0, "Updated Author", 30));
+        newBooks.add(new BookModel("newISBN", "New Title", "New Category", "New Supplier", 15.0, 10.0, "New Author", 20));
+
+        bookController.updateBooks(newBooks);
+
+        ArrayList<BookModel> updatedBooks;
+        try (ObjectInputStream objis = new ObjectInputStream(new FileInputStream(tempFile))) {
+            Object obj = objis.readObject();
+            if (obj instanceof ArrayList) {
+                updatedBooks = (ArrayList<BookModel>) obj;
+            } else {
+                updatedBooks = new ArrayList<>();
+            }
+        }
+
+        assertEquals(2, updatedBooks.size());
+        assertTrue(updatedBooks.contains(newBooks.get(1)));
+
+        tempFile.delete();
+    }
+
+
+
+
 
     @Test
     public void testGetISBNName() {

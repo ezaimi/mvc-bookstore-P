@@ -1,4 +1,4 @@
-package integrationTest;
+package unitTesting;
 
 import com.example.kthimi.Controller.BookController;
 import com.example.kthimi.Controller.LibrarianFuncController;
@@ -9,14 +9,21 @@ import com.example.kthimi.Model.LibrarianModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class LibrarianTestI {
+public class BillFuncTest {
 
     LibrarianFuncController librarianFuncController = new LibrarianFuncController();
     BookController bookController = new BookController();
@@ -51,7 +58,7 @@ class LibrarianTestI {
 
     @BeforeEach
     public void setUp() {
-        LibrarianTestI.setStockFilePath(TEMP_STOCK_FILE_PATH);
+        BillFuncTest.setStockFilePath(TEMP_STOCK_FILE_PATH);
         // Create a temporary file for testing
         createTemporaryFile();
     }
@@ -79,55 +86,31 @@ class LibrarianTestI {
 
 
     @Test
-    public void testCheckoutBooks() throws IOException, ClassNotFoundException {
+    public void testRemoveDuplicatesSoldBooks() {
 
-        //LibrarianModel librarian = new LibrarianModel("username", "password", "name", 1000.00, "1234567890", "test@example.com");
+        BookModel book1 = new BookModel("ISBN1", "Title1","Category1", "Test Publisher", 20.00, 25.00, "Test Author", 10);
+        BookModel book2 = new BookModel("ISBN2", "Title2", "Category1", "Test Publisher", 20.00, 25.00, "Test Author", 10); // Add details for book2
+        BookModel book3 = new BookModel("ISBN1", "Title3", "Category1", "Test Publisher", 20.00, 25.00, "Test Author", 10); // Another book with the same ISBN as book1
+        BookModel book4 = new BookModel("ISBN4", "Title4", "Category1", "Test Publisher", 20.00, 25.00, "Test Author", 10); // Unique book
 
-        // Create a list of stock books
-        ArrayList<BookModel> stockBooks = new ArrayList<>();
-        stockBooks.add(createTestBook()); // Adding a test book to the stock
+        ArrayList<BookModel> books = new ArrayList<>(Arrays.asList(book1, book2, book3, book4));
+        ArrayList<Integer> quantities = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
 
-        // Set up the initial stock data
-        saveBooksToTemporaryFile(stockBooks);
+        LibrarianFuncController.removeDuplicatesSoldBooks(books, quantities);
 
-        // Choose a book to check out
-        ArrayList<BookModel> chosenBooks = new ArrayList<>();
-        chosenBooks.add(createTestBook()); // Choosing the test book to buy
-
-        // Specify the quantity of the chosen book
-        ArrayList<Integer> quantities = new ArrayList<>();
-        quantities.add(2); // Buying two copies of the test book
-
-        // Execute the checkout process
-        librarianFuncController.checkOutBooks(chosenBooks, quantities);
-        System.out.println("te testi");
-        //System.out.println(stockBooks.toString());
-
-        // Directly query the Librarian instance for the current stockBooks
-        ArrayList<BookModel> updatedStock = bookController.getStockBooks();
-
-        // Retrieve the updated book after checkout
-        BookModel updatedBook = null;
-            for (BookModel book : updatedStock) {
-                System.out.println(createTestBook().getTitle() + "hhahhahhahahaha" + book.getTitle());
-                if (book.getISBN().equals(createTestBook().getISBN())) {
-                updatedBook = book;
-                break;
-            }
+        for(BookModel book : books){
+            System.out.println(book.toString());
         }
+        assertEquals(3, books.size());
 
-        // Print the book with the reduced quantity
-        if (updatedBook != null) {
-            System.out.println("Updated Book: " + updatedBook.toString());
-        } else {
-            System.out.println("Book not found.");
-        }
 
-        // Assert the stock has reduced after checkout
-        assertNotNull(updatedBook);
-        assertEquals(8, updatedBook.getStock(), "Stock should decrease after checkout");
+        System.out.println(quantities.get(0));
+        assertEquals(4, quantities.get(0)); // book 1 and 3 quantities are merged ( 1 + 3 = 4)
 
+        assertEquals(2, quantities.get(1));
     }
+
+
 
 
 }

@@ -53,18 +53,26 @@ public class ManagerFuncController extends ManagerModel {
 
     }
 
+
     public ArrayList<BookModel> getLowStock(){
 
-        ArrayList<BookModel> stockbooks = bookController.getStockBooks();
+        ArrayList<BookModel> stockbooks = new ArrayList<>();
+        stockbooks = bookController.getStockBooks();
         ArrayList<BookModel> ans = new ArrayList<>();
 
-        for (int i=0;i<stockbooks.size();i++) {
+        if(stockbooks != null){
 
-            if (stockbooks.get(i).getStock() < 5 ) {
-                ans.add(stockbooks.get(i));
+            for (int i=0;i<stockbooks.size();i++) {
+
+                if (stockbooks.get(i).getStock() < 5 ) {
+                    ans.add(stockbooks.get(i));
+                }
+
             }
 
         }
+
+
 
         return ans;
 

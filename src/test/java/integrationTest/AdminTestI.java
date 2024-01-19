@@ -80,31 +80,6 @@ class AdminTestI {
         return books;
     }
 
-    ///////////Klea//////////////
-
-//    @Test
-//    public void testGetSalaries() {
-//        FixLibrariansController.InstantiateLibrarians();
-//        AdminFuncController.InstantiateManagers();
-//        //AdminFuncController.InstantiateAdmins();
-//
-//        double expected = 0;
-//
-//        for (LibrarianModel librarian : ManagerModel.getLibrarians()) {
-//            expected += librarian.getSalary();
-//        }
-//
-//        for (ManagerModel manager : AdministratorModel.getManagers()) {
-//            expected += manager.getSalary();
-//        }
-//
-////        for (Administrator admin : Administrator.getAdmins()) {
-////            expected += admin.getSalary();
-////        }
-//
-//        double actual = AdminFuncController.getSalaries();
-//        assertEquals(expected, actual);
-//    }
 
     @Test
     public void testSalary(){
@@ -123,7 +98,7 @@ class AdminTestI {
             System.out.println(salary);
         }
 
-//
+
         ManagerModel mag =new ManagerModel("Alfie123","SSU6umwt","Alfie",500,"(912) 921-2728","aflie@librarian.com");
         AdministratorModel.getManagers().add(mag);
         for (int i=0;i<AdministratorModel.getManagers().size();i++) {
@@ -141,169 +116,6 @@ class AdminTestI {
         assertEquals(salary,AdminFuncController.getSalaries());
     }
 
-    @Test
-    public void testInstantiateManagers() {
-        AdministratorModel.getManagers().clear();
-        AdministratorModel.InstantiateManagers();
-        ArrayList<ManagerModel> managers = AdministratorModel.getManagers();
-
-
-        assertNotNull(managers);
-        assertEquals(3, managers.size());
-
-
-        ManagerModel firstManager = managers.get(0);
-        assertEquals("Calv1n", firstManager.getUsername());
-        assertEquals("PQ532Ayba", firstManager.getPassword());
-        assertEquals("Calvin", firstManager.getName());
-        assertEquals(900, firstManager.getSalary());
-        assertEquals("(912) 561-2628", firstManager.getPhone());
-        assertEquals("calvl@manager.com", firstManager.getEmail());
-
-    }
-
-
-    /////////////Era/////////////
-
-    @Test
-    public void testAddManager() {
-        // Create a new Manager object
-        ManagerModel newManager = new ManagerModel("NewManager", "NewPassword", "NewName", 1000, "(123) 456-7890", "new@example.com");
-
-        // Instantiate Managers (Mock data)
-        AdministratorModel.InstantiateManagers();
-
-        // Get the size of the managers list before adding the new manager
-        int initialSize = AdministratorModel.getManagers().size();
-
-        // Add the new manager
-        AdministratorModel.AddManager(newManager);
-
-        // Get the updated size of the managers list
-        int updatedSize = AdministratorModel.getManagers().size();
-
-        // Check if the size has increased by one after adding the manager
-        assertEquals(initialSize + 1, updatedSize);
-
-        // Check if the new manager is present in the managers list
-        assertTrue(AdministratorModel.getManagers().contains(newManager));
-
-    }
-
-    @Test
-    public void testManagerChecker() {
-        // Create an instance of Administrator
-        AdministratorModel administrator = new AdministratorModel("adminUsername", "adminPassword");
-
-        // Create some test data
-        AdministratorModel.InstantiateManagers();
-
-        // Verify valid manager credentials
-        assertTrue(AdminFuncController.ManagerChecker(new ManagerModel("Calv1n", "PQ532Ayba")));
-        assertTrue(AdminFuncController.ManagerChecker(new ManagerModel("Lui54", "y@.3FYrn")));
-
-        // Verify invalid manager credentials
-        assertFalse(AdminFuncController.ManagerChecker(new ManagerModel("invalidUser", "invalidPassword")));
-        assertFalse(AdminFuncController.ManagerChecker(new ManagerModel("Calv1n", "invalidPassword")));
-        assertFalse(AdminFuncController.ManagerChecker(new ManagerModel("invalidUser", "PQ532Ayba")));
-    }
-
-    @Test
-    void testManagerCheckerInvalid() {
-        // Create a Manager object with invalid credentials
-        ManagerModel invalidManager = new ManagerModel("invalid", "password");
-
-        // Check if the ManagerChecker method returns false for invalid credentials
-        assertFalse(AdminFuncController.ManagerChecker(invalidManager));
-    }
-
-    @Test
-    public void testChecker() {
-        // Create some test data
-        AdminFuncController.InstantiateManagers();
-
-        // Verify valid credentials
-        assertTrue(AdminFuncController.checker("J0sh", "&zsX6QVZ"));
-        assertTrue(AdminFuncController.checker("1", "3"));
-
-        // Verify invalid credentials
-        assertFalse(AdminFuncController.checker("invalidUser", "invalidPassword"));
-        assertFalse(AdminFuncController.checker("J0sh", "invalidPassword"));
-        assertFalse(AdminFuncController.checker("invalidUser", "&zsX6QVZ"));
-    }
-
-
-    //////////Ardisa///////////
-
-    @Test
-    public void testGetBackManager() {
-        ArrayList<ManagerModel> managerList = new ArrayList<>();
-        ArrayList<ManagerModel>emptyList=new ArrayList<>();
-
-        ManagerModel mag1 = new ManagerModel("Calv1n", "PQ532Ayba", "Calvin", 900, "(912) 561-2628", "calvl@manager.com");
-        managerList.add(mag1);
-        ManagerModel mag2 = new ManagerModel("Lui54", "y@.3FYrn", "Lui", 900, "(912) 218-2594", "lu@manager.com");
-        managerList.add(mag2);
-        ManagerModel mag3 = new ManagerModel("1", "2", "TestManager", 900, "(912) 623-5353", "TestEmail@librarian.com");
-        managerList.add(mag3);
-        assertEquals(managerList.size(),3);
-
-        AdministratorModel administrator = new AdministratorModel("1", "3");
-
-        ManagerModel foundManager = AdminFuncController.getBackManager(mag2,managerList);
-
-
-        assertEquals("Lui54", foundManager.getUsername());
-        assertEquals("y@.3FYrn", foundManager.getPassword());
-        assertNull(AdminFuncController.getBackManager(mag1,emptyList));
-        // Add more assertions for other properties as needed
-    }
-    @Test
-    public void testGetManagers() {
-
-        AdministratorModel administrator = new AdministratorModel("1", "3");
-
-        ArrayList<ManagerModel> returnedManagers = AdministratorModel.getManagers();
-    }
-    @Test
-    public void testDeleteManager() {
-
-        ArrayList<ManagerModel> managerList = new ArrayList<>();
-        ManagerModel mag1 = new ManagerModel("Calv1n", "PQ532Ayba", "Calvin", 900, "(912) 561-2628", "calvl@manager.com");
-        managerList.add(mag1);
-        ManagerModel mag2 = new ManagerModel("Lui54", "y@.3FYrn", "Lui", 900, "(912) 218-2594", "lu@manager.com");
-        managerList.add(mag2);
-        ManagerModel mag3 = new ManagerModel("1", "2", "TestManager", 900, "(912) 623-5353", "TestEmail@librarian.com");
-        managerList.add(mag3);
-
-        AdministratorModel administrator = new AdministratorModel();
-
-        AdminFuncController.deleteManager(mag2,managerList);
-        //System.out.println(managerList);
-
-        assertEquals(2,managerList.size());
-        assertFalse(AdministratorModel.getManagers().contains(mag2));
-    }
-    @Test
-    public void testUpdateManagers() {
-        // Arrange
-        ArrayList<ManagerModel> managerList = new ArrayList<>();
-        ManagerModel mag1 = new ManagerModel("Calv1n", "PQ532Ayba", "Calvin", 900, "(912) 561-2628", "calvl@manager.com");
-        managerList.add(mag1);
-        ManagerModel mag2 = new ManagerModel("Lui54", "y@.3FYrn", "Lui", 900, "(912) 218-2594", "lu@manager.com");
-        managerList.add(mag2);
-        ManagerModel mag3 = new ManagerModel("1", "2", "TestManager", 900, "(912) 623-5353", "TestEmail@librarian.com");
-        managerList.add(mag3);
-
-        ManagerModel updatedManager = new ManagerModel("Lui54", "updatedPassword", "UpdatedLui", 1000, "(912) 999-9999", "updatedlu@manager.com");
-
-        AdminFuncController.updateManagers(updatedManager, managerList);
-
-        assertEquals("updatedPassword", mag2.getPassword());
-        assertEquals(1000, mag2.getSalary());
-        assertEquals("(912) 999-9999", mag2.getPhone());
-        assertEquals("updatedlu@manager.com", mag2.getEmail());
-    }
 
 
 

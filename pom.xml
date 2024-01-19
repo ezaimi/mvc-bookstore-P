@@ -32,10 +32,11 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit.version}</version>
+            <version>5.9.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -85,18 +86,18 @@
                 </executions>
             </plugin>
 
-                <plugin>
-                    <groupId>org.pitest</groupId>
-                    <artifactId>pitest-maven</artifactId>
-                    <version>1.15.2</version>
-                    <dependencies>
-                        <dependency>
-                            <groupId>org.pitest</groupId>
-                            <artifactId>pitest-junit5-plugin</artifactId>
-                            <version>1.2.1</version>
-                        </dependency>
-                    </dependencies>
-                </plugin>
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.15.2</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.pitest</groupId>
+                        <artifactId>pitest-junit5-plugin</artifactId>
+                        <version>1.2.1</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
 
         </plugins>
     </build>
