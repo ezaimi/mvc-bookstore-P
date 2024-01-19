@@ -46,7 +46,7 @@ public class MainControllerTest extends ApplicationTest {
 
         mainView.setPrimaryStage(primaryStage);
 
-        primaryStage.setScene(new Scene(mainView.mainPage(), 600, 400));
+        primaryStage.setScene(new Scene(mainView.mainPage(), 800, 600));
         primaryStage.show();
     }
 

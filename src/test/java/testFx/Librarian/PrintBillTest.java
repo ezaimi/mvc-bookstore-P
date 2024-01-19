@@ -44,7 +44,6 @@ public class PrintBillTest extends ApplicationTest {
 
     @Override
     public void start(Stage primaryStage) throws IOException, InterruptedException, TimeoutException {
-        //kjo eshte view kryesore dhe eshte njesoj si tek starti i BookstoreApplication class
         this.primaryStage = primaryStage;
         mainView = new MainView();
         mainController = new MainController(mainView);
@@ -59,25 +58,21 @@ public class PrintBillTest extends ApplicationTest {
 
     @Test
     public void runSystemTest() throws IOException, InterruptedException, TimeoutException {
-        //krijojm nje temp file testBooks dhe fusim nje test Book brenda ne menyre qe kjo klasa e testit
-        //te mos perdor dhe mos e modifikoj(te mos ja uli quantityn) librit real
         File tempFile = createTestFile();
-        //i ndryshojme pathet te gjitha klasave qe perdorin Books.bin ne menyre qe kur klasa e testit te behet run
-        //pathet te ndryshohen ne testBooks.bin
+
         BookController.STOCK_FILE_PATH = tempFile.getAbsolutePath();
         FileBasedStockBookRepository.STOCK_FILE_PATH = tempFile.getAbsolutePath();
         LibrarianFuncController.STOCK_FILE_PATH = tempFile.getAbsolutePath();
         LibrarianModel.STOCK_FILE_PATH = tempFile.getAbsolutePath();
 
-        //nje wait per programin qe te presi derisa te klikohet butoni submit
+
         WaitForAsyncUtils.waitFor(5, TimeUnit.SECONDS, () -> !lookup("#Submit").queryAll().isEmpty());
-        //keto jane te credencialet per tu loguar tek view e librarian qe kompjuteri do te shkruaj ne hapesirat boshe
+
         String validLibrarianUsername = "1";
         String validLibrarianPassword = "11";
 
-        //mockModeli permban kredencialet e mockuara qe useri te logohet tek librarian
-        //psh nese programi i ka kredencialet u:1 pass:11 atehere ne mock ne mund te perdorim kredenciale sipas deshires tone
-        //per ta lehtesuar punen i kam vendosur kredencialet e librarian tek mocku njesoj sic jane ne te vertet
+
+
         AuthenticationModel mockModel = new MockAuthenticationModel();
         mainController.setAuthenticationModel(mockModel);
 
@@ -106,15 +101,9 @@ public class PrintBillTest extends ApplicationTest {
 
        // robot.interact(() -> comboBox.getSelectionModel().select("Test Book"));
         robot.interact(() -> {
-            // Get the items from the ComboBox
             ObservableList<String> items = comboBox.getItems();
-
-            // Check if there are items in the ComboBox
             if (!items.isEmpty()) {
-                // Generate a random index
                 int randomIndex = new Random().nextInt(items.size());
-
-                // Select the item at the random index
                 comboBox.getSelectionModel().select(randomIndex);
             }
         });
@@ -133,25 +122,23 @@ public class PrintBillTest extends ApplicationTest {
 
     @Test
     public void runSystemEmptyQuantityTest() throws IOException, InterruptedException, TimeoutException {
-        //krijojm nje temp file testBooks dhe fusim nje test Book brenda ne menyre qe kjo klasa e testit
-        //te mos perdor dhe mos e modifikoj(te mos ja uli quantityn) librit real
+
+
         File tempFile = createTestFile();
-        //i ndryshojme pathet te gjitha klasave qe perdorin Books.bin ne menyre qe kur klasa e testit te behet run
-        //pathet te ndryshohen ne testBooks.bin
+
+
         BookController.STOCK_FILE_PATH = tempFile.getAbsolutePath();
         FileBasedStockBookRepository.STOCK_FILE_PATH = tempFile.getAbsolutePath();
         LibrarianFuncController.STOCK_FILE_PATH = tempFile.getAbsolutePath();
         LibrarianModel.STOCK_FILE_PATH = tempFile.getAbsolutePath();
 
-        //nje wait per programin qe te presi derisa te klikohet butoni submit
+
         WaitForAsyncUtils.waitFor(5, TimeUnit.SECONDS, () -> !lookup("#Submit").queryAll().isEmpty());
-        //keto jane te credencialet per tu loguar tek view e librarian qe kompjuteri do te shkruaj ne hapesirat boshe
+
         String validLibrarianUsername = "1";
         String validLibrarianPassword = "11";
 
-        //mockModeli permban kredencialet e mockuara qe useri te logohet tek librarian
-        //psh nese programi i ka kredencialet u:1 pass:11 atehere ne mock ne mund te perdorim kredenciale sipas deshires tone
-        //per ta lehtesuar punen i kam vendosur kredencialet e librarian tek mocku njesoj sic jane ne te vertet
+
         AuthenticationModel mockModel = new MockAuthenticationModel();
         mainController.setAuthenticationModel(mockModel);
 
@@ -169,8 +156,8 @@ public class PrintBillTest extends ApplicationTest {
 
 
 
-        //pasi eshte hapur view e librarian kompjuteri do te selektoj librin Test nga comboboxi dhe
-        //do te shkruaj quantityn 5 tek textfieldi dhe do klikoj butonin add dhe me pas bill
+
+
         LibrarianView librarianView = new LibrarianView("1", mainView);
         assertNotNull(librarianView);
 
@@ -194,25 +181,25 @@ public class PrintBillTest extends ApplicationTest {
 
     @Test
     public void runSystemEmptyISBNTest() throws IOException, InterruptedException, TimeoutException {
-        //krijojm nje temp file testBooks dhe fusim nje test Book brenda ne menyre qe kjo klasa e testit
-        //te mos perdor dhe mos e modifikoj(te mos ja uli quantityn) librit real
+
+
         File tempFile = createTestFile();
-        //i ndryshojme pathet te gjitha klasave qe perdorin Books.bin ne menyre qe kur klasa e testit te behet run
-        //pathet te ndryshohen ne testBooks.bin
+
+
         BookController.STOCK_FILE_PATH = tempFile.getAbsolutePath();
         FileBasedStockBookRepository.STOCK_FILE_PATH = tempFile.getAbsolutePath();
         LibrarianFuncController.STOCK_FILE_PATH = tempFile.getAbsolutePath();
         LibrarianModel.STOCK_FILE_PATH = tempFile.getAbsolutePath();
 
-        //nje wait per programin qe te presi derisa te klikohet butoni submit
+
         WaitForAsyncUtils.waitFor(5, TimeUnit.SECONDS, () -> !lookup("#Submit").queryAll().isEmpty());
-        //keto jane te credencialet per tu loguar tek view e librarian qe kompjuteri do te shkruaj ne hapesirat boshe
+
         String validLibrarianUsername = "1";
         String validLibrarianPassword = "11";
 
-        //mockModeli permban kredencialet e mockuara qe useri te logohet tek librarian
-        //psh nese programi i ka kredencialet u:1 pass:11 atehere ne mock ne mund te perdorim kredenciale sipas deshires tone
-        //per ta lehtesuar punen i kam vendosur kredencialet e librarian tek mocku njesoj sic jane ne te vertet
+
+
+
         AuthenticationModel mockModel = new MockAuthenticationModel();
         mainController.setAuthenticationModel(mockModel);
 
@@ -230,8 +217,7 @@ public class PrintBillTest extends ApplicationTest {
 
 
 
-        //pasi eshte hapur view e librarian kompjuteri do te selektoj librin Test nga comboboxi dhe
-        //do te shkruaj quantityn 5 tek textfieldi dhe do klikoj butonin add dhe me pas bill
+
         LibrarianView librarianView = new LibrarianView("1", mainView);
         assertNotNull(librarianView);
 
@@ -255,25 +241,19 @@ public class PrintBillTest extends ApplicationTest {
 
     @Test
     public void runSystemEmptyFieldsTest() throws IOException, InterruptedException, TimeoutException {
-        //krijojm nje temp file testBooks dhe fusim nje test Book brenda ne menyre qe kjo klasa e testit
-        //te mos perdor dhe mos e modifikoj(te mos ja uli quantityn) librit real
+
         File tempFile = createTestFile();
-        //i ndryshojme pathet te gjitha klasave qe perdorin Books.bin ne menyre qe kur klasa e testit te behet run
-        //pathet te ndryshohen ne testBooks.bin
         BookController.STOCK_FILE_PATH = tempFile.getAbsolutePath();
         FileBasedStockBookRepository.STOCK_FILE_PATH = tempFile.getAbsolutePath();
         LibrarianFuncController.STOCK_FILE_PATH = tempFile.getAbsolutePath();
         LibrarianModel.STOCK_FILE_PATH = tempFile.getAbsolutePath();
 
-        //nje wait per programin qe te presi derisa te klikohet butoni submit
+
         WaitForAsyncUtils.waitFor(5, TimeUnit.SECONDS, () -> !lookup("#Submit").queryAll().isEmpty());
-        //keto jane te credencialet per tu loguar tek view e librarian qe kompjuteri do te shkruaj ne hapesirat boshe
+
         String validLibrarianUsername = "1";
         String validLibrarianPassword = "11";
 
-        //mockModeli permban kredencialet e mockuara qe useri te logohet tek librarian
-        //psh nese programi i ka kredencialet u:1 pass:11 atehere ne mock ne mund te perdorim kredenciale sipas deshires tone
-        //per ta lehtesuar punen i kam vendosur kredencialet e librarian tek mocku njesoj sic jane ne te vertet
         AuthenticationModel mockModel = new MockAuthenticationModel();
         mainController.setAuthenticationModel(mockModel);
 
@@ -291,8 +271,6 @@ public class PrintBillTest extends ApplicationTest {
 
 
 
-        //pasi eshte hapur view e librarian kompjuteri do te selektoj librin Test nga comboboxi dhe
-        //do te shkruaj quantityn 5 tek textfieldi dhe do klikoj butonin add dhe me pas bill
         LibrarianView librarianView = new LibrarianView("1", mainView);
         assertNotNull(librarianView);
 
@@ -316,25 +294,18 @@ public class PrintBillTest extends ApplicationTest {
 
     @Test
     public void runSystemInvalidQuantityTest() throws IOException, InterruptedException, TimeoutException {
-        //krijojm nje temp file testBooks dhe fusim nje test Book brenda ne menyre qe kjo klasa e testit
-        //te mos perdor dhe mos e modifikoj(te mos ja uli quantityn) librit real
+
         File tempFile = createTestFile();
-        //i ndryshojme pathet te gjitha klasave qe perdorin Books.bin ne menyre qe kur klasa e testit te behet run
-        //pathet te ndryshohen ne testBooks.bin
+
         BookController.STOCK_FILE_PATH = tempFile.getAbsolutePath();
         FileBasedStockBookRepository.STOCK_FILE_PATH = tempFile.getAbsolutePath();
         LibrarianFuncController.STOCK_FILE_PATH = tempFile.getAbsolutePath();
         LibrarianModel.STOCK_FILE_PATH = tempFile.getAbsolutePath();
 
-        //nje wait per programin qe te presi derisa te klikohet butoni submit
         WaitForAsyncUtils.waitFor(5, TimeUnit.SECONDS, () -> !lookup("#Submit").queryAll().isEmpty());
-        //keto jane te credencialet per tu loguar tek view e librarian qe kompjuteri do te shkruaj ne hapesirat boshe
         String validLibrarianUsername = "1";
         String validLibrarianPassword = "11";
 
-        //mockModeli permban kredencialet e mockuara qe useri te logohet tek librarian
-        //psh nese programi i ka kredencialet u:1 pass:11 atehere ne mock ne mund te perdorim kredenciale sipas deshires tone
-        //per ta lehtesuar punen i kam vendosur kredencialet e librarian tek mocku njesoj sic jane ne te vertet
         AuthenticationModel mockModel = new MockAuthenticationModel();
         mainController.setAuthenticationModel(mockModel);
 
@@ -352,8 +323,6 @@ public class PrintBillTest extends ApplicationTest {
 
 
 
-        //pasi eshte hapur view e librarian kompjuteri do te selektoj librin Test nga comboboxi dhe
-        //do te shkruaj quantityn 5 tek textfieldi dhe do klikoj butonin add dhe me pas bill
         LibrarianView librarianView = new LibrarianView("1", mainView);
         assertNotNull(librarianView);
 
@@ -377,25 +346,25 @@ public class PrintBillTest extends ApplicationTest {
 
     @Test
     public void runSystemInvalidQuantityZeroTest() throws IOException, InterruptedException, TimeoutException {
-        //krijojm nje temp file testBooks dhe fusim nje test Book brenda ne menyre qe kjo klasa e testit
-        //te mos perdor dhe mos e modifikoj(te mos ja uli quantityn) librit real
+
+
         File tempFile = createTestFile();
-        //i ndryshojme pathet te gjitha klasave qe perdorin Books.bin ne menyre qe kur klasa e testit te behet run
-        //pathet te ndryshohen ne testBooks.bin
+
+
         BookController.STOCK_FILE_PATH = tempFile.getAbsolutePath();
         FileBasedStockBookRepository.STOCK_FILE_PATH = tempFile.getAbsolutePath();
         LibrarianFuncController.STOCK_FILE_PATH = tempFile.getAbsolutePath();
         LibrarianModel.STOCK_FILE_PATH = tempFile.getAbsolutePath();
 
-        //nje wait per programin qe te presi derisa te klikohet butoni submit
+
         WaitForAsyncUtils.waitFor(5, TimeUnit.SECONDS, () -> !lookup("#Submit").queryAll().isEmpty());
-        //keto jane te credencialet per tu loguar tek view e librarian qe kompjuteri do te shkruaj ne hapesirat boshe
+
         String validLibrarianUsername = "1";
         String validLibrarianPassword = "11";
 
-        //mockModeli permban kredencialet e mockuara qe useri te logohet tek librarian
-        //psh nese programi i ka kredencialet u:1 pass:11 atehere ne mock ne mund te perdorim kredenciale sipas deshires tone
-        //per ta lehtesuar punen i kam vendosur kredencialet e librarian tek mocku njesoj sic jane ne te vertet
+
+
+
         AuthenticationModel mockModel = new MockAuthenticationModel();
         mainController.setAuthenticationModel(mockModel);
 
@@ -410,11 +379,6 @@ public class PrintBillTest extends ApplicationTest {
         //assertNotNull(mainView.getMainLoginWarning());
         // assert(mainView.getMainLoginWarning().getText().isEmpty());
 
-
-
-
-        //pasi eshte hapur view e librarian kompjuteri do te selektoj librin Test nga comboboxi dhe
-        //do te shkruaj quantityn 5 tek textfieldi dhe do klikoj butonin add dhe me pas bill
         LibrarianView librarianView = new LibrarianView("1", mainView);
         assertNotNull(librarianView);
 
@@ -438,25 +402,25 @@ public class PrintBillTest extends ApplicationTest {
 
     @Test
     public void runSystemNotEnoughStockTest() throws IOException, InterruptedException, TimeoutException {
-        //krijojm nje temp file testBooks dhe fusim nje test Book brenda ne menyre qe kjo klasa e testit
-        //te mos perdor dhe mos e modifikoj(te mos ja uli quantityn) librit real
+
+
         File tempFile = createTestFile();
-        //i ndryshojme pathet te gjitha klasave qe perdorin Books.bin ne menyre qe kur klasa e testit te behet run
-        //pathet te ndryshohen ne testBooks.bin
+
+
         BookController.STOCK_FILE_PATH = tempFile.getAbsolutePath();
         FileBasedStockBookRepository.STOCK_FILE_PATH = tempFile.getAbsolutePath();
         LibrarianFuncController.STOCK_FILE_PATH = tempFile.getAbsolutePath();
         LibrarianModel.STOCK_FILE_PATH = tempFile.getAbsolutePath();
 
-        //nje wait per programin qe te presi derisa te klikohet butoni submit
+
         WaitForAsyncUtils.waitFor(5, TimeUnit.SECONDS, () -> !lookup("#Submit").queryAll().isEmpty());
-        //keto jane te credencialet per tu loguar tek view e librarian qe kompjuteri do te shkruaj ne hapesirat boshe
+
         String validLibrarianUsername = "1";
         String validLibrarianPassword = "11";
 
-        //mockModeli permban kredencialet e mockuara qe useri te logohet tek librarian
-        //psh nese programi i ka kredencialet u:1 pass:11 atehere ne mock ne mund te perdorim kredenciale sipas deshires tone
-        //per ta lehtesuar punen i kam vendosur kredencialet e librarian tek mocku njesoj sic jane ne te vertet
+
+
+
         AuthenticationModel mockModel = new MockAuthenticationModel();
         mainController.setAuthenticationModel(mockModel);
 
@@ -474,8 +438,8 @@ public class PrintBillTest extends ApplicationTest {
 
 
 
-        //pasi eshte hapur view e librarian kompjuteri do te selektoj librin Test nga comboboxi dhe
-        //do te shkruaj quantityn 5 tek textfieldi dhe do klikoj butonin add dhe me pas bill
+
+
         LibrarianView librarianView = new LibrarianView("1", mainView);
         assertNotNull(librarianView);
 
